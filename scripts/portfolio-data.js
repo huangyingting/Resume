@@ -25,8 +25,8 @@ window.RESUME_PORTFOLIO_DATA = {
       zh: "THE ARCHITECT’S CHRONICLE"
     },
     subtitle: {
-      en: "YINGTING HUANG — 20+ YEARS IN CLOUD ARCHITECTURE, CONSULTING & AI SYSTEMS",
-      zh: "YINGTING HUANG — 二十余年企业技术咨询、云原生架构与 AI 系统报刊实录"
+      en: "YINGTING HUANG — 20+ YEARS ACROSS MICROSOFT CLOUD ARCHITECTURE & ENGINEERING LEADERSHIP",
+      zh: "YINGTING HUANG — 二十余年微软云架构、核心技术支持与工程管理实录"
     },
     earRightKicker: { en: "VERIFIED STANDING", zh: "权威认证背书" },
     earRightMain: { en: "3× Microsoft Expert", zh: "微软三大专家大满贯" },
@@ -50,8 +50,8 @@ window.RESUME_PORTFOLIO_DATA = {
       zh: "不止于纸面架构蓝图，更以<em>一人成军</em>的工程力交付真实运行的全球 AI 平台。"
     },
     thesis: {
-      en: "<p>Seasoned IT professional with <strong>20+ years of experience</strong> across technical consulting, enterprise software engineering, and <strong>Microsoft Senior Cloud Solution Architecture</strong>. Appointed <strong>2026 Microsoft Global Hackathon Official Judge</strong> after 7 consecutive years competing, published author in the <strong>Microsoft Learn Azure Architecture Center</strong>, and holder of all three pinnacle Microsoft Expert certifications (Solutions, Cybersecurity SC-100, DevOps).</p><p>Guided by a single conviction — <strong>“Doers, not talkers”</strong> — he solo-engineers and operates full-stack autonomous AI and data intelligence platforms indexing <strong>2,300+ verified enterprise AI cases</strong>, <strong>178 economies</strong>, and <strong>157,000+ longitudinal academic records</strong>.</p>",
-      zh: "<p>资深 IT 架构与工程专家，拥有逾 <strong>20 年</strong>企业技术咨询、分布式软件工程与<strong>微软资深云解决方案架构师 (Senior CSA)</strong> 经验。在连续 7 年征战微软全球黑客松后获任 <strong>2026 全球黑客松官方评委</strong>，同时系<strong>微软官方架构中心 (Azure Architecture Center)</strong> 参考架构作者，并集齐解决方案架构、零信任安全 (SC-100) 与 DevOps <strong>三大顶级专家认证大满贯</strong>。</p><p>始终奉行 <strong>“Doers, not talkers（实干胜于空谈）”</strong>——工作之余独立完成数据管线、多智能体编排与前端交互，上线运营多款全球 AI 与数据情报系统，实时索引 <strong>2,300+ 真实企业 AI 案例</strong>与 <strong>178 个经济体</strong>。</p>"
+      en: "<p>Seasoned cloud architect and engineering leader with <strong>20+ years of experience</strong> across <strong>Microsoft</strong> (two tenures totaling 20 years), <strong>HRGame</strong>, and <strong>SeaChange International</strong> — spanning Networking &amp; Private Cloud SME, <strong>Azure Rapid Response</strong> technical leadership, infrastructure engineering direction, and <strong>Senior Cloud Solution Architecture</strong>. Appointed <strong>2026 Microsoft Global Hackathon Official Judge</strong> and holder of all three Microsoft Expert certifications.</p><p>Guided by a single conviction — <strong>“Doers, not talkers”</strong> — he solo-engineers and operates full-stack autonomous AI and data intelligence platforms indexing <strong>2,300+ verified enterprise AI cases</strong>, <strong>178 economies</strong>, and <strong>157,000+ longitudinal academic records</strong>.</p>",
+      zh: "<p>资深云架构师与工程技术专家，拥有逾 <strong>20 年</strong>研发与架构经验（其中<strong>微软两段任期累计近 20 年</strong>），历任 <strong>SeaChange</strong> 高级软件工程师、<strong>微软</strong>网络与私有云虚拟化 SME、<strong>HRGame</strong> 技术总监、<strong>微软 Azure Rapid Response</strong> 技术负责人及<strong>资深云解决方案架构师 (Senior CSA)</strong>。获任 <strong>2026 微软全球黑客松官方评委</strong>，集齐微软三大顶级专家认证。</p><p>始终奉行 <strong>“Doers, not talkers（实干胜于空谈）”</strong>——工作之余独立完成数据管线、多智能体编排与前端交互，上线运营多款全球 AI 与数据情报系统，实时索引 <strong>2,300+ 真实企业 AI 案例</strong>与 <strong>178 个经济体</strong>。</p>"
     },
     caption: {
       en: "Microsoft Senior CSA · Shanghai\nCUMT Computer Science Alumni",
@@ -116,8 +116,8 @@ window.RESUME_PORTFOLIO_DATA = {
       idx: "01 / EXPERIENCE",
       val: "20",
       suffix: "+ yrs",
-      label: { en: "Technical Consulting & Cloud Architecture", zh: "企业技术咨询与云解决方案架构" },
-      note: { en: "Baosight & SeaChange → Microsoft Senior CSA", zh: "宝信软件 & SeaChange → 微软资深云架构师" }
+      label: { en: "Microsoft & Cloud Engineering", zh: "微软与云端工程领导力" },
+      note: { en: "SeaChange → Microsoft SME → HRGame Director → MS Senior CSA", zh: "SeaChange → 微软 SME → HRGame 总监 → 微软 Senior CSA" }
     },
     {
       idx: "02 / PRODUCTION AI",
@@ -356,39 +356,48 @@ window.RESUME_PORTFOLIO_DATA = {
 
   trajectory: [
     {
-      period: "MICROSOFT · SHANGHAI",
+      period: "2020.02 — PRESENT",
       role: { en: "Senior Cloud Solution Architect", zh: "资深云解决方案架构师 (Senior CSA)" },
-      org: { en: "Microsoft · Shanghai, China (4 Progressive Roles at Microsoft)", zh: "微软中国 (Microsoft) · 上海（含微软四段进阶履历）" },
+      org: { en: "Microsoft · Shanghai (Senior CSA Sep 2020–Present · CSA Feb–Aug 2020)", zh: "微软中国 (Microsoft) · 上海 (2020.09 晋升 Senior CSA)" },
       focus: {
-        en: "Architecting mission-critical Azure infrastructure, Zero-Trust security (SC-100/OIDC), Kubernetes/GitOps, and enterprise Agentic AI platforms. 2026 Global Hackathon Official Judge, Dual FY26 Top Insider, 5× OpenHack Coach & 7-Year MCT.",
-        zh: "主导大型企业核心云原生架构、零信任安全体系 (SC-100/OIDC)、AKS/GitOps 与企业级智能体 (Agentic AI) 平台落地；兼任 2026 微软全球黑客松评委、FY26 双料顶级技术专家、5× OpenHack 教练与 7 年认证讲师。"
+        en: "Cloud, application, and AI architecture & strategy for international and enterprise customers across APAC and China.",
+        zh: "面向亚太及中国区企业客户，主导应用与云基础设施架构设计、AI 平台落地及技术战略。"
       }
     },
     {
-      period: "PRIOR EXPERIENCE",
-      role: { en: "Senior Software Engineer & Technical Consultant", zh: "高级软件工程师与企业技术顾问" },
-      org: { en: "SeaChange International · Baosight Software (宝信软件) · Shanghai & Dalian", zh: "SeaChange International · 宝信软件 (Baosight) 等 · 上海 / 大连" },
+      period: "2016.07 — 2020.01",
+      role: { en: "Escalation Engineer — Azure Rapid Response", zh: "升级支持工程师 (Azure Rapid Response)" },
+      org: { en: "Microsoft · Shanghai, China · 3 yrs 7 mos", zh: "微软中国 (Microsoft) · 上海 · 3 年 7 个月" },
       focus: {
-        en: "Seasoned IT professional with 20+ years of experience across technical consulting and distributed software engineering. Certified System Analyst (MIIT), MapR Certified Spark Developer, ITIL® Foundation, and Prosci® Certified Change Practitioner.",
-        zh: "拥有逾 20 年企业技术咨询与分布式软件系统研发经验，曾任 SeaChange International 高级软件工程师及宝信软件等技术岗位；持有工信部系统分析师、MapR Spark 开发者、ITIL® Foundation 与 Prosci® 变革管理认证。"
+        en: "Technical lead in elite Azure Rapid Response, guiding top Azure customers across IaaS, networking, Kubernetes, and PaaS.",
+        zh: "精英团队 Azure Rapid Response 技术负责人，护航头部大客户在 IaaS、网络、K8s 与 PaaS 的核心云架构实施。"
       }
     },
     {
-      period: "PUBLICATIONS & OPEN SOURCE",
-      role: { en: "MS Learn Author & Open-Source Cloud Creator", zh: "微软官方架构中心作者与开源云原生项目创作者" },
-      org: { en: "Azure Architecture Center · Unofficial Azure Club (Est. Apr 2018)", zh: "Azure Architecture Center · Unofficial Azure Club (创立于 2018.04)" },
+      period: "2014.10 — 2016.07",
+      role: { en: "Director", zh: "技术总监 (Director)" },
+      org: { en: "HRGame · Shanghai, China · 1 yr 10 mos", zh: "HRGame · 上海 · 1 年 10 个月" },
       focus: {
-        en: "Published Enterprise-Level Cloud File Share Solution on Azure (MS Learn) and 58 technical essays; creator of MCP Workshop, GitHub Copilot Workshop, Azure Workload Identity E2E Demo, Cloud Native Showcase (Bingo), and Flux2 GitOps.",
-        zh: "发布微软官方《Enterprise-level cloud file share solution on Azure》参考架构与 58 篇深度技术文章；开源 MCP 工作坊、GitHub Copilot 工作坊、Azure Workload Identity 端到端方案、Bingo 云原生应用与 Flux2 GitOps。"
+        en: "Led an ~15-person engineering team building and operating cloud-hosted mobile game server infrastructure.",
+        zh: "管理约 15 人工程团队，利用云端托管技术构建并运维手游服务端基础设施。"
       }
     },
     {
-      period: "EDUCATION & LANGUAGES",
-      role: { en: "China University of Mining and Technology (CUMT)", zh: "中国矿业大学 (CUMT)" },
-      org: { en: "Bachelor's Degree, Computer Science", zh: "计算机科学学士 (Bachelor's Degree, Computer Science)" },
+      period: "2005.01 — 2014.09",
+      role: { en: "Support Escalation Engineer / Escalation Engineer", zh: "技术支持升级工程师 (Support Escalation / Escalation Engineer)" },
+      org: { en: "Microsoft · Shanghai, China · 9 yrs 9 mos", zh: "微软中国 (Microsoft) · 上海 · 9 年 9 个月" },
       focus: {
-        en: "Computer Science degree at China University of Mining and Technology. Native or bilingual proficiency in Chinese; full professional proficiency in English.",
-        zh: "毕业于中国矿业大学计算机科学专业。中文母语或双语精通，英语具备全职业无障碍沟通能力 (Full Professional Proficiency)。"
+        en: "Private Cloud & Virtualization SME (2009–2014) and Microsoft Networking SME (2005–2009).",
+        zh: "先后担任微软网络技术专家 (SME, 2005–2009) 与私有云及虚拟化技术专家 (SME, 2009–2014)。"
+      }
+    },
+    {
+      period: "2003.11 — 2005.01",
+      role: { en: "Senior Software Engineer", zh: "高级软件工程师 (Senior Software Engineer)" },
+      org: { en: "SeaChange International · Shanghai · 1 yr 3 mos", zh: "SeaChange International · 上海 · 1 年 3 个月" },
+      focus: {
+        en: "Developed core application suites for BMC storage solutions. B.S. in Computer Science, CUMT.",
+        zh: "负责核心 BMC 存储系统应用研发。毕业于中国矿业大学 (CUMT) 计算机科学专业。"
       }
     }
   ]

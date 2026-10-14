@@ -101,9 +101,10 @@ async function main() {
       assert(domEn.includes('Use Case Intelligence'), 'Hydrated DOM missing Use Case Intelligence project');
       assert(domEn.includes('Microsoft Global Hackathon 2026 Official Judge'), 'Hydrated DOM missing 2026 Judge distinction');
       assert(domEn.includes('FutureGrid'), 'Hydrated DOM missing FutureGrid');
-      assert(domEn.includes('Senior Software Engineer &amp; Technical Consultant') || domEn.includes('Senior Software Engineer & Technical Consultant'), 'Hydrated DOM missing verified Senior Software Engineer & Technical Consultant role');
-      assert(domEn.includes('Baosight Software'), 'Hydrated DOM missing Baosight Software');
-      assert(domEn.includes("Bachelor's Degree, Computer Science"), 'Hydrated DOM missing Computer Science degree');
+      assert(domEn.includes('Azure Rapid Response'), 'Hydrated DOM missing Escalation Engineer — Azure Rapid Response role');
+      assert(domEn.includes('HRGame'), 'Hydrated DOM missing HRGame Director role');
+      assert(domEn.includes('Support Escalation Engineer'), 'Hydrated DOM missing Support Escalation Engineer role');
+      assert(domEn.includes('SeaChange International'), 'Hydrated DOM missing SeaChange International role');
       assert(!domEn.includes('Engineering Manager'), 'Hydrated DOM must not contain inaccurate Engineering Manager title');
       assert(domEn.includes('fixed-topbar'), 'Hydrated DOM missing fixed top header bar');
       assert(domEn.includes('front-spread'), 'Hydrated DOM missing broadsheet front-page spread');
@@ -116,7 +117,8 @@ async function main() {
         { encoding: 'utf8', maxBuffer: 10 * 1024 * 1024, timeout: 15000 }
       );
       assert(domZh.includes('微软资深云解决方案架构师'), 'Chinese hydrated DOM missing localized role');
-      assert(domZh.includes('高级软件工程师与企业技术顾问'), 'Chinese hydrated DOM missing verified career record');
+      assert(domZh.includes('Azure Rapid Response'), 'Chinese hydrated DOM missing Azure Rapid Response');
+      assert(domZh.includes('HRGame'), 'Chinese hydrated DOM missing HRGame');
       assert(!domZh.includes('研发经理'), 'Chinese hydrated DOM must not contain inaccurate 研发经理 title');
       assert(domZh.includes('一人成军'), 'Chinese hydrated DOM missing localized statement');
       console.log('✓ Headless Chrome DOM hydration verified for both English and Chinese views.');
