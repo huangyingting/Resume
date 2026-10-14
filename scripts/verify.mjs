@@ -101,6 +101,8 @@ async function main() {
       assert(domEn.includes('Use Case Intelligence'), 'Hydrated DOM missing Use Case Intelligence project');
       assert(domEn.includes('Microsoft Global Hackathon 2026 Official Judge'), 'Hydrated DOM missing 2026 Judge distinction');
       assert(domEn.includes('FutureGrid'), 'Hydrated DOM missing FutureGrid');
+      assert(domEn.includes('fixed-topbar'), 'Hydrated DOM missing fixed top header bar');
+      assert(domEn.includes('front-spread'), 'Hydrated DOM missing broadsheet front-page spread');
       assert(domEn.includes('works-index'), 'Hydrated DOM missing seamless works index');
       assert(domEn.includes('seal-tapestry'), 'Hydrated DOM missing seal tapestry');
 

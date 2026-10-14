@@ -1,9 +1,8 @@
 /**
- * Editorial Monograph Interactive Controller (v3)
- * - 5 Curated Architectural Palettes (Atelier Paper, Kyoto Sumi, Swiss Blueprint, Botanical Moss, Obsidian Chalk)
- * - Subtle Ambient Gallery Lighting Canvas (zero game particles)
- * - Seamless Click-to-Unfold Project Blueprints + Sibling-Dimming Hover
- * - Tactile 123-Seal Credential Tapestry with Live Margin Spotlight
+ * The Architect's Broadsheet Interactive Controller (v4)
+ * - Strictly Fixed Top Header Bar
+ * - 100% Flat & Seamless Multi-Column Newspaper Layout (Zero Cards, Zero Border-Radius)
+ * - 5 Newsprint Paper Editions (Newsprint Ivory, FT Salmon, Midnight Press, Swiss Cyanotype, Kyoto Washi)
  */
 
 (function () {
@@ -13,73 +12,71 @@
   const urlParams = new URLSearchParams(window.location.search);
   const state = {
     lang: urlParams.get("lang") === "zh" ? "zh" : "en",
-    palette: urlParams.get("palette") || localStorage.getItem("yh_editorial_palette") || "atelier",
+    palette: urlParams.get("palette") || localStorage.getItem("yh_broadsheet_palette") || "broadsheet",
     stream: "all", // 'all' | 'certifications' | 'openhack' | 'data_kql' | 'hackathons'
     selectedSealId: creds[0]?.id || ""
   };
 
   const PALETTE_NAMES = {
-    atelier: { en: "Atelier Paper", zh: "纸本画廊" },
-    sumi: { en: "Kyoto Sumi", zh: "京都墨韵" },
-    swiss: { en: "Swiss Blueprint", zh: "瑞士蓝图" },
-    moss: { en: "Botanical Moss", zh: "松烟青苔" },
-    obsidian: { en: "Obsidian Chalk", zh: "黑曜极简" }
+    broadsheet: { en: "Newsprint Ivory", zh: "经典报纸白" },
+    ftpink: { en: "FT Salmon", zh: "金融时报粉" },
+    noir: { en: "Midnight Press", zh: "午夜石印黑" },
+    blueprint: { en: "Swiss Cyanotype", zh: "瑞士蓝晒版" },
+    matcha: { en: "Kyoto Washi", zh: "京都和纸青" }
   };
 
   const I18N = {
     en: {
-      roleTag: "Senior CSA @ Microsoft",
-      navWorks: "01 Works",
-      navAuthority: "02 Authority",
-      navTrajectory: "03 Trajectory",
-      navArchive: "04 Proof (120)",
-      ch1Num: "01 — SELECTED WORKS",
-      ch1Title: "Systems Shipped Solo",
-      ch1Desc: "Live, autonomous intelligence platforms engineered end-to-end. Click any row to unfold its architecture.",
-      ch2Num: "02 — DISTINCTIONS",
-      ch2Title: "Architectural Authority",
-      ch2Desc: "The top 5 career distinctions across global judging, published reference architectures, and triple expert mastery.",
-      ch3Num: "03 — TRAJECTORY",
-      ch3Title: "20-Year Compound Arc",
-      ch3Desc: "From hands-on software engineering and team management to enterprise cloud & AI architecture at Microsoft.",
-      ch4Num: "04 — VERIFIED ARCHIVE",
-      ch4Title: "123 Cryptographic Seals",
-      ch4Desc: "Hover any seal in the tapestry to inspect its official Credly verification record.",
-      streamAll: "All 123 Seals",
+      roleTag: "MICROSOFT SENIOR CSA",
+      navFront: "I. Front Page",
+      navWorks: "II. 4 Systems",
+      navAuthority: "III. Record & Arc",
+      navArchive: "IV. 123 Seals",
+      ch1Num: "SECTION I — PRODUCTION SYSTEMS",
+      ch1Title: "Four Solo-Shipped AI & Data Platforms",
+      ch1Desc: "END-TO-END AUTONOMOUS PIPELINES · ZERO-BACKEND EDGE DELIVERY",
+      ch2Num: "SECTION II — OFFICIAL STANDING",
+      ch2Title: "Five Career-Defining Distinctions",
+      ch2Desc: "CURATED FROM 123 VERIFIED RECORDS",
+      ch3Num: "SECTION III — 20-YEAR CHRONICLE",
+      ch3Title: "Compound Leadership Arc",
+      ch3Desc: "2005 — 2026 DISPATCH",
+      ch4Num: "SECTION IV — CRYPTOGRAPHIC RECORD",
+      ch4Title: "123 Verified Seals & Certifications",
+      streamAll: "All 123",
       streamCerts: "Expert & Certs (30)",
       streamOpenhack: "OpenHack & MCT (34)",
       streamData: "Kusto Detective (21)",
       streamHack: "Hackathon & Honors (38)",
-      liveLink: "Launch Live Platform ↗",
-      repoLink: "Source Repository ↗",
-      verifySeal: "Verify on Credly ↗"
+      liveLink: "LIVE SYSTEM ↗",
+      repoLink: "SOURCE CODE ↗",
+      verifySeal: "VERIFY RECORD ↗"
     },
     zh: {
       roleTag: "微软资深云架构师",
-      navWorks: "01 代表作",
-      navAuthority: "02 权威认可",
-      navTrajectory: "03 20年履历",
-      navArchive: "04 徽章索引",
-      ch1Num: "01 — 独立交付代表作",
-      ch1Title: "亲自写代码上线的 AI 平台",
-      ch1Desc: "拒绝纸上谈兵。独立完成从数据管线、智能体编排到前端交互的全栈线上系统（点击任意行展开架构蓝图）。",
-      ch2Num: "02 — 核心行业地位",
-      ch2Title: "最具份量的五项专业背书",
-      ch2Desc: "从 123 项认证中严选最具稀缺性的五项里程碑：全球评委、官方架构作者与三大专家大满贯。",
-      ch3Num: "03 — 复合职业演进",
-      ch3Title: "20 年跨国工程与架构视野",
-      ch3Desc: "历任一线研发、项目经理、工程团队经理、技术咨询顾问及微软资深云架构师。",
-      ch4Num: "04 — 可验真资质索引",
-      ch4Title: "123 枚官方数字徽章星带",
-      ch4Desc: "去卡片化集成展示——鼠标掠过任意徽章印记，即可在上方索引栏查看并前往官方验真。",
-      streamAll: "全部印记 (123)",
+      navFront: "I. 头版头条",
+      navWorks: "II. 四大系统",
+      navAuthority: "III. 权威与履历",
+      navArchive: "IV. 123枚印鉴",
+      ch1Num: "第一版 — 独立交付的生产级系统",
+      ch1Title: "一人成军：四大全栈 AI 与数据情报平台",
+      ch1Desc: "从多智能体数据管线到前端交互独立完成 · 四栏通排架构解析",
+      ch2Num: "第二版 — 行业权威背书",
+      ch2Title: "最具含金量的五项官方里程碑",
+      ch2Desc: "从 123 项可验真记录中严选",
+      ch3Num: "第三版 — 二十年复合演进",
+      ch3Title: "跨国研发管理与云架构编年史",
+      ch3Desc: "2005 — 2026 履历实录",
+      ch4Num: "第四版 — 官方数字印鉴检索版",
+      ch4Title: "123 枚 Credly 与权威技术认证平面底片",
+      streamAll: "全部 (123)",
       streamCerts: "专家与架构认证 (30)",
       streamOpenhack: "OpenHack 教练与讲师 (34)",
       streamData: "Kusto 侦探奖章 (21)",
       streamHack: "黑客松与微软表彰 (38)",
       liveLink: "访问线上系统 ↗",
-      repoLink: "查看开源代码 ↗",
-      verifySeal: "官方证书验真 ↗"
+      repoLink: "开源仓库 ↗",
+      verifySeal: "前往官方验真 ↗"
     }
   };
 
@@ -102,13 +99,13 @@
   }
 
   /* ========================================================================
-     1. Curated Palette Switcher
+     1. Curated Newsprint Palette Switcher
      ======================================================================== */
   function applyPalette(p) {
-    if (!PALETTE_NAMES[p]) p = "atelier";
+    if (!PALETTE_NAMES[p]) p = "broadsheet";
     state.palette = p;
     document.documentElement.setAttribute("data-palette", p);
-    localStorage.setItem("yh_editorial_palette", p);
+    localStorage.setItem("yh_broadsheet_palette", p);
 
     document.querySelectorAll("[data-tone]").forEach((btn) => {
       btn.classList.toggle("is-active", btn.getAttribute("data-tone") === p);
@@ -120,67 +117,34 @@
   }
 
   /* ========================================================================
-     2. Subtle Ambient Gallery Lighting Canvas (Soft Warm Radial Wash)
-     ======================================================================== */
-  function initAmbientCanvas() {
-    const canvas = document.getElementById("ambient-canvas");
-    if (!canvas) return;
-    const ctx = canvas.getContext("2d");
-    let w = (canvas.width = window.innerWidth);
-    let h = (canvas.height = window.innerHeight);
-
-    const target = { x: w * 0.65, y: h * 0.28 };
-    const current = { x: w * 0.65, y: h * 0.28 };
-
-    window.addEventListener("mousemove", (e) => {
-      target.x = e.clientX;
-      target.y = e.clientY;
-    });
-    window.addEventListener("resize", () => {
-      w = canvas.width = window.innerWidth;
-      h = canvas.height = window.innerHeight;
-    });
-
-    function renderAmbient() {
-      current.x += (target.x - current.x) * 0.04;
-      current.y += (target.y - current.y) * 0.04;
-
-      ctx.clearRect(0, 0, w, h);
-      const style = getComputedStyle(document.documentElement);
-      const rgb1 = (style.getPropertyValue("--ambient-rgb-1") || "200, 62, 43").trim();
-      const rgb2 = (style.getPropertyValue("--ambient-rgb-2") || "185, 145, 95").trim();
-
-      const grad1 = ctx.createRadialGradient(current.x, current.y, 10, current.x, current.y, Math.max(w, h) * 0.48);
-      grad1.addColorStop(0, `rgba(${rgb1}, 0.075)`);
-      grad1.addColorStop(1, `rgba(${rgb1}, 0)`);
-      ctx.fillStyle = grad1;
-      ctx.fillRect(0, 0, w, h);
-
-      const grad2 = ctx.createRadialGradient(w * 0.2, h * 0.8, 10, w * 0.2, h * 0.8, Math.max(w, h) * 0.45);
-      grad2.addColorStop(0, `rgba(${rgb2}, 0.055)`);
-      grad2.addColorStop(1, `rgba(${rgb2}, 0)`);
-      ctx.fillStyle = grad2;
-      ctx.fillRect(0, 0, w, h);
-
-      requestAnimationFrame(renderAmbient);
-    }
-    requestAnimationFrame(renderAmbient);
-  }
-
-  /* ========================================================================
-     3. Render Editorial Sections
+     2. Render Broadsheet Masthead & Front Page
      ======================================================================== */
   function renderMastheadAndHero() {
     document.getElementById("masthead-role").textContent = ui("roleTag");
+    document.getElementById("nav-front").textContent = ui("navFront");
     document.getElementById("nav-works").textContent = ui("navWorks");
     document.getElementById("nav-authority").textContent = ui("navAuthority");
-    document.getElementById("nav-trajectory").textContent = ui("navTrajectory");
     document.getElementById("nav-archive").textContent = ui("navArchive");
     document.getElementById("lang-switch").textContent = state.lang === "en" ? "中文" : "EN";
 
+    // Nameplate ears & title
+    if (data.nameplate) {
+      document.getElementById("ear-left-kicker").textContent = t(data.nameplate.earLeftKicker);
+      document.getElementById("ear-left-main").textContent = t(data.nameplate.earLeftMain);
+      document.getElementById("ear-left-sub").textContent = t(data.nameplate.earLeftSub);
+      document.getElementById("nameplate-super").textContent = t(data.nameplate.super);
+      document.getElementById("nameplate-title").textContent = t(data.nameplate.title);
+      document.getElementById("nameplate-subtitle").textContent = t(data.nameplate.subtitle);
+      document.getElementById("ear-right-kicker").textContent = t(data.nameplate.earRightKicker);
+      document.getElementById("ear-right-main").textContent = t(data.nameplate.earRightMain);
+      document.getElementById("ear-right-sub").textContent = t(data.nameplate.earRightSub);
+    }
+
     document.getElementById("hero-kicker").textContent = t(data.hero.kicker);
+    document.getElementById("lead-kicker").textContent = t(data.hero.leadKicker);
     document.getElementById("hero-statement").innerHTML = t(data.hero.statement);
     document.getElementById("hero-thesis").innerHTML = t(data.hero.thesis);
+    document.getElementById("columnist-header").textContent = t(data.hero.dossierHeader);
     document.getElementById("portrait-caption").innerHTML = esc(t(data.hero.caption)).replace(/\n/g, "<br/>");
 
     document.getElementById("datum-strip").innerHTML = data.datums
@@ -195,8 +159,22 @@
       `
       )
       .join("");
+
+    document.getElementById("dossier-ledger").innerHTML = (data.hero.dossier || [])
+      .map(
+        (item) => `
+        <div class="dossier-item">
+          <span class="dossier-key">${esc(t(item.key))}</span>
+          <span class="dossier-val">${esc(t(item.val))}</span>
+        </div>
+      `
+      )
+      .join("");
   }
 
+  /* ========================================================================
+     3. Render Section I: 4-Column Vertical Feature Spread
+     ======================================================================== */
   function renderWorksChapter() {
     document.getElementById("ch1-num").textContent = ui("ch1Num");
     document.getElementById("ch1-title").textContent = ui("ch1Title");
@@ -208,59 +186,49 @@
         const stepsHtml = w.steps
           .map(
             (s) => `
-            <div class="bp-step">
-              <div class="bp-step__stage">${esc(s.stage)}</div>
-              <div class="bp-step__title">${esc(t(s.title))}</div>
-              <div class="bp-step__detail">${esc(t(s.detail))}</div>
+            <div class="pipe-row">
+              <span class="pipe-row__stage">${esc(s.stage)}</span>
+              <span class="pipe-row__title">${esc(t(s.title))}</span>
+              <span class="pipe-row__detail">${esc(t(s.detail))}</span>
             </div>
           `
           )
           .join("");
 
         return `
-          <article class="work-row ${w.openDefault ? "is-open" : ""}" data-work-idx="${esc(w.idx)}">
-            <div class="work-row__summary" role="button" tabindex="0">
-              <span class="work-row__idx">${esc(w.idx)}</span>
-              <div>
-                <h3 class="work-row__name">${esc(w.name)}</h3>
-                <span class="work-row__domain">${esc(t(w.domain))}</span>
+          <article class="work-col" data-work-idx="${esc(w.idx)}">
+            <div>
+              <div class="work-col__head">
+                <div class="work-col__topline">
+                  <span class="work-col__idx">${esc(w.idx)}</span>
+                  <span class="work-col__metric">${esc(t(w.metric))}</span>
+                </div>
+                <h3 class="work-col__name">${esc(w.name)}</h3>
+                <span class="work-col__domain">${esc(t(w.domain))}</span>
               </div>
-              <p class="work-row__essence">${esc(t(w.essence))}</p>
-              <div class="work-row__metric">
-                <span>${esc(t(w.metric))}</span>
-                <span class="work-row__toggle">+</span>
-              </div>
+              <p class="work-col__essence">${esc(t(w.essence))}</p>
             </div>
 
-            <div class="work-row__drawer">
-              <div class="blueprint-flow">${stepsHtml}</div>
-              <div class="work-row__footer">
-                <div class="work-row__tags">
-                  ${w.tags.map((tg) => `<span># ${esc(tg)}</span>`).join("")}
-                </div>
-                <div class="work-row__actions">
-                  <a class="editorial-link" href="${esc(w.liveUrl)}" target="_blank" rel="noopener noreferrer">${esc(
+            <div>
+              <div class="work-col__pipeline">${stepsHtml}</div>
+              <div class="work-col__links">
+                <a class="news-link" href="${esc(w.liveUrl)}" target="_blank" rel="noopener noreferrer">${esc(
           ui("liveLink")
         )}</a>
-                  <a class="editorial-link" href="${esc(w.repoUrl)}" target="_blank" rel="noopener noreferrer">${esc(
+                <a class="news-link" href="${esc(w.repoUrl)}" target="_blank" rel="noopener noreferrer">${esc(
           ui("repoLink")
         )}</a>
-                </div>
               </div>
             </div>
           </article>
         `;
       })
       .join("");
-
-    container.querySelectorAll(".work-row__summary").forEach((row) => {
-      row.addEventListener("click", () => {
-        const article = row.closest(".work-row");
-        article.classList.toggle("is-open");
-      });
-    });
   }
 
+  /* ========================================================================
+     4. Render Section II & III: Asymmetric Double-Spread
+     ======================================================================== */
   function renderAuthorityChapter() {
     document.getElementById("ch2-num").textContent = ui("ch2Num");
     document.getElementById("ch2-title").textContent = ui("ch2Title");
@@ -271,9 +239,11 @@
         (d) => `
         <div class="authority-row">
           <span class="authority-year">${esc(d.year)}</span>
-          <h3 class="authority-title">${esc(t(d.title))}</h3>
-          <p class="authority-detail">${esc(t(d.detail))}</p>
-          <a class="authority-proof editorial-link" href="${esc(d.proofUrl)}" target="_blank" rel="noopener noreferrer">
+          <div>
+            <h3 class="authority-title">${esc(t(d.title))}</h3>
+            <p class="authority-detail">${esc(t(d.detail))}</p>
+          </div>
+          <a class="authority-proof news-link" href="${esc(d.proofUrl)}" target="_blank" rel="noopener noreferrer">
             ${esc(t(d.proofLabel))}
           </a>
         </div>
@@ -286,23 +256,38 @@
     document.getElementById("ch3-num").textContent = ui("ch3Num");
     document.getElementById("ch3-title").textContent = ui("ch3Title");
     document.getElementById("ch3-desc").textContent = ui("ch3Desc");
+    document.getElementById("editorial-pullquote").textContent = t(data.hero.pullquote);
 
     document.getElementById("chronology").innerHTML = data.trajectory
       .map(
         (tr) => `
         <div class="chrono-row">
-          <span class="chrono-period">${esc(tr.period)}</span>
-          <div>
+          <div class="chrono-topline">
             <h3 class="chrono-role">${esc(t(tr.role))}</h3>
-            <div class="chrono-org">${esc(t(tr.org))}</div>
+            <span class="chrono-period">${esc(tr.period)}</span>
           </div>
+          <div class="chrono-org">${esc(t(tr.org))}</div>
           <p class="chrono-focus">${esc(t(tr.focus))}</p>
+        </div>
+      `
+      )
+      .join("");
+
+    document.getElementById("domain-ledger").innerHTML = (data.hero.domains || [])
+      .map(
+        (dm) => `
+        <div class="domain-cell">
+          <div class="domain-cell__kicker">${esc(dm.kicker)}</div>
+          <div class="domain-cell__title">${esc(t(dm.title))}</div>
         </div>
       `
       )
       .join("");
   }
 
+  /* ========================================================================
+     5. Render Section IV: Flat 123-Seal Contact Sheet
+     ======================================================================== */
   function getFilteredSeals() {
     if (state.stream === "all") return creds;
     if (state.stream === "openhack") {
@@ -317,7 +302,6 @@
   function renderArchiveChapter() {
     document.getElementById("ch4-num").textContent = ui("ch4Num");
     document.getElementById("ch4-title").textContent = ui("ch4Title");
-    document.getElementById("ch4-desc").textContent = ui("ch4Desc");
 
     const streams = [
       { id: "all", label: ui("streamAll") },
@@ -366,7 +350,7 @@
             </div>
           </div>
         </div>
-        <a class="editorial-link" style="font-family:var(--font-mono);font-size:0.74rem;white-space:nowrap;" href="${esc(
+        <a class="news-link" style="font-size:0.72rem;white-space:nowrap;" href="${esc(
           activeSeal.verifyUrl
         )}" target="_blank" rel="noopener noreferrer">
           ${esc(ui("verifySeal"))}
@@ -414,7 +398,6 @@
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    initAmbientCanvas();
     renderAll();
 
     document.querySelectorAll("[data-tone]").forEach((btn) => {

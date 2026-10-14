@@ -1,159 +1,205 @@
 <!DOCTYPE html>
-<html lang="en" data-palette="atelier">
+<html lang="en" data-palette="broadsheet">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Yingting Huang (黄颖庭) — Senior Cloud Solution Architect @ Microsoft</title>
-  <meta name="description" content="Yingting Huang — Senior Cloud Solution Architect at Microsoft. 20+ years in enterprise engineering & cloud architecture, 2026 Microsoft Global Hackathon Judge, Azure Architecture Center author, and creator of Use Case Intelligence, FutureGrid, and University Signals." />
-  <meta property="og:title" content="Yingting Huang (黄颖庭) — Enterprise Architect Who Ships" />
+  <title>THE ARCHITECT’S BROADSHEET — Yingting Huang (黄颖庭) · Microsoft Senior CSA</title>
+  <meta name="description" content="Yingting Huang (黄颖庭) — Senior Cloud Solution Architect at Microsoft. 20+ years in enterprise engineering & cloud architecture, 2026 Microsoft Global Hackathon Judge, Azure Architecture Center author, and creator of Use Case Intelligence, FutureGrid, and University Signals." />
+  <meta property="og:title" content="Yingting Huang (黄颖庭) — The Architect's Broadsheet" />
   <meta property="og:description" content="Senior Cloud Solution Architect @ Microsoft · 2026 Global Hackathon Judge · 3× Expert · Creator of Use Case Intelligence & FutureGrid." />
   <meta property="og:type" content="profile" />
   <meta property="og:image" content="./assets/avatar-credly.png" />
   <link rel="icon" type="image/png" href="./assets/avatar-credly.png" />
   <link rel="preload" href="./assets/fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="./styles/resume.css" />
+  <link rel="stylesheet" href="./styles/resume.css?v=20261014-v4" />
 </head>
 <body>
-  <!-- Subtle Ambient Gallery Light + Tactile Archival Grain -->
-  <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+  <!-- Subtle Paper Grain Overlay -->
   <div class="grain-overlay" aria-hidden="true"></div>
 
-  <!-- Seamless Top Editorial Masthead -->
-  <header class="masthead">
-    <div class="frame masthead__inner">
-      <a class="masthead__id" href="#top">
-        <span class="masthead__name">Yingting Huang · 黄颖庭</span>
-        <span class="masthead__role" id="masthead-role">Senior CSA @ Microsoft</span>
+  <!-- FIXED TOP BAR (Strictly pinned at top: 0, flat, zero border-radius) -->
+  <header class="fixed-topbar" id="fixed-topbar">
+    <div class="sheet-wrap fixed-topbar__inner">
+      <a class="fixed-topbar__brand" href="#top">
+        <span class="fixed-topbar__stamp">EDITION 2026</span>
+        <span class="fixed-topbar__name">YINGTING HUANG · 黄颖庭</span>
+        <span class="fixed-topbar__role" id="masthead-role">MICROSOFT SENIOR CSA</span>
       </a>
 
-      <nav class="masthead__nav" aria-label="Editorial Sections">
-        <a class="masthead__link" id="nav-works" href="#works">01 Works</a>
-        <a class="masthead__link" id="nav-authority" href="#authority">02 Authority</a>
-        <a class="masthead__link" id="nav-trajectory" href="#trajectory">03 Trajectory</a>
-        <a class="masthead__link" id="nav-archive" href="#archive">04 Proof (120)</a>
+      <nav class="fixed-topbar__nav" aria-label="Newspaper Sections">
+        <a class="fixed-topbar__link" id="nav-front" href="#top">I. Front Page</a>
+        <a class="fixed-topbar__link" id="nav-works" href="#works">II. 4 Systems</a>
+        <a class="fixed-topbar__link" id="nav-authority" href="#authority">III. Record &amp; Arc</a>
+        <a class="fixed-topbar__link" id="nav-archive" href="#archive">IV. 123 Seals</a>
       </nav>
 
-      <div class="masthead__controls">
-        <div class="palette-bar" role="group" aria-label="Curated Palette Switcher">
-          <span class="palette-bar__name" id="palette-name">Atelier Paper</span>
-          <button type="button" class="tone-dot tone-dot--atelier is-active" data-tone="atelier" title="Atelier Paper (Warm Gallery Paper & Vermilion)"></button>
-          <button type="button" class="tone-dot tone-dot--sumi" data-tone="sumi" title="Kyoto Sumi (Charcoal & Burnished Brass)"></button>
-          <button type="button" class="tone-dot tone-dot--swiss" data-tone="swiss" title="Swiss Blueprint (Limestone & Klein Blue)"></button>
-          <button type="button" class="tone-dot tone-dot--moss" data-tone="moss" title="Botanical Moss (Forest Ink & Terracotta)"></button>
-          <button type="button" class="tone-dot tone-dot--obsidian" data-tone="obsidian" title="Obsidian Chalk (Pure Noir & Champagne)"></button>
+      <div class="fixed-topbar__controls">
+        <div class="paper-switcher" role="group" aria-label="Newsprint Edition Switcher">
+          <span class="paper-switcher__label" id="palette-name">Newsprint Ivory</span>
+          <button type="button" class="paper-swatch paper-swatch--broadsheet is-active" data-tone="broadsheet" title="Newsprint Ivory (Classic Broadsheet & Vermilion)"></button>
+          <button type="button" class="paper-swatch paper-swatch--ftpink" data-tone="ftpink" title="FT Salmon (Financial Times Weekend Pink & Claret)"></button>
+          <button type="button" class="paper-swatch paper-swatch--noir" data-tone="noir" title="Midnight Press (Lithograph Black & Editorial Gold)"></button>
+          <button type="button" class="paper-swatch paper-swatch--blueprint" data-tone="blueprint" title="Swiss Cyanotype (Architectural Vellum & Klein Blue)"></button>
+          <button type="button" class="paper-swatch paper-swatch--matcha" data-tone="matcha" title="Kyoto Washi (Warm Washi Sage & Persimmon)"></button>
         </div>
         <button type="button" class="lang-switch" id="lang-switch">中文</button>
       </div>
     </div>
   </header>
 
-  <main class="frame" id="top">
-    <!-- Hero Editorial Spread (Monumental Typography, Seamless Hairline Grid) -->
-    <section class="hero-spread">
-      <div class="hero-meta-line">
-        <span class="hero-meta-accent" id="hero-kicker">INDEX NO. 2026 · MICROSOFT SENIOR CLOUD SOLUTION ARCHITECT · SHANGHAI</span>
-        <span>31°13′N 121°28′E</span>
+  <main class="sheet-wrap broadsheet-page" id="top">
+    <!-- ====================================================================
+         NEWSPAPER NAMEPLATE / MASTHEAD (报头通栏 + 报耳 + 双线分割)
+         ==================================================================== -->
+    <section class="nameplate">
+      <div class="nameplate__ears">
+        <div class="nameplate__ear nameplate__ear--left">
+          <span class="ear-kicker" id="ear-left-kicker">ARCHITECTURAL MONOGRAPH</span>
+          <strong class="ear-main" id="ear-left-main">“Doers, Not Talkers.”</strong>
+          <span class="ear-sub" id="ear-left-sub">Solo-Shipped AI Systems &amp; Global Cloud Strategy</span>
+        </div>
+
+        <div class="nameplate__center">
+          <div class="nameplate__super" id="nameplate-super">SHANGHAI · MICROSOFT CLOUD SOLUTION ARCHITECTURE · VOL. XX</div>
+          <div class="nameplate__title" id="nameplate-title">THE ARCHITECT’S CHRONICLE</div>
+          <div class="nameplate__subtitle" id="nameplate-subtitle">YINGTING HUANG (黄颖庭) — 20-YEAR ENGINEERING &amp; AI SYSTEMS GAZETTE</div>
+        </div>
+
+        <div class="nameplate__ear nameplate__ear--right">
+          <span class="ear-kicker" id="ear-right-kicker">VERIFIED STANDING</span>
+          <strong class="ear-main" id="ear-right-main">3× Microsoft Expert</strong>
+          <span class="ear-sub" id="ear-right-sub">2026 Global Hackathon Judge · 120 Credly Seals</span>
+        </div>
       </div>
 
-      <div class="hero-top-split">
-        <h1 class="hero-Statement" id="hero-statement">
+      <!-- Double-Rule Dateline & Dispatch Links -->
+      <div class="dateline-bar">
+        <div class="dateline-bar__left" id="hero-kicker">
+          SHANGHAI, 31°13′N 121°28′E — SENIOR CLOUD SOLUTION ARCHITECT AT MICROSOFT
+        </div>
+        <div class="dateline-bar__links">
+          <a class="news-link" href="https://www.credly.com/users/yingting-huang" target="_blank" rel="noopener noreferrer">CREDLY (120) ↗</a>
+          <a class="news-link" href="https://www.linkedin.com/in/yingting-huang-9622bb20" target="_blank" rel="noopener noreferrer">LINKEDIN ↗</a>
+          <a class="news-link" href="https://github.com/huangyingting" target="_blank" rel="noopener noreferrer">GITHUB ↗</a>
+          <a class="news-link" href="https://blog.genisisiq.com/" target="_blank" rel="noopener noreferrer">ESSAYS (58+) ↗</a>
+          <a class="news-link" href="mailto:huangyingting@outlook.com">EMAIL ↗</a>
+        </div>
+      </div>
+    </section>
+
+    <!-- ====================================================================
+         FRONT-PAGE MULTI-COLUMN SPREAD (头版主稿 8栏 + 右侧人物专栏 4栏)
+         ==================================================================== -->
+    <section class="front-spread">
+      <!-- Left 8 Columns: Lead Headline + 2-Column Drop-Cap Story + 4 Figures -->
+      <div class="front-spread__lead">
+        <div class="story-kicker" id="lead-kicker">LEAD EDITORIAL · ENTERPRISE ARCHITECTURE &amp; SOLO AI ENGINEERING</div>
+        <h1 class="lead-headline" id="hero-statement">
           An enterprise architect who <em>actually ships</em> — bridging global cloud strategy with solo-built AI systems.
         </h1>
 
-        <div class="hero-portrait-col">
-          <img class="portrait-frame" src="./assets/avatar-credly.png" alt="Yingting Huang" width="88" height="88" />
-          <div class="portrait-caption" id="portrait-caption">Yingting Huang · 黄颖庭<br/>CUMT Alumni · Shanghai</div>
-        </div>
+        <div class="lead-columns" id="hero-thesis"></div>
+
+        <!-- Seamless 4-Column Newspaper Figures Strip -->
+        <div class="datum-strip" id="datum-strip" aria-label="Key Architectural Figures"></div>
       </div>
 
-      <div class="hero-sub-bar">
-        <p class="hero-thesis" id="hero-thesis"></p>
-
-        <div class="hero-links-inline">
-          <a class="editorial-link" href="https://www.credly.com/users/yingting-huang" target="_blank" rel="noopener noreferrer">Credly (120) ↗</a>
-          <a class="editorial-link" href="https://www.linkedin.com/in/yingting-huang-9622bb20" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-          <a class="editorial-link" href="https://github.com/huangyingting" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-          <a class="editorial-link" href="https://blog.genisisiq.com/" target="_blank" rel="noopener noreferrer">Essays (58+) ↗</a>
-          <a class="editorial-link" href="mailto:huangyingting@outlook.com">Email ↗</a>
+      <!-- Right 4 Columns: Columnist Plate + Executive Standing Dossier -->
+      <aside class="front-spread__columnist">
+        <div class="columnist-header" id="columnist-header">THE ARCHITECT IN FOCUS</div>
+        <div class="portrait-plate">
+          <img class="portrait-frame" src="./assets/avatar-credly.png" alt="Yingting Huang" width="120" height="120" />
+          <div class="portrait-meta">
+            <div class="portrait-name">Yingting Huang · 黄颖庭</div>
+            <div class="portrait-caption" id="portrait-caption">Microsoft Senior CSA · Shanghai<br/>CUMT Engineering Alumni</div>
+          </div>
         </div>
-      </div>
+
+        <div class="dossier-ledger" id="dossier-ledger"></div>
+      </aside>
     </section>
 
-    <!-- Seamless 4-Figure Architectural Datum Strip -->
-    <section class="datum-strip" id="datum-strip" aria-label="Key Architectural Figures"></section>
-
-    <!-- Chapter 01: Selected Works (Seamless Interactive Index Rows) -->
-    <section class="chapter" id="works">
-      <aside class="chapter__aside">
-        <div class="chapter__sticky">
-          <span class="chapter__num" id="ch1-num">01 — SELECTED WORKS</span>
-          <h2 class="chapter__title" id="ch1-title">Systems Shipped Solo</h2>
-          <p class="chapter__desc" id="ch1-desc"></p>
+    <!-- ====================================================================
+         SECTION I: 4-COLUMN VERTICAL FEATURE SPREAD (四大独立交付系统·四栏通排报版)
+         ==================================================================== -->
+    <section class="news-section" id="works">
+      <div class="section-banner">
+        <div class="section-banner__left">
+          <span class="section-banner__num" id="ch1-num">SECTION I — PRODUCTION SYSTEMS</span>
+          <h2 class="section-banner__title" id="ch1-title">Four Solo-Shipped AI &amp; Data Platforms</h2>
         </div>
-      </aside>
-      <div class="chapter__body">
-        <div class="works-index" id="works-index"></div>
+        <p class="section-banner__desc" id="ch1-desc"></p>
       </div>
+
+      <!-- 4 Vertical Newspaper Columns sharing 1px hairlines -->
+      <div class="works-columns" id="works-index"></div>
     </section>
 
-    <!-- Chapter 02: Architectural Authority & Distinctions -->
-    <section class="chapter" id="authority">
-      <aside class="chapter__aside">
-        <div class="chapter__sticky">
-          <span class="chapter__num" id="ch2-num">02 — DISTINCTIONS</span>
-          <h2 class="chapter__title" id="ch2-title">Architectural Authority</h2>
-          <p class="chapter__desc" id="ch2-desc"></p>
+    <!-- ====================================================================
+         SECTION II & III: ASYMMETRIC DOUBLE-SPREAD (左7栏：官方权威背书 | 右5栏：20年履历与学术底蕴)
+         ==================================================================== -->
+    <section class="double-spread" id="authority">
+      <!-- Left 7 Columns: Official Microsoft Distinctions -->
+      <div class="double-spread__left">
+        <div class="section-banner section-banner--compact">
+          <div class="section-banner__left">
+            <span class="section-banner__num" id="ch2-num">SECTION II — OFFICIAL STANDING</span>
+            <h2 class="section-banner__title" id="ch2-title">Five Career-Defining Distinctions</h2>
+          </div>
+          <p class="section-banner__desc" id="ch2-desc"></p>
         </div>
-      </aside>
-      <div class="chapter__body">
+
         <div class="authority-list" id="authority-list"></div>
       </div>
-    </section>
 
-    <!-- Chapter 03: 20-Year Trajectory & Academic Foundation -->
-    <section class="chapter" id="trajectory">
-      <aside class="chapter__aside">
-        <div class="chapter__sticky">
-          <span class="chapter__num" id="ch3-num">03 — TRAJECTORY</span>
-          <h2 class="chapter__title" id="ch3-title">20-Year Compound Arc</h2>
-          <p class="chapter__desc" id="ch3-desc"></p>
+      <!-- Right 5 Columns: 20-Year Trajectory & Core Architecture Matrix -->
+      <div class="double-spread__right" id="trajectory">
+        <div class="section-banner section-banner--compact">
+          <div class="section-banner__left">
+            <span class="section-banner__num" id="ch3-num">SECTION III — 20-YEAR CHRONICLE</span>
+            <h2 class="section-banner__title" id="ch3-title">Compound Leadership Arc</h2>
+          </div>
+          <p class="section-banner__desc" id="ch3-desc"></p>
         </div>
-      </aside>
-      <div class="chapter__body">
+
+        <blockquote class="editorial-pullquote" id="editorial-pullquote">
+          “Architecture without code is speculation; code without architecture is entropy.”
+        </blockquote>
+
         <div class="chronology" id="chronology"></div>
+
+        <div class="domain-ledger" id="domain-ledger"></div>
       </div>
     </section>
 
-    <!-- Chapter 04: Tactile 123-Seal Credential Tapestry -->
-    <section class="chapter" id="archive">
-      <aside class="chapter__aside">
-        <div class="chapter__sticky">
-          <span class="chapter__num" id="ch4-num">04 — VERIFIED ARCHIVE</span>
-          <h2 class="chapter__title" id="ch4-title">123 Cryptographic Seals</h2>
-          <p class="chapter__desc" id="ch4-desc"></p>
+    <!-- ====================================================================
+         SECTION IV: FLAT NEWSPAPER CONTACT SHEET (123枚官方徽章·纯平面邮票/底片检索版)
+         ==================================================================== -->
+    <section class="news-section" id="archive">
+      <div class="section-banner">
+        <div class="section-banner__left">
+          <span class="section-banner__num" id="ch4-num">SECTION IV — CRYPTOGRAPHIC RECORD</span>
+          <h2 class="section-banner__title" id="ch4-title">123 Verified Seals &amp; Certifications</h2>
         </div>
-      </aside>
-      <div class="chapter__body">
-        <div class="cred-filter-strip">
-          <div class="cred-streams" id="cred-streams"></div>
-        </div>
-        <div class="cred-spotlight-line" id="cred-spotlight-line"></div>
-        <div class="seal-tapestry" id="seal-tapestry"></div>
+        <div class="cred-streams" id="cred-streams"></div>
       </div>
+
+      <div class="cred-spotlight-line" id="cred-spotlight-line"></div>
+      <div class="seal-tapestry" id="seal-tapestry"></div>
     </section>
   </main>
 
-  <footer class="frame colophon">
-    <div>© 2026 Yingting Huang (黄颖庭) · Crafted as an Architectural Monograph · “Doers, not talkers.”</div>
-    <div style="display:flex; gap:20px;">
-      <a class="editorial-link" href="https://www.credly.com/users/yingting-huang" target="_blank" rel="noopener noreferrer">Credly Wallet ↗</a>
-      <a class="editorial-link" href="https://www.linkedin.com/in/yingting-huang-9622bb20" target="_blank" rel="noopener noreferrer">LinkedIn Profile ↗</a>
-      <a class="editorial-link" href="https://github.com/huangyingting" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+  <footer class="sheet-wrap colophon">
+    <div>© 2026 YINGTING HUANG (黄颖庭) · PRINTED AS A SEAMLESS BROADSHEET MONOGRAPH · “DOERS, NOT TALKERS.”</div>
+    <div class="colophon__links">
+      <a class="news-link" href="https://www.credly.com/users/yingting-huang" target="_blank" rel="noopener noreferrer">CREDLY WALLET ↗</a>
+      <a class="news-link" href="https://www.linkedin.com/in/yingting-huang-9622bb20" target="_blank" rel="noopener noreferrer">LINKEDIN PROFILE ↗</a>
+      <a class="news-link" href="https://github.com/huangyingting" target="_blank" rel="noopener noreferrer">GITHUB ↗</a>
     </div>
   </footer>
 
-  <script src="./scripts/credentials-data.js"></script>
-  <script src="./scripts/portfolio-data.js"></script>
-  <script src="./scripts/app.js"></script>
+  <script src="./scripts/credentials-data.js?v=20261014-v4"></script>
+  <script src="./scripts/portfolio-data.js?v=20261014-v4"></script>
+  <script src="./scripts/app.js?v=20261014-v4"></script>
 </body>
 </html>

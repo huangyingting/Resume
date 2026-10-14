@@ -8,23 +8,106 @@
  */
 
 window.RESUME_PORTFOLIO_DATA = {
+  nameplate: {
+    earLeftKicker: { en: "ARCHITECTURAL MONOGRAPH", zh: "架构与工程特刊" },
+    earLeftMain: { en: "“Doers, Not Talkers.”", zh: "“Doers, Not Talkers.”" },
+    earLeftSub: {
+      en: "Solo-Shipped AI Systems & Global Cloud Strategy",
+      zh: "不止于蓝图，一人成军交付真实运行的 AI 平台"
+    },
+    super: {
+      en: "SHANGHAI · MICROSOFT CLOUD SOLUTION ARCHITECTURE · VOL. XX",
+      zh: "中国上海 · 微软企业云与智能体架构纪事 · 第廿卷"
+    },
+    title: {
+      en: "THE ARCHITECT’S CHRONICLE",
+      zh: "THE ARCHITECT’S CHRONICLE"
+    },
+    subtitle: {
+      en: "YINGTING HUANG (黄颖庭) — 20-YEAR ENGINEERING & AI SYSTEMS BROADSHEET",
+      zh: "黄颖庭 (YINGTING HUANG) — 二十年企业工程管理与云原生 AI 架构报刊实录"
+    },
+    earRightKicker: { en: "VERIFIED STANDING", zh: "权威认证背书" },
+    earRightMain: { en: "3× Microsoft Expert", zh: "微软三大专家大满贯" },
+    earRightSub: {
+      en: "2026 Global Hackathon Judge · 120 Credly Seals",
+      zh: "2026 全球黑客松官方评委 · 120 枚可验真徽章"
+    }
+  },
+
   hero: {
     kicker: {
-      en: "INDEX NO. 2026 · MICROSOFT SENIOR CLOUD SOLUTION ARCHITECT · SHANGHAI",
-      zh: "档案编号 2026 · 微软资深云解决方案架构师 · 中国上海"
+      en: "SHANGHAI, 31°13′N 121°28′E — SENIOR CLOUD SOLUTION ARCHITECT AT MICROSOFT",
+      zh: "上海 · 31°13′N 121°28′E — 微软资深云解决方案架构师 (SENIOR CSA)"
+    },
+    leadKicker: {
+      en: "LEAD EDITORIAL · ENTERPRISE ARCHITECTURE & SOLO AI ENGINEERING",
+      zh: "头版社论 · 企业级云原生架构与一人成军的全栈 AI 工程力"
     },
     statement: {
       en: "An enterprise architect who <em>actually ships</em> — bridging global cloud strategy with solo-built AI systems.",
-      zh: "不止于架构蓝图，更以<em>一人成军</em>的工程力交付真实运行的 AI 平台。"
+      zh: "不止于纸面架构蓝图，更以<em>一人成军</em>的工程力交付真实运行的全球 AI 平台。"
     },
     thesis: {
-      en: "Over <strong>20 years</strong> across global engineering management and Microsoft Cloud Solution Architecture. Official <strong>2026 Microsoft Global Hackathon Judge</strong>, published <strong>Azure Architecture Center</strong> author, and <strong>Triple-Expert</strong> architect — guided by one principle: <strong>“Doers, not talkers.”</strong>",
-      zh: "深耕企业级 IT 与云原生架构逾 <strong>20 年</strong>。兼具<strong>微软全球黑客松 2026 官方评委</strong>、<strong>微软官方架构中心作者</strong>与<strong>三大专家级认证大满贯</strong>，并独立研发运营多款全球 AI 数据情报平台——始终奉行 <strong>“Doers, not talkers”</strong>。"
+      en: "<p>Over <strong>20 years</strong> spanning global software engineering management, technical consulting, and <strong>Microsoft Senior Cloud Solution Architecture</strong>. Appointed <strong>2026 Microsoft Global Hackathon Official Judge</strong> after 7 consecutive years competing, published author in the <strong>Microsoft Learn Azure Architecture Center</strong>, and holder of all three pinnacle Microsoft Expert certifications (Solutions, Cybersecurity SC-100, DevOps).</p><p>Guided by a single conviction — <strong>“Doers, not talkers”</strong> — he solo-engineers and operates full-stack autonomous AI and data intelligence platforms indexing <strong>2,300+ verified enterprise AI cases</strong>, <strong>178 economies</strong>, and <strong>157,000+ longitudinal academic records</strong>.</p>",
+      zh: "<p>深耕跨国软件研发管理、企业技术咨询与<strong>微软资深云解决方案架构 (Senior CSA)</strong> 逾 <strong>20 年</strong>。在连续 7 年征战微软全球黑客松后获任 <strong>2026 全球黑客松官方评委</strong>，同时系<strong>微软官方架构中心 (Azure Architecture Center)</strong> 发布作者，并集齐架构、零信任安全 (SC-100) 与 DevOps <strong>三大顶级专家认证大满贯</strong>。</p><p>始终奉行 <strong>“Doers, not talkers（实干胜于空谈）”</strong>——工作之余独立完成数据管线、多智能体编排与前端交互，上线运营多款全球 AI 与数据情报系统，实时索引 <strong>2,300+ 真实企业 AI 案例</strong>与 <strong>178 个经济体</strong>。</p>"
     },
     caption: {
-      en: "Yingting Huang · 黄颖庭\nCUMT Alumni · Shanghai",
-      zh: "黄颖庭 · Yingting Huang\n中国矿业大学校友 · 上海"
-    }
+      en: "Microsoft Senior CSA · Shanghai\nCUMT Engineering Alumni",
+      zh: "微软资深云解决方案架构师 · 上海\n中国矿业大学 (CUMT) 校友"
+    },
+    dossierHeader: {
+      en: "EXECUTIVE STANDING DOSSIER",
+      zh: "核心架构师档案速览"
+    },
+    dossier: [
+      {
+        key: { en: "CURRENT ROLE", zh: "当前职务" },
+        val: { en: "Senior Cloud Solution Architect, Microsoft", zh: "微软资深云解决方案架构师 (Senior CSA)" }
+      },
+      {
+        key: { en: "2026 HONOR", zh: "全球评委" },
+        val: { en: "Microsoft Global Hackathon Official Judge", zh: "2026 微软全球黑客松官方评委 (Global Judge)" }
+      },
+      {
+        key: { en: "MCAPS AWARD", zh: "内部表彰" },
+        val: { en: "FY26 Top Data & Top Technical Insider (Dual)", zh: "微软 FY26 顶级数据专家 & 顶级技术内参双料得主" }
+      },
+      {
+        key: { en: "PUBLICATION", zh: "官方著作" },
+        val: { en: "MS Learn Azure Architecture Center Author", zh: "微软官方架构中心参考架构作者 & 58+ 篇深度专栏" }
+      },
+      {
+        key: { en: "CREDENTIALS", zh: "权威资质" },
+        val: { en: "3× Expert · 5× OpenHack Coach · 7-Yr MCT", zh: "3× 微软专家大满贯 · 5× OpenHack 教练 · 7年讲师" }
+      },
+      {
+        key: { en: "ALMA MATER", zh: "毕业院校" },
+        val: { en: "China Univ. of Mining & Technology (CUMT)", zh: "中国矿业大学 (国家 211 / 双一流) · 工学学士" }
+      }
+    ],
+    pullquote: {
+      en: "“Architecture without working code is speculation; code without architecture is entropy.”",
+      zh: "“没有代码验证的架构只是纸上空谈；缺乏架构约束的代码终将走向熵增。”"
+    },
+    domains: [
+      {
+        kicker: "01 / AGENTIC AI",
+        title: { en: "Multi-Agent Harnesses & MCP OAuth", zh: "多智能体编排与 MCP 零信任网关" }
+      },
+      {
+        kicker: "02 / ZERO-TRUST",
+        title: { en: "SC-100 Cyber & OIDC Workload Identity", zh: "SC-100 安全架构与无密钥联邦身份" }
+      },
+      {
+        kicker: "03 / CLOUD NATIVE",
+        title: { en: "AKS, Flux2 GitOps & Hybrid Storage", zh: "AKS 容器编排、GitOps 与混合云底座" }
+      },
+      {
+        kicker: "04 / DATA & KQL",
+        title: { en: "Kusto Gold Star & Big-Data Pipelines", zh: "Kusto 金星数据侦探与大规模情报管线" }
+      }
+    ]
   },
 
   datums: [
