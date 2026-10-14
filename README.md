@@ -1,4 +1,4 @@
-# Yingting Huang (黄颖庭) — Interactive Architect Dossier
+# Yingting Huang — Interactive Architect Dossier
 
 **Senior Cloud Solution Architect @ Microsoft · Shanghai, China**
 

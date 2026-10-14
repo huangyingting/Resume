@@ -1,5 +1,5 @@
 /**
- * Rigorously Curated Narrative Data for Yingting Huang (黄颖庭)
+ * Rigorously Curated Narrative Data for Yingting Huang
  * Focused on the 4 pillars that truly distinguish him:
  * 1. Solo-built production AI intelligence platforms (Doer, not talker)
  * 2. Official Microsoft architectural authority (2026 Judge, MS Learn Author, 3x Expert, Top Insider)
@@ -24,8 +24,8 @@ window.RESUME_PORTFOLIO_DATA = {
       zh: "THE ARCHITECT’S CHRONICLE"
     },
     subtitle: {
-      en: "YINGTING HUANG (黄颖庭) — 20-YEAR ENGINEERING & AI SYSTEMS BROADSHEET",
-      zh: "黄颖庭 (YINGTING HUANG) — 二十年企业工程管理与云原生 AI 架构报刊实录"
+      en: "YINGTING HUANG — 20-YEAR ENGINEERING & AI SYSTEMS BROADSHEET",
+      zh: "YINGTING HUANG — 二十年企业工程管理与云原生 AI 架构报刊实录"
     },
     earRightKicker: { en: "VERIFIED STANDING", zh: "权威认证背书" },
     earRightMain: { en: "3× Microsoft Expert", zh: "微软三大专家大满贯" },
