@@ -3,8 +3,8 @@
 **Senior Cloud Solution Architect @ Microsoft · Shanghai, China**
 
 Live Interactive Resume:
-- **[huangyingting.github.io/Resume](https://huangyingting.github.io/Resume/)**
-- **[huangyingting.github.io](https://huangyingting.github.io/)**
+- **[whoami.genisisiq.com](https://whoami.genisisiq.com/)**
+- **[vibewatch.github.io/Resume](https://vibewatch.github.io/Resume/)**
 
 ---
 
