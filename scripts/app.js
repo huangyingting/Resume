@@ -1,11 +1,9 @@
 /**
- * Kinetic Interactive Engine for Yingting Huang's Resume Showcase
- * Features:
- * - 60fps Interactive Constellation & Aurora Particle Canvas
- * - 5-Palette Live Theme Engine (Aurora, Cyber, Titanium, Emerald, Daylight)
- * - Mouse-tracking 3D Spotlight Bento Cards
- * - Interactive 6-Axis SVG Radar Chart
- * - Icon-First 123-Badge Medallion Matrix + Live Inspector Bar
+ * Editorial Monograph Interactive Controller (v3)
+ * - 5 Curated Architectural Palettes (Atelier Paper, Kyoto Sumi, Swiss Blueprint, Botanical Moss, Obsidian Chalk)
+ * - Subtle Ambient Gallery Lighting Canvas (zero game particles)
+ * - Seamless Click-to-Unfold Project Blueprints + Sibling-Dimming Hover
+ * - Tactile 123-Seal Credential Tapestry with Live Margin Spotlight
  */
 
 (function () {
@@ -15,78 +13,73 @@
   const urlParams = new URLSearchParams(window.location.search);
   const state = {
     lang: urlParams.get("lang") === "zh" ? "zh" : "en",
-    palette: urlParams.get("palette") || localStorage.getItem("yh_palette") || "aurora",
-    orbit: "crown", // 'crown' | 'all' | 'certifications' | 'openhack' | 'data_kql' | 'hackathons'
-    search: "",
-    selectedBadgeId: creds[0]?.id || ""
+    palette: urlParams.get("palette") || localStorage.getItem("yh_editorial_palette") || "atelier",
+    stream: "all", // 'all' | 'certifications' | 'openhack' | 'data_kql' | 'hackathons'
+    selectedSealId: creds[0]?.id || ""
+  };
+
+  const PALETTE_NAMES = {
+    atelier: { en: "Atelier Paper", zh: "纸本画廊" },
+    sumi: { en: "Kyoto Sumi", zh: "京都墨韵" },
+    swiss: { en: "Swiss Blueprint", zh: "瑞士蓝图" },
+    moss: { en: "Botanical Moss", zh: "松烟青苔" },
+    obsidian: { en: "Obsidian Chalk", zh: "黑曜极简" }
   };
 
   const I18N = {
     en: {
-      navDna: "DNA & Radar",
-      navShipped: "Shipped Works",
-      navConstellation: "120 Badges",
-      navEras: "Trajectory",
-      paletteLabel: "Palette",
-      dnaEyebrow: "01 · THE ARCHITECT'S SIGNATURE",
-      dnaTitle: "Rare Triad: Strategist, Security Authority & Hands-On Builder",
-      triadKicker: "MICROSOFT EXPERT TRIAD",
-      triadTitle: "3× Expert Certifications",
-      radarKicker: "6-AXIS TELEMETRY",
-      radarTitle: "Full-Stack Capability Radar",
-      honorsKicker: "INTERNAL & GLOBAL DISTINCTIONS",
-      honorsTitle: "Trophies, Coaching & KQL Mastery",
-      velocityKicker: "2019–2026 CREDLY VELOCITY",
-      velocityTitle: "Continuous Mastery Across 8 Years",
-      shippedEyebrow: "02 · DOERS, NOT TALKERS",
-      shippedTitle: "Live AI Platforms & Open-Source Systems Built From Scratch",
-      liveBtn: "Launch Live ↗",
-      repoBtn: "GitHub ↗",
-      badgeEyebrow: "03 · VERIFIED CREDENTIAL CONSTELLATION",
-      badgeTitle: "123 Cryptographically Verified Badges & Certifications",
-      orbitCrown: "★ Crown 16",
-      orbitAll: "All 123",
-      orbitCerts: "Exams & Certs (30)",
-      orbitOpenhack: "OpenHack (27)",
-      orbitData: "Kusto & Data (21)",
-      orbitHack: "Hackathons & Awards (45)",
-      searchPlaceholder: "Filter 123 badges (e.g. SC-100, Kusto, Judge, Copilot)...",
-      verifyBtn: "Verify Official Credential ↗",
-      eraEyebrow: "04 · 20+ YEAR EVOLUTION",
-      eraTitle: "Career Arc & Academic Foundation"
+      roleTag: "Senior CSA @ Microsoft",
+      navWorks: "01 Works",
+      navAuthority: "02 Authority",
+      navTrajectory: "03 Trajectory",
+      navArchive: "04 Proof (120)",
+      ch1Num: "01 — SELECTED WORKS",
+      ch1Title: "Systems Shipped Solo",
+      ch1Desc: "Live, autonomous intelligence platforms engineered end-to-end. Click any row to unfold its architecture.",
+      ch2Num: "02 — DISTINCTIONS",
+      ch2Title: "Architectural Authority",
+      ch2Desc: "The top 5 career distinctions across global judging, published reference architectures, and triple expert mastery.",
+      ch3Num: "03 — TRAJECTORY",
+      ch3Title: "20-Year Compound Arc",
+      ch3Desc: "From hands-on software engineering and team management to enterprise cloud & AI architecture at Microsoft.",
+      ch4Num: "04 — VERIFIED ARCHIVE",
+      ch4Title: "123 Cryptographic Seals",
+      ch4Desc: "Hover any seal in the tapestry to inspect its official Credly verification record.",
+      streamAll: "All 123 Seals",
+      streamCerts: "Expert & Certs (30)",
+      streamOpenhack: "OpenHack & MCT (34)",
+      streamData: "Kusto Detective (21)",
+      streamHack: "Hackathon & Honors (38)",
+      liveLink: "Launch Live Platform ↗",
+      repoLink: "Source Repository ↗",
+      verifySeal: "Verify on Credly ↗"
     },
     zh: {
-      navDna: "核心特质与雷达",
-      navShipped: "代表作品",
-      navConstellation: "120 枚徽章星图",
-      navEras: "20年演进",
-      paletteLabel: "主题色盘",
-      dnaEyebrow: "01 · 架构师核心辨识度",
-      dnaTitle: "集齐「三大专家认证 + 全球评委 + 独立全栈交付」的稀缺组合",
-      triadKicker: "微软顶级认证大满贯",
-      triadTitle: "3× Expert 专家级认证",
-      radarKicker: "六维能力遥测",
-      radarTitle: "全栈技术与领导力雷达",
-      honorsKicker: "微软内部大奖与社区影响力",
-      honorsTitle: "全球评委 · 7年讲师 · KQL 金星侦探",
-      velocityKicker: "2019–2026 持续进化曲线",
-      velocityTitle: "8 年间斩获 120 枚官方认证分布",
-      shippedEyebrow: "02 · DOERS, NOT TALKERS（实干代表作）",
-      shippedTitle: "一人成军：独立构建并在线运行的 AI 情报平台与开源工程",
-      liveBtn: "访问在线平台 ↗",
-      repoBtn: "源码仓库 ↗",
-      badgeEyebrow: "03 · CREDLY 权威认证星图",
-      badgeTitle: "123 项可验真数字徽章与专业资质（点击任意徽章查看详情）",
-      orbitCrown: "★ 王冠精选 (16)",
-      orbitAll: "全部徽章 (123)",
-      orbitCerts: "专业认证 (30)",
-      orbitOpenhack: "OpenHack 教练 (27)",
-      orbitData: "Kusto 侦探 (21)",
-      orbitHack: "黑客松与内部大奖 (45)",
-      searchPlaceholder: "搜索 123 枚徽章（如 SC-100, Kusto, Judge, Copilot）...",
-      verifyBtn: "前往官方核验证书 ↗",
-      eraEyebrow: "04 · 20+ 年技术演进",
-      eraTitle: "职业里程碑与教育背景"
+      roleTag: "微软资深云架构师",
+      navWorks: "01 代表作",
+      navAuthority: "02 权威认可",
+      navTrajectory: "03 20年履历",
+      navArchive: "04 徽章索引",
+      ch1Num: "01 — 独立交付代表作",
+      ch1Title: "亲自写代码上线的 AI 平台",
+      ch1Desc: "拒绝纸上谈兵。独立完成从数据管线、智能体编排到前端交互的全栈线上系统（点击任意行展开架构蓝图）。",
+      ch2Num: "02 — 核心行业地位",
+      ch2Title: "最具份量的五项专业背书",
+      ch2Desc: "从 123 项认证中严选最具稀缺性的五项里程碑：全球评委、官方架构作者与三大专家大满贯。",
+      ch3Num: "03 — 复合职业演进",
+      ch3Title: "20 年跨国工程与架构视野",
+      ch3Desc: "历任一线研发、项目经理、工程团队经理、技术咨询顾问及微软资深云架构师。",
+      ch4Num: "04 — 可验真资质索引",
+      ch4Title: "123 枚官方数字徽章星带",
+      ch4Desc: "去卡片化集成展示——鼠标掠过任意徽章印记，即可在上方索引栏查看并前往官方验真。",
+      streamAll: "全部印记 (123)",
+      streamCerts: "专家与架构认证 (30)",
+      streamOpenhack: "OpenHack 教练与讲师 (34)",
+      streamData: "Kusto 侦探奖章 (21)",
+      streamHack: "黑客松与微软表彰 (38)",
+      liveLink: "访问线上系统 ↗",
+      repoLink: "查看开源代码 ↗",
+      verifySeal: "官方证书验真 ↗"
     }
   };
 
@@ -96,8 +89,8 @@
     return val[state.lang] || val.en || "";
   }
 
-  function ui(key) {
-    return I18N[state.lang][key];
+  function ui(k) {
+    return I18N[state.lang][k];
   }
 
   function esc(s) {
@@ -109,542 +102,332 @@
   }
 
   /* ========================================================================
-     1. Palette Switcher
+     1. Curated Palette Switcher
      ======================================================================== */
-  function applyPalette(paletteName) {
-    state.palette = paletteName;
-    document.documentElement.setAttribute("data-palette", paletteName);
-    localStorage.setItem("yh_palette", paletteName);
-    document.querySelectorAll("[data-swatch]").forEach((btn) => {
-      btn.classList.toggle("is-active", btn.getAttribute("data-swatch") === paletteName);
+  function applyPalette(p) {
+    if (!PALETTE_NAMES[p]) p = "atelier";
+    state.palette = p;
+    document.documentElement.setAttribute("data-palette", p);
+    localStorage.setItem("yh_editorial_palette", p);
+
+    document.querySelectorAll("[data-tone]").forEach((btn) => {
+      btn.classList.toggle("is-active", btn.getAttribute("data-tone") === p);
     });
+    const labelEl = document.getElementById("palette-name");
+    if (labelEl) {
+      labelEl.textContent = t(PALETTE_NAMES[p]);
+    }
   }
 
   /* ========================================================================
-     2. Interactive 60fps Constellation Canvas
+     2. Subtle Ambient Gallery Lighting Canvas (Soft Warm Radial Wash)
      ======================================================================== */
-  function initCanvas() {
-    const canvas = document.getElementById("cosmos-canvas");
+  function initAmbientCanvas() {
+    const canvas = document.getElementById("ambient-canvas");
     if (!canvas) return;
     const ctx = canvas.getContext("2d");
     let w = (canvas.width = window.innerWidth);
     let h = (canvas.height = window.innerHeight);
 
-    const pointer = { x: w * 0.5, y: h * 0.3 };
+    const target = { x: w * 0.65, y: h * 0.28 };
+    const current = { x: w * 0.65, y: h * 0.28 };
+
     window.addEventListener("mousemove", (e) => {
-      pointer.x = e.clientX;
-      pointer.y = e.clientY;
+      target.x = e.clientX;
+      target.y = e.clientY;
     });
     window.addEventListener("resize", () => {
       w = canvas.width = window.innerWidth;
       h = canvas.height = window.innerHeight;
     });
 
-    const count = Math.min(55, Math.floor((w * h) / 26000));
-    const nodes = Array.from({ length: count }, () => ({
-      x: Math.random() * w,
-      y: Math.random() * h,
-      vx: (Math.random() - 0.5) * 0.38,
-      vy: (Math.random() - 0.5) * 0.38,
-      r: Math.random() * 1.8 + 0.8
-    }));
+    function renderAmbient() {
+      current.x += (target.x - current.x) * 0.04;
+      current.y += (target.y - current.y) * 0.04;
 
-    function frame() {
       ctx.clearRect(0, 0, w, h);
       const style = getComputedStyle(document.documentElement);
-      const rgb = (style.getPropertyValue("--canvas-rgb-1") || "0, 240, 255").trim();
+      const rgb1 = (style.getPropertyValue("--ambient-rgb-1") || "200, 62, 43").trim();
+      const rgb2 = (style.getPropertyValue("--ambient-rgb-2") || "185, 145, 95").trim();
 
-      for (let i = 0; i < nodes.length; i++) {
-        const n = nodes[i];
-        n.x += n.vx;
-        n.y += n.vy;
-        if (n.x < 0 || n.x > w) n.vx *= -1;
-        if (n.y < 0 || n.y > h) n.vy *= -1;
+      const grad1 = ctx.createRadialGradient(current.x, current.y, 10, current.x, current.y, Math.max(w, h) * 0.48);
+      grad1.addColorStop(0, `rgba(${rgb1}, 0.075)`);
+      grad1.addColorStop(1, `rgba(${rgb1}, 0)`);
+      ctx.fillStyle = grad1;
+      ctx.fillRect(0, 0, w, h);
 
-        ctx.beginPath();
-        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
-        ctx.fillStyle = `rgba(${rgb}, 0.45)`;
-        ctx.fill();
+      const grad2 = ctx.createRadialGradient(w * 0.2, h * 0.8, 10, w * 0.2, h * 0.8, Math.max(w, h) * 0.45);
+      grad2.addColorStop(0, `rgba(${rgb2}, 0.055)`);
+      grad2.addColorStop(1, `rgba(${rgb2}, 0)`);
+      ctx.fillStyle = grad2;
+      ctx.fillRect(0, 0, w, h);
 
-        for (let j = i + 1; j < nodes.length; j++) {
-          const m = nodes[j];
-          const dx = n.x - m.x;
-          const dy = n.y - m.y;
-          const dist = Math.hypot(dx, dy);
-          if (dist < 135) {
-            ctx.beginPath();
-            ctx.moveTo(n.x, n.y);
-            ctx.lineTo(m.x, m.y);
-            ctx.strokeStyle = `rgba(${rgb}, ${(1 - dist / 135) * 0.14})`;
-            ctx.lineWidth = 0.8;
-            ctx.stroke();
-          }
-        }
-
-        const pd = Math.hypot(n.x - pointer.x, n.y - pointer.y);
-        if (pd < 180) {
-          ctx.beginPath();
-          ctx.moveTo(n.x, n.y);
-          ctx.lineTo(pointer.x, pointer.y);
-          ctx.strokeStyle = `rgba(${rgb}, ${(1 - pd / 180) * 0.24})`;
-          ctx.lineWidth = 1;
-          ctx.stroke();
-        }
-      }
-      requestAnimationFrame(frame);
+      requestAnimationFrame(renderAmbient);
     }
-    requestAnimationFrame(frame);
+    requestAnimationFrame(renderAmbient);
   }
 
   /* ========================================================================
-     3. Spotlight Hover Effect on Bento Cards
+     3. Render Editorial Sections
      ======================================================================== */
-  function attachSpotlightCards() {
-    document.querySelectorAll(".bento-card").forEach((card) => {
-      card.addEventListener("mousemove", (e) => {
-        const rect = card.getBoundingClientRect();
-        card.style.setProperty("--mx", `${e.clientX - rect.left}px`);
-        card.style.setProperty("--my", `${e.clientY - rect.top}px`);
-      });
-    });
-  }
+  function renderMastheadAndHero() {
+    document.getElementById("masthead-role").textContent = ui("roleTag");
+    document.getElementById("nav-works").textContent = ui("navWorks");
+    document.getElementById("nav-authority").textContent = ui("navAuthority");
+    document.getElementById("nav-trajectory").textContent = ui("navTrajectory");
+    document.getElementById("nav-archive").textContent = ui("navArchive");
+    document.getElementById("lang-switch").textContent = state.lang === "en" ? "中文" : "EN";
 
-  /* ========================================================================
-     4. Render Sections
-     ======================================================================== */
-  function renderHeroAndKpis() {
-    document.getElementById("nav-dna").textContent = ui("navDna");
-    document.getElementById("nav-shipped").textContent = ui("navShipped");
-    document.getElementById("nav-constellation").textContent = ui("navConstellation");
-    document.getElementById("nav-eras").textContent = ui("navEras");
-    document.getElementById("palette-label").textContent = ui("paletteLabel");
-    document.getElementById("lang-btn").textContent = state.lang === "en" ? "中文" : "EN";
+    document.getElementById("hero-kicker").textContent = t(data.hero.kicker);
+    document.getElementById("hero-statement").innerHTML = t(data.hero.statement);
+    document.getElementById("hero-thesis").innerHTML = t(data.hero.thesis);
+    document.getElementById("portrait-caption").innerHTML = esc(t(data.hero.caption)).replace(/\n/g, "<br/>");
 
-    document.getElementById("hero-signal").textContent = t(data.hero.signal);
-    document.getElementById("hero-tagline").innerHTML = t(data.hero.tagline);
-
-    document.getElementById("essence-trio").innerHTML = data.hero.essences
+    document.getElementById("datum-strip").innerHTML = data.datums
       .map(
-        (e) => `
-        <div class="essence-chip">
-          <span class="essence-chip__icon">${esc(e.icon)}</span>
-          <span class="essence-chip__title">${esc(t(e.title))}</span>
-          <span class="essence-chip__sub">${esc(t(e.sub))}</span>
+        (d) => `
+        <div class="datum-cell">
+          <span class="datum-index">${esc(d.idx)}</span>
+          <div class="datum-value">${esc(d.val)}<span>${esc(d.suffix)}</span></div>
+          <div class="datum-label">${esc(t(d.label))}</div>
+          <div class="datum-note">${esc(t(d.note))}</div>
         </div>
       `
       )
       .join("");
-
-    document.getElementById("kpi-strip").innerHTML = data.kpis
-      .map((k) => {
-        const dash = Math.round((k.pct / 100) * 113);
-        return `
-          <div class="bento-card kpi-card">
-            <div>
-              <div class="kpi-number">${esc(k.num)}</div>
-              <div class="kpi-label">${esc(t(k.label))}</div>
-              <div class="kpi-sub">${esc(t(k.sub))}</div>
-            </div>
-            <svg class="kpi-ring" viewBox="0 0 44 44">
-              <circle cx="22" cy="22" r="18" fill="none" stroke="var(--border-subtle)" stroke-width="3.5" />
-              <circle cx="22" cy="22" r="18" fill="none" stroke="var(--accent-1)" stroke-width="3.5"
-                stroke-dasharray="${dash} 113" stroke-linecap="round" transform="rotate(-90 22 22)" />
-            </svg>
-          </div>
-        `;
-      })
-      .join("");
   }
 
-  function renderDnaBento() {
-    document.getElementById("dna-eyebrow").textContent = ui("dnaEyebrow");
-    document.getElementById("dna-title").textContent = ui("dnaTitle");
+  function renderWorksChapter() {
+    document.getElementById("ch1-num").textContent = ui("ch1Num");
+    document.getElementById("ch1-title").textContent = ui("ch1Title");
+    document.getElementById("ch1-desc").textContent = ui("ch1Desc");
 
-    // 6-Axis Radar SVG math
-    const cx = 100;
-    const cy = 100;
-    const maxR = 76;
-    const axes = data.radar;
-    const polyPoints = axes
-      .map((item, idx) => {
-        const angle = (Math.PI * 2 * idx) / axes.length - Math.PI / 2;
-        const r = (item.score / 100) * maxR;
-        const x = (cx + r * Math.cos(angle)).toFixed(1);
-        const y = (cy + r * Math.sin(angle)).toFixed(1);
-        return `${x},${y}`;
-      })
-      .join(" ");
-
-    const gridRings = [0.35, 0.68, 1.0]
-      .map((scale) => {
-        const pts = axes
-          .map((_, idx) => {
-            const angle = (Math.PI * 2 * idx) / axes.length - Math.PI / 2;
-            const x = (cx + maxR * scale * Math.cos(angle)).toFixed(1);
-            const y = (cy + maxR * scale * Math.sin(angle)).toFixed(1);
-            return `${x},${y}`;
-          })
-          .join(" ");
-        return `<polygon points="${pts}" fill="none" stroke="var(--border-subtle)" stroke-width="1" />`;
-      })
-      .join("");
-
-    const axisLines = axes
-      .map((_, idx) => {
-        const angle = (Math.PI * 2 * idx) / axes.length - Math.PI / 2;
-        const x = (cx + maxR * Math.cos(angle)).toFixed(1);
-        const y = (cy + maxR * Math.sin(angle)).toFixed(1);
-        return `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="var(--border-subtle)" stroke-width="1" />`;
-      })
-      .join("");
-
-    const vertexDots = axes
-      .map((item, idx) => {
-        const angle = (Math.PI * 2 * idx) / axes.length - Math.PI / 2;
-        const r = (item.score / 100) * maxR;
-        const x = (cx + r * Math.cos(angle)).toFixed(1);
-        const y = (cy + r * Math.sin(angle)).toFixed(1);
-        return `<circle cx="${x}" cy="${y}" r="4" fill="var(--accent-1)" />`;
-      })
-      .join("");
-
-    const dnaGrid = document.getElementById("dna-bento");
-    dnaGrid.innerHTML = `
-      <!-- Left Stack: Triple Expert Triad + 6-Axis Radar -->
-      <div style="display:flex; flex-direction:column; gap:18px;">
-        <div class="bento-card">
-          <div class="bento-title-row">
-            <div>
-              <div class="bento-kicker">${esc(ui("triadKicker"))}</div>
-              <h3 class="bento-heading">${esc(ui("triadTitle"))}</h3>
-            </div>
-            <span class="signal-tag">AZ-305 · SC-100 · AZ-400</span>
-          </div>
-          <div class="triad-grid">
-            ${data.triad
-              .map(
-                (tr) => `
-                <div class="triad-pillar">
-                  <span class="triad-code">${esc(tr.code)}</span>
-                  <div class="triad-name">${esc(t(tr.name))}</div>
-                  <div class="triad-sub">${esc(t(tr.sub))}</div>
-                </div>
-              `
-              )
-              .join("")}
-          </div>
-        </div>
-
-        <div class="bento-card">
-          <div class="bento-title-row">
-            <div>
-              <div class="bento-kicker">${esc(ui("radarKicker"))}</div>
-              <h3 class="bento-heading">${esc(ui("radarTitle"))}</h3>
-            </div>
-          </div>
-          <div class="radar-wrap">
-            <svg class="radar-svg" viewBox="0 0 200 200">
-              ${gridRings}
-              ${axisLines}
-              <polygon points="${polyPoints}" fill="var(--accent-soft)" stroke="var(--accent-1)" stroke-width="2.2" />
-              ${vertexDots}
-            </svg>
-            <div class="radar-legend">
-              ${axes
-                .map(
-                  (a) => `
-                  <div class="radar-legend-item">
-                    <span>${esc(t(a.axis))}</span>
-                    <span class="radar-legend-score">${a.score}</span>
-                  </div>
-                `
-                )
-                .join("")}
-            </div>
-          </div>
-        </div>
-      </div>
-
-      <!-- Right Stack: 6 Elite Distinctions + 8-Year Credential Velocity Chart -->
-      <div style="display:flex; flex-direction:column; gap:18px;">
-        <div class="bento-card">
-          <div class="bento-title-row">
-            <div>
-              <div class="bento-kicker">${esc(ui("honorsKicker"))}</div>
-              <h3 class="bento-heading">${esc(ui("honorsTitle"))}</h3>
-            </div>
-            <span class="signal-tag">TOP 1%</span>
-          </div>
-          <div class="honor-pills-grid">
-            ${data.honors
-              .map(
-                (h) => `
-                <div class="honor-tile">
-                  <div class="honor-icon">${h.icon}</div>
-                  <div>
-                    <div class="honor-title">${esc(t(h.title))}</div>
-                    <div class="honor-meta">${esc(h.meta)}</div>
-                  </div>
-                </div>
-              `
-              )
-              .join("")}
-          </div>
-        </div>
-
-        <div class="bento-card" style="flex:1; display:flex; flex-direction:column; justify-content:space-between;">
-          <div class="bento-title-row" style="margin-bottom:4px;">
-            <div>
-              <div class="bento-kicker">${esc(ui("velocityKicker"))}</div>
-              <h3 class="bento-heading">${esc(ui("velocityTitle"))}</h3>
-            </div>
-            <span class="signal-tag">120 CREDLY</span>
-          </div>
-          <div class="velocity-bars">
-            ${[
-              { yr: "19", n: 4 },
-              { yr: "20", n: 19 },
-              { yr: "21", n: 21 },
-              { yr: "22", n: 29 },
-              { yr: "23", n: 20 },
-              { yr: "24", n: 11 },
-              { yr: "25", n: 8 },
-              { yr: "26", n: 8 }
-            ]
-              .map((b) => {
-                const hPct = Math.max(14, Math.round((b.n / 29) * 74));
-                return `
-                  <div class="v-bar-col">
-                    <span class="v-bar-num">${b.n}</span>
-                    <div class="v-bar-track" style="height:${hPct}px"></div>
-                    <span class="v-bar-yr">'${b.yr}</span>
-                  </div>
-                `;
-              })
-              .join("")}
-          </div>
-          <div class="velocity-domains">
-            <span class="mini-chip">Certs · 30</span>
-            <span class="mini-chip">OpenHack · 27</span>
-            <span class="mini-chip">Kusto &amp; Data · 21</span>
-            <span class="mini-chip">Hackathon &amp; Honors · 45</span>
-          </div>
-        </div>
-      </div>
-    `;
-  }
-
-  function renderShipped() {
-    document.getElementById("shipped-eyebrow").textContent = ui("shippedEyebrow");
-    document.getElementById("shipped-title").textContent = ui("shippedTitle");
-
-    document.getElementById("shipped-grid").innerHTML = data.shipped
-      .map((s) => {
-        const nodesHtml = s.nodes
+    const container = document.getElementById("works-index");
+    container.innerHTML = data.works
+      .map((w) => {
+        const stepsHtml = w.steps
           .map(
-            (n, idx) => `
-            <div class="ship-node">
-              <div class="ship-node__k">${esc(n.k)}</div>
-              <div class="ship-node__v">${esc(n.v)}</div>
+            (s) => `
+            <div class="bp-step">
+              <div class="bp-step__stage">${esc(s.stage)}</div>
+              <div class="bp-step__title">${esc(t(s.title))}</div>
+              <div class="bp-step__detail">${esc(t(s.detail))}</div>
             </div>
-            ${idx < s.nodes.length - 1 ? '<span class="ship-arrow">→</span>' : ""}
           `
           )
           .join("");
 
         return `
-          <article class="bento-card ship-card">
-            <div>
-              <div class="ship-top">
-                <span class="ship-stat-badge">${esc(s.stat)}</span>
-                <div style="display:flex; gap:6px;">
-                  <a class="pill-action" href="${esc(s.liveUrl)}" target="_blank" rel="noopener noreferrer">${esc(
-          ui("liveBtn")
-        )}</a>
-                  <a class="pill-action" href="${esc(s.repoUrl)}" target="_blank" rel="noopener noreferrer">${esc(
-          ui("repoBtn")
-        )}</a>
-                </div>
+          <article class="work-row ${w.openDefault ? "is-open" : ""}" data-work-idx="${esc(w.idx)}">
+            <div class="work-row__summary" role="button" tabindex="0">
+              <span class="work-row__idx">${esc(w.idx)}</span>
+              <div>
+                <h3 class="work-row__name">${esc(w.name)}</h3>
+                <span class="work-row__domain">${esc(t(w.domain))}</span>
               </div>
-              <h3 class="ship-name">${esc(t(s.name))}</h3>
-              <p class="ship-hook">${esc(t(s.hook))}</p>
+              <p class="work-row__essence">${esc(t(w.essence))}</p>
+              <div class="work-row__metric">
+                <span>${esc(t(w.metric))}</span>
+                <span class="work-row__toggle">+</span>
+              </div>
             </div>
 
-            <div class="ship-visual">${nodesHtml}</div>
-
-            <div class="ship-bottom">
-              <div class="chip-row">
-                ${s.chips.map((c) => `<span class="mini-chip">${esc(c)}</span>`).join("")}
+            <div class="work-row__drawer">
+              <div class="blueprint-flow">${stepsHtml}</div>
+              <div class="work-row__footer">
+                <div class="work-row__tags">
+                  ${w.tags.map((tg) => `<span># ${esc(tg)}</span>`).join("")}
+                </div>
+                <div class="work-row__actions">
+                  <a class="editorial-link" href="${esc(w.liveUrl)}" target="_blank" rel="noopener noreferrer">${esc(
+          ui("liveLink")
+        )}</a>
+                  <a class="editorial-link" href="${esc(w.repoUrl)}" target="_blank" rel="noopener noreferrer">${esc(
+          ui("repoLink")
+        )}</a>
+                </div>
               </div>
             </div>
           </article>
         `;
       })
       .join("");
-  }
 
-  function getFilteredBadges() {
-    return creds.filter((c) => {
-      if (state.search) {
-        const q = state.search.toLowerCase();
-        const hay = `${c.name} ${c.issuer} ${c.skills.join(" ")} ${c.year}`.toLowerCase();
-        return hay.includes(q);
-      }
-      if (state.orbit === "crown") return c.featured;
-      if (state.orbit === "all") return true;
-      if (state.orbit === "hackathons") {
-        return c.category === "hackathons" || c.category === "leadership_community" || c.category === "teaching_mct";
-      }
-      return c.category === state.orbit;
+    container.querySelectorAll(".work-row__summary").forEach((row) => {
+      row.addEventListener("click", () => {
+        const article = row.closest(".work-row");
+        article.classList.toggle("is-open");
+      });
     });
   }
 
-  function renderConstellation() {
-    document.getElementById("badge-eyebrow").textContent = ui("badgeEyebrow");
-    document.getElementById("badge-title").textContent = ui("badgeTitle");
-    document.getElementById("orbit-search").placeholder = ui("searchPlaceholder");
+  function renderAuthorityChapter() {
+    document.getElementById("ch2-num").textContent = ui("ch2Num");
+    document.getElementById("ch2-title").textContent = ui("ch2Title");
+    document.getElementById("ch2-desc").textContent = ui("ch2Desc");
 
-    const orbits = [
-      { id: "crown", label: ui("orbitCrown") },
-      { id: "all", label: ui("orbitAll") },
-      { id: "certifications", label: ui("orbitCerts") },
-      { id: "openhack", label: ui("orbitOpenhack") },
-      { id: "data_kql", label: ui("orbitData") },
-      { id: "hackathons", label: ui("orbitHack") }
+    document.getElementById("authority-list").innerHTML = data.distinctions
+      .map(
+        (d) => `
+        <div class="authority-row">
+          <span class="authority-year">${esc(d.year)}</span>
+          <h3 class="authority-title">${esc(t(d.title))}</h3>
+          <p class="authority-detail">${esc(t(d.detail))}</p>
+          <a class="authority-proof editorial-link" href="${esc(d.proofUrl)}" target="_blank" rel="noopener noreferrer">
+            ${esc(t(d.proofLabel))}
+          </a>
+        </div>
+      `
+      )
+      .join("");
+  }
+
+  function renderTrajectoryChapter() {
+    document.getElementById("ch3-num").textContent = ui("ch3Num");
+    document.getElementById("ch3-title").textContent = ui("ch3Title");
+    document.getElementById("ch3-desc").textContent = ui("ch3Desc");
+
+    document.getElementById("chronology").innerHTML = data.trajectory
+      .map(
+        (tr) => `
+        <div class="chrono-row">
+          <span class="chrono-period">${esc(tr.period)}</span>
+          <div>
+            <h3 class="chrono-role">${esc(t(tr.role))}</h3>
+            <div class="chrono-org">${esc(t(tr.org))}</div>
+          </div>
+          <p class="chrono-focus">${esc(t(tr.focus))}</p>
+        </div>
+      `
+      )
+      .join("");
+  }
+
+  function getFilteredSeals() {
+    if (state.stream === "all") return creds;
+    if (state.stream === "openhack") {
+      return creds.filter((c) => c.category === "openhack" || c.category === "teaching_mct");
+    }
+    if (state.stream === "hackathons") {
+      return creds.filter((c) => c.category === "hackathons" || c.category === "leadership_community");
+    }
+    return creds.filter((c) => c.category === state.stream);
+  }
+
+  function renderArchiveChapter() {
+    document.getElementById("ch4-num").textContent = ui("ch4Num");
+    document.getElementById("ch4-title").textContent = ui("ch4Title");
+    document.getElementById("ch4-desc").textContent = ui("ch4Desc");
+
+    const streams = [
+      { id: "all", label: ui("streamAll") },
+      { id: "certifications", label: ui("streamCerts") },
+      { id: "openhack", label: ui("streamOpenhack") },
+      { id: "data_kql", label: ui("streamData") },
+      { id: "hackathons", label: ui("streamHack") }
     ];
 
-    const pillsEl = document.getElementById("orbit-pills");
-    pillsEl.innerHTML = orbits
+    const streamsEl = document.getElementById("cred-streams");
+    streamsEl.innerHTML = streams
       .map(
-        (o) => `
-        <button type="button" class="orbit-pill ${state.orbit === o.id ? "is-active" : ""}" data-orbit="${o.id}">
-          ${esc(o.label)}
+        (s) => `
+        <button type="button" class="stream-btn ${state.stream === s.id ? "is-active" : ""}" data-stream="${s.id}">
+          ${esc(s.label)}
         </button>
       `
       )
       .join("");
 
-    pillsEl.querySelectorAll("[data-orbit]").forEach((btn) => {
+    streamsEl.querySelectorAll("[data-stream]").forEach((btn) => {
       btn.addEventListener("click", () => {
-        state.orbit = btn.getAttribute("data-orbit");
-        renderConstellation();
+        state.stream = btn.getAttribute("data-stream");
+        renderArchiveChapter();
       });
     });
 
-    const list = getFilteredBadges();
-    const visible = state.orbit === "crown" && !state.search ? list.slice(0, 16) : list;
-    const selected = creds.find((c) => c.id === state.selectedBadgeId) || visible[0] || creds[0];
+    const filtered = getFilteredSeals();
+    const activeSeal = creds.find((c) => c.id === state.selectedSealId) || filtered[0] || creds[0];
 
-    // Render Single Sleek Spotlight Inspector Bar
-    const inspector = document.getElementById("badge-inspector");
-    if (selected) {
-      const imgHtml = selected.imageUrl
-        ? `<img class="inspector-img" src="${esc(selected.imageUrl)}" alt="${esc(selected.name)}" />`
-        : `<div class="medallion__fallback" style="width:60px;height:60px">${esc(selected.tier.slice(0, 4))}</div>`;
+    const spotlight = document.getElementById("cred-spotlight-line");
+    if (activeSeal) {
+      const iconHtml = activeSeal.imageUrl
+        ? `<img class="cred-spotlight-img" src="${esc(activeSeal.imageUrl)}" alt="${esc(activeSeal.name)}" />`
+        : `<span class="seal-token__text">${esc(activeSeal.tier.slice(0, 4).toUpperCase())}</span>`;
 
-      inspector.innerHTML = `
-        <div class="inspector-left">
-          ${imgHtml}
+      spotlight.innerHTML = `
+        <div class="cred-spotlight-left">
+          ${iconHtml}
           <div>
-            <div class="inspector-meta">${esc(selected.tier.toUpperCase())} · ${esc(selected.issuedAt)} · ${esc(
-        selected.issuer
-      )}</div>
-            <h3 class="inspector-title">${esc(selected.name)}</h3>
-            <div class="chip-row">
-              ${selected.skills
-                .slice(0, 6)
-                .map((sk) => `<span class="mini-chip">${esc(sk)}</span>`)
-                .join("")}
+            <h3 class="cred-spotlight-name">${esc(activeSeal.name)}</h3>
+            <div class="cred-spotlight-meta">
+              ${esc(activeSeal.issuedAt)} · ${esc(activeSeal.issuer)} · ${esc(activeSeal.tier)} · ${esc(
+        activeSeal.skills.slice(0, 4).join(" / ")
+      )}
             </div>
           </div>
         </div>
-        <a class="portal-btn portal-btn--glow" href="${esc(selected.verifyUrl)}" target="_blank" rel="noopener noreferrer">
-          ${esc(ui("verifyBtn"))}
+        <a class="editorial-link" style="font-family:var(--font-mono);font-size:0.74rem;white-space:nowrap;" href="${esc(
+          activeSeal.verifyUrl
+        )}" target="_blank" rel="noopener noreferrer">
+          ${esc(ui("verifySeal"))}
         </a>
       `;
     }
 
-    // Render Medallion Wall
-    const wall = document.getElementById("medallion-wall");
-    wall.innerHTML = visible
+    const tapestry = document.getElementById("seal-tapestry");
+    tapestry.innerHTML = filtered
       .map((c) => {
-        const isSel = selected && c.id === selected.id;
-        const fb = esc(c.tier.slice(0, 4).toUpperCase());
-        const thumb = c.imageUrl
-          ? `<img class="medallion__img" src="${esc(c.imageUrl)}" alt="${esc(c.name)}" loading="lazy" onerror="this.outerHTML='<div class=\\'medallion__fallback\\'>${fb}</div>'" />`
-          : `<div class="medallion__fallback">${fb}</div>`;
+        const isSel = activeSeal && c.id === activeSeal.id;
+        const fb = esc(c.tier.slice(0, 3).toUpperCase());
+        const inner = c.imageUrl
+          ? `<img src="${esc(c.imageUrl)}" alt="${esc(c.name)}" loading="lazy" onerror="this.outerHTML='<span class=\\'seal-token__text\\'>${fb}</span>'" />`
+          : `<span class="seal-token__text">${fb}</span>`;
 
         return `
-          <div class="medallion ${isSel ? "is-selected" : ""}" data-medallion-id="${esc(c.id)}" tabindex="0" role="button">
-            ${thumb}
-            <div class="medallion__name">${esc(c.name)}</div>
-            <div class="medallion__year">${esc(c.year)} · ${esc(c.tier)}</div>
-          </div>
+          <button type="button" class="seal-token ${isSel ? "is-selected" : ""}" data-seal-id="${esc(c.id)}" title="${esc(
+          c.name
+        )} (${esc(c.year)})">
+            ${inner}
+          </button>
         `;
       })
       .join("");
 
-    wall.querySelectorAll("[data-medallion-id]").forEach((el) => {
-      const selectIt = () => {
-        state.selectedBadgeId = el.getAttribute("data-medallion-id");
-        renderConstellation();
+    tapestry.querySelectorAll("[data-seal-id]").forEach((btn) => {
+      const activate = () => {
+        state.selectedSealId = btn.getAttribute("data-seal-id");
+        renderArchiveChapter();
       };
-      el.addEventListener("click", selectIt);
-      el.addEventListener("mouseenter", selectIt);
+      btn.addEventListener("mouseenter", activate);
+      btn.addEventListener("click", activate);
     });
-  }
-
-  function renderEras() {
-    document.getElementById("era-eyebrow").textContent = ui("eraEyebrow");
-    document.getElementById("era-title").textContent = ui("eraTitle");
-
-    document.getElementById("era-grid").innerHTML = data.eras
-      .map(
-        (e) => `
-        <div class="bento-card era-card">
-          <div class="era-year">${esc(e.year)}</div>
-          <h3 class="era-role">${esc(t(e.role))}</h3>
-          <div class="era-org">${esc(t(e.org))}</div>
-          <div class="era-tags">
-            ${e.tags.map((tg) => `<span class="mini-chip">${esc(tg)}</span>`).join("")}
-          </div>
-        </div>
-      `
-      )
-      .join("");
   }
 
   function renderAll() {
     document.documentElement.lang = state.lang === "zh" ? "zh-CN" : "en";
     applyPalette(state.palette);
-    renderHeroAndKpis();
-    renderDnaBento();
-    renderShipped();
-    renderConstellation();
-    renderEras();
-    attachSpotlightCards();
+    renderMastheadAndHero();
+    renderWorksChapter();
+    renderAuthorityChapter();
+    renderTrajectoryChapter();
+    renderArchiveChapter();
   }
 
   document.addEventListener("DOMContentLoaded", () => {
-    initCanvas();
+    initAmbientCanvas();
     renderAll();
 
-    document.querySelectorAll("[data-swatch]").forEach((btn) => {
-      btn.addEventListener("click", () => applyPalette(btn.getAttribute("data-swatch")));
+    document.querySelectorAll("[data-tone]").forEach((btn) => {
+      btn.addEventListener("click", () => applyPalette(btn.getAttribute("data-tone")));
     });
 
-    document.getElementById("lang-btn").addEventListener("click", () => {
+    document.getElementById("lang-switch").addEventListener("click", () => {
       state.lang = state.lang === "en" ? "zh" : "en";
       const url = new URL(window.location.href);
       if (state.lang === "zh") url.searchParams.set("lang", "zh");
       else url.searchParams.delete("lang");
       window.history.replaceState({}, "", url);
       renderAll();
-    });
-
-    document.getElementById("orbit-search").addEventListener("input", (e) => {
-      state.search = e.target.value.trim();
-      renderConstellation();
     });
   });
 })();

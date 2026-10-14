@@ -1,12 +1,12 @@
 <!DOCTYPE html>
-<html lang="en" data-palette="aurora">
+<html lang="en" data-palette="atelier">
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Yingting Huang (黄颖庭) — Senior Cloud Solution Architect @ Microsoft</title>
-  <meta name="description" content="Yingting Huang — Senior Cloud Solution Architect at Microsoft. 20+ years in IT, 120 verified Credly badges, 3× Expert certified, 2026 Global Hackathon Judge, and creator of Use Case Intelligence, FutureGrid, and University Signals." />
-  <meta property="og:title" content="Yingting Huang (黄颖庭) — Architect Who Ships" />
-  <meta property="og:description" content="Senior Cloud Solution Architect @ Microsoft · 3× Expert · 120 Verified Badges · Creator of Use Case Intelligence & FutureGrid." />
+  <meta name="description" content="Yingting Huang — Senior Cloud Solution Architect at Microsoft. 20+ years in enterprise engineering & cloud architecture, 2026 Microsoft Global Hackathon Judge, Azure Architecture Center author, and creator of Use Case Intelligence, FutureGrid, and University Signals." />
+  <meta property="og:title" content="Yingting Huang (黄颖庭) — Enterprise Architect Who Ships" />
+  <meta property="og:description" content="Senior Cloud Solution Architect @ Microsoft · 2026 Global Hackathon Judge · 3× Expert · Creator of Use Case Intelligence & FutureGrid." />
   <meta property="og:type" content="profile" />
   <meta property="og:image" content="./assets/avatar-credly.png" />
   <link rel="icon" type="image/png" href="./assets/avatar-credly.png" />
@@ -14,169 +14,141 @@
   <link rel="stylesheet" href="./styles/resume.css" />
 </head>
 <body>
-  <!-- 60fps Interactive Constellation Canvas + Ambient Aurora Orbs -->
-  <div class="aurora-backdrop" aria-hidden="true">
-    <div class="aurora-orb aurora-orb--1"></div>
-    <div class="aurora-orb aurora-orb--2"></div>
-    <div class="aurora-orb aurora-orb--3"></div>
-  </div>
-  <canvas id="cosmos-canvas" aria-hidden="true"></canvas>
+  <!-- Subtle Ambient Gallery Light + Tactile Archival Grain -->
+  <canvas id="ambient-canvas" aria-hidden="true"></canvas>
+  <div class="grain-overlay" aria-hidden="true"></div>
 
-  <!-- Sticky Top Glass Dock + 5-Palette Designer Swatch Bar -->
-  <div class="top-dock-wrap shell">
-    <header class="top-dock">
-      <a class="brand-cluster" href="#top">
-        <img class="brand-avatar" src="./assets/avatar-credly.png" alt="Yingting Huang" width="30" height="30" />
-        <span>Yingting Huang</span>
-        <span class="live-dot" title="Verified Active Profile"></span>
+  <!-- Seamless Top Editorial Masthead -->
+  <header class="masthead">
+    <div class="frame masthead__inner">
+      <a class="masthead__id" href="#top">
+        <span class="masthead__name">Yingting Huang · 黄颖庭</span>
+        <span class="masthead__role" id="masthead-role">Senior CSA @ Microsoft</span>
       </a>
 
-      <nav class="dock-links" aria-label="Primary Navigation">
-        <a class="dock-link" id="nav-dna" href="#dna">DNA &amp; Radar</a>
-        <a class="dock-link" id="nav-shipped" href="#shipped">Shipped Works</a>
-        <a class="dock-link" id="nav-constellation" href="#constellation">120 Badges</a>
-        <a class="dock-link" id="nav-eras" href="#eras">Trajectory</a>
+      <nav class="masthead__nav" aria-label="Editorial Sections">
+        <a class="masthead__link" id="nav-works" href="#works">01 Works</a>
+        <a class="masthead__link" id="nav-authority" href="#authority">02 Authority</a>
+        <a class="masthead__link" id="nav-trajectory" href="#trajectory">03 Trajectory</a>
+        <a class="masthead__link" id="nav-archive" href="#archive">04 Proof (120)</a>
       </nav>
 
-      <div class="dock-controls">
-        <div class="palette-picker" role="group" aria-label="Color Palette Switcher">
-          <span class="palette-picker__label" id="palette-label">Palette</span>
-          <button type="button" class="swatch-btn swatch-btn--aurora is-active" data-swatch="aurora" title="Aurora Obsidian"></button>
-          <button type="button" class="swatch-btn swatch-btn--cyber" data-swatch="cyber" title="Cyber Neon"></button>
-          <button type="button" class="swatch-btn swatch-btn--titanium" data-swatch="titanium" title="Titanium Gold"></button>
-          <button type="button" class="swatch-btn swatch-btn--emerald" data-swatch="emerald" title="Emerald Matrix"></button>
-          <button type="button" class="swatch-btn swatch-btn--daylight" data-swatch="daylight" title="Vision Daylight"></button>
+      <div class="masthead__controls">
+        <div class="palette-bar" role="group" aria-label="Curated Palette Switcher">
+          <span class="palette-bar__name" id="palette-name">Atelier Paper</span>
+          <button type="button" class="tone-dot tone-dot--atelier is-active" data-tone="atelier" title="Atelier Paper (Warm Gallery Paper & Vermilion)"></button>
+          <button type="button" class="tone-dot tone-dot--sumi" data-tone="sumi" title="Kyoto Sumi (Charcoal & Burnished Brass)"></button>
+          <button type="button" class="tone-dot tone-dot--swiss" data-tone="swiss" title="Swiss Blueprint (Limestone & Klein Blue)"></button>
+          <button type="button" class="tone-dot tone-dot--moss" data-tone="moss" title="Botanical Moss (Forest Ink & Terracotta)"></button>
+          <button type="button" class="tone-dot tone-dot--obsidian" data-tone="obsidian" title="Obsidian Chalk (Pure Noir & Champagne)"></button>
         </div>
-        <button type="button" class="pill-action" id="lang-btn">中文</button>
+        <button type="button" class="lang-switch" id="lang-switch">中文</button>
       </div>
-    </header>
-  </div>
+    </div>
+  </header>
 
-  <main class="shell" id="top">
-    <!-- Screen 1: Kinetic Hero Stage (Zero Paragraphs) -->
-    <section class="hero-stage">
-      <div class="hero-grid">
-        <div class="bento-card hero-main">
-          <div class="hero-kicker-row">
-            <span class="signal-tag" id="hero-signal">MICROSOFT · SHANGHAI · 2026 HACKATHON JUDGE</span>
-            <span class="signal-tag signal-tag--subtle">CUMT Alumni · 20+ Yrs</span>
-          </div>
-
-          <div class="hero-headline-wrap">
-            <h1 class="hero-name">
-              Yingting Huang<span class="hero-name-zh">黄颖庭</span>
-            </h1>
-            <p class="hero-tagline" id="hero-tagline">
-              Senior Cloud Solution Architect · <strong>“Doers, not talkers.”</strong>
-            </p>
-          </div>
-
-          <div class="essence-trio" id="essence-trio"></div>
-
-          <div class="hero-portals">
-            <a class="portal-btn portal-btn--glow" href="https://www.credly.com/users/yingting-huang" target="_blank" rel="noopener noreferrer">
-              <span>Credly Wallet · 120 Badges ↗</span>
-            </a>
-            <a class="portal-btn" href="https://www.linkedin.com/in/yingting-huang-9622bb20" target="_blank" rel="noopener noreferrer">
-              <span>LinkedIn · 1.7K Followers ↗</span>
-            </a>
-            <a class="portal-btn" href="https://github.com/huangyingting" target="_blank" rel="noopener noreferrer">
-              <span>GitHub · 70+ Repos ↗</span>
-            </a>
-            <a class="portal-btn" href="https://blog.genisisiq.com/" target="_blank" rel="noopener noreferrer">
-              <span>Unofficial Azure Club · 58+ Essays ↗</span>
-            </a>
-            <a class="portal-btn" href="mailto:huangyingting@outlook.com">
-              <span>huangyingting@outlook.com</span>
-            </a>
-          </div>
-        </div>
-
-        <aside class="bento-card hero-holo">
-          <div class="holo-ring-wrap">
-            <div class="holo-orbit"></div>
-            <div class="holo-orbit holo-orbit--inner"></div>
-            <img class="holo-avatar" src="./assets/avatar-credly.png" alt="Yingting Huang" width="130" height="130" />
-          </div>
-          <div>
-            <div class="signal-tag" style="margin-bottom:8px;">✓ 123 VERIFIED CREDENTIALS</div>
-            <div class="holo-badges">
-              <span class="holo-chip">3× Expert</span>
-              <span class="holo-chip">7× MCT</span>
-              <span class="holo-chip">5× OpenHack Coach</span>
-              <span class="holo-chip">Kusto Gold Star</span>
-              <span class="holo-chip">2026 Judge</span>
-            </div>
-          </div>
-        </aside>
+  <main class="frame" id="top">
+    <!-- Hero Editorial Spread (Monumental Typography, Seamless Hairline Grid) -->
+    <section class="hero-spread">
+      <div class="hero-meta-line">
+        <span class="hero-meta-accent" id="hero-kicker">INDEX NO. 2026 · MICROSOFT SENIOR CLOUD SOLUTION ARCHITECT · SHANGHAI</span>
+        <span>31°13′N 121°28′E</span>
       </div>
 
-      <!-- 4 Visual KPI Counter Cards -->
-      <div class="kpi-strip" id="kpi-strip"></div>
-    </section>
+      <div class="hero-top-split">
+        <h1 class="hero-Statement" id="hero-statement">
+          An enterprise architect who <em>actually ships</em> — bridging global cloud strategy with solo-built AI systems.
+        </h1>
 
-    <!-- Screen 2: Architect DNA & 6-Axis Radar -->
-    <section class="stage-section" id="dna">
-      <div class="stage-head">
-        <div>
-          <div class="stage-eyebrow" id="dna-eyebrow">01 · THE ARCHITECT'S SIGNATURE</div>
-          <h2 class="stage-title" id="dna-title">Rare Triad: Strategist, Security Authority &amp; Hands-On Builder</h2>
-        </div>
-      </div>
-      <div class="dna-bento" id="dna-bento"></div>
-    </section>
-
-    <!-- Screen 3: Shipped Works (Visual Pipelines, Zero Wall of Text) -->
-    <section class="stage-section" id="shipped">
-      <div class="stage-head">
-        <div>
-          <div class="stage-eyebrow" id="shipped-eyebrow">02 · DOERS, NOT TALKERS</div>
-          <h2 class="stage-title" id="shipped-title">Live AI Platforms &amp; Open-Source Systems Built From Scratch</h2>
-        </div>
-      </div>
-      <div class="shipped-grid" id="shipped-grid"></div>
-    </section>
-
-    <!-- Screen 4: 120-Badge Visual Constellation & Medallion Wall -->
-    <section class="stage-section" id="constellation">
-      <div class="stage-head">
-        <div>
-          <div class="stage-eyebrow" id="badge-eyebrow">03 · VERIFIED CREDENTIAL CONSTELLATION</div>
-          <h2 class="stage-title" id="badge-title">123 Cryptographically Verified Badges &amp; Certifications</h2>
+        <div class="hero-portrait-col">
+          <img class="portrait-frame" src="./assets/avatar-credly.png" alt="Yingting Huang" width="88" height="88" />
+          <div class="portrait-caption" id="portrait-caption">Yingting Huang · 黄颖庭<br/>CUMT Alumni · Shanghai</div>
         </div>
       </div>
 
-      <div class="constellation-shell">
-        <div class="badge-inspector" id="badge-inspector"></div>
+      <div class="hero-sub-bar">
+        <p class="hero-thesis" id="hero-thesis"></p>
 
-        <div class="orbit-bar">
-          <div class="orbit-pills" id="orbit-pills"></div>
-          <input type="search" class="orbit-search" id="orbit-search" placeholder="Filter 123 badges..." aria-label="Filter badges" />
+        <div class="hero-links-inline">
+          <a class="editorial-link" href="https://www.credly.com/users/yingting-huang" target="_blank" rel="noopener noreferrer">Credly (120) ↗</a>
+          <a class="editorial-link" href="https://www.linkedin.com/in/yingting-huang-9622bb20" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
+          <a class="editorial-link" href="https://github.com/huangyingting" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
+          <a class="editorial-link" href="https://blog.genisisiq.com/" target="_blank" rel="noopener noreferrer">Essays (58+) ↗</a>
+          <a class="editorial-link" href="mailto:huangyingting@outlook.com">Email ↗</a>
         </div>
-
-        <div class="medallion-wall" id="medallion-wall"></div>
       </div>
     </section>
 
-    <!-- Screen 5: 4-Era Career Arc -->
-    <section class="stage-section" id="eras">
-      <div class="stage-head">
-        <div>
-          <div class="stage-eyebrow" id="era-eyebrow">04 · 20+ YEAR EVOLUTION</div>
-          <h2 class="stage-title" id="era-title">Career Arc &amp; Academic Foundation</h2>
+    <!-- Seamless 4-Figure Architectural Datum Strip -->
+    <section class="datum-strip" id="datum-strip" aria-label="Key Architectural Figures"></section>
+
+    <!-- Chapter 01: Selected Works (Seamless Interactive Index Rows) -->
+    <section class="chapter" id="works">
+      <aside class="chapter__aside">
+        <div class="chapter__sticky">
+          <span class="chapter__num" id="ch1-num">01 — SELECTED WORKS</span>
+          <h2 class="chapter__title" id="ch1-title">Systems Shipped Solo</h2>
+          <p class="chapter__desc" id="ch1-desc"></p>
         </div>
+      </aside>
+      <div class="chapter__body">
+        <div class="works-index" id="works-index"></div>
       </div>
-      <div class="era-grid" id="era-grid"></div>
+    </section>
+
+    <!-- Chapter 02: Architectural Authority & Distinctions -->
+    <section class="chapter" id="authority">
+      <aside class="chapter__aside">
+        <div class="chapter__sticky">
+          <span class="chapter__num" id="ch2-num">02 — DISTINCTIONS</span>
+          <h2 class="chapter__title" id="ch2-title">Architectural Authority</h2>
+          <p class="chapter__desc" id="ch2-desc"></p>
+        </div>
+      </aside>
+      <div class="chapter__body">
+        <div class="authority-list" id="authority-list"></div>
+      </div>
+    </section>
+
+    <!-- Chapter 03: 20-Year Trajectory & Academic Foundation -->
+    <section class="chapter" id="trajectory">
+      <aside class="chapter__aside">
+        <div class="chapter__sticky">
+          <span class="chapter__num" id="ch3-num">03 — TRAJECTORY</span>
+          <h2 class="chapter__title" id="ch3-title">20-Year Compound Arc</h2>
+          <p class="chapter__desc" id="ch3-desc"></p>
+        </div>
+      </aside>
+      <div class="chapter__body">
+        <div class="chronology" id="chronology"></div>
+      </div>
+    </section>
+
+    <!-- Chapter 04: Tactile 123-Seal Credential Tapestry -->
+    <section class="chapter" id="archive">
+      <aside class="chapter__aside">
+        <div class="chapter__sticky">
+          <span class="chapter__num" id="ch4-num">04 — VERIFIED ARCHIVE</span>
+          <h2 class="chapter__title" id="ch4-title">123 Cryptographic Seals</h2>
+          <p class="chapter__desc" id="ch4-desc"></p>
+        </div>
+      </aside>
+      <div class="chapter__body">
+        <div class="cred-filter-strip">
+          <div class="cred-streams" id="cred-streams"></div>
+        </div>
+        <div class="cred-spotlight-line" id="cred-spotlight-line"></div>
+        <div class="seal-tapestry" id="seal-tapestry"></div>
+      </div>
     </section>
   </main>
 
-  <footer class="shell kinetic-footer">
-    <div><strong>Yingting Huang (黄颖庭)</strong> · Senior Cloud Solution Architect @ Microsoft · Shanghai</div>
-    <div style="display:flex; gap:14px; font-family:var(--font-mono);">
-      <a href="https://www.credly.com/users/yingting-huang" target="_blank" rel="noopener noreferrer">Credly ↗</a>
-      <a href="https://www.linkedin.com/in/yingting-huang-9622bb20" target="_blank" rel="noopener noreferrer">LinkedIn ↗</a>
-      <a href="https://github.com/huangyingting" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
-      <a href="https://blog.genisisiq.com/" target="_blank" rel="noopener noreferrer">Unofficial Azure Club ↗</a>
+  <footer class="frame colophon">
+    <div>© 2026 Yingting Huang (黄颖庭) · Crafted as an Architectural Monograph · “Doers, not talkers.”</div>
+    <div style="display:flex; gap:20px;">
+      <a class="editorial-link" href="https://www.credly.com/users/yingting-huang" target="_blank" rel="noopener noreferrer">Credly Wallet ↗</a>
+      <a class="editorial-link" href="https://www.linkedin.com/in/yingting-huang-9622bb20" target="_blank" rel="noopener noreferrer">LinkedIn Profile ↗</a>
+      <a class="editorial-link" href="https://github.com/huangyingting" target="_blank" rel="noopener noreferrer">GitHub ↗</a>
     </div>
   </footer>
 
