@@ -418,11 +418,15 @@ button {
   font-family: var(--font-serif);
   font-size: clamp(1.5rem, 4.2vw, 3.85rem);
   font-weight: 700;
-  letter-spacing: 0.02em;
+  letter-spacing: 0.04em;
   line-height: 1.04;
   text-transform: uppercase;
   color: var(--ink);
   overflow-wrap: break-word;
+}
+
+html[lang="zh"] .nameplate__title {
+  letter-spacing: 0.14em;
 }
 
 .nameplate__subtitle {

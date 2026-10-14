@@ -98,6 +98,7 @@ async function main() {
         ['--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage', '--no-zygote', '--dump-dom', baseUrl],
         { encoding: 'utf8', maxBuffer: 10 * 1024 * 1024, timeout: 15000 }
       );
+      assert(domEn.includes('CURRICULUM VITAE'), 'Hydrated DOM missing CURRICULUM VITAE masthead title');
       assert(domEn.includes('Use Case Intelligence'), 'Hydrated DOM missing Use Case Intelligence project');
       assert(domEn.includes('Microsoft Global Hackathon 2026 Judge'), 'Hydrated DOM missing 2026 Judge distinction');
       assert(domEn.includes('FutureGrid'), 'Hydrated DOM missing FutureGrid');
@@ -115,6 +116,7 @@ async function main() {
         ['--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage', '--no-zygote', '--dump-dom', `${baseUrl}?lang=zh`],
         { encoding: 'utf8', maxBuffer: 10 * 1024 * 1024, timeout: 15000 }
       );
+      assert(domZh.includes('个人技术履历'), 'Chinese hydrated DOM missing localized masthead title');
       assert(domZh.includes('微软高级云解决方案架构师'), 'Chinese hydrated DOM missing localized role');
       assert(domZh.includes('Azure Rapid Response'), 'Chinese hydrated DOM missing Azure Rapid Response');
       assert(domZh.includes('早期工程与技术岗位'), 'Chinese hydrated DOM missing summarized earlier career roles');

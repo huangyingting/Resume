@@ -21,8 +21,8 @@ window.RESUME_PORTFOLIO_DATA = {
       zh: "中国上海 · 云架构与工程实践记录 · 2026"
     },
     title: {
-      en: "THE ARCHITECT’S CHRONICLE",
-      zh: "THE ARCHITECT’S CHRONICLE"
+      en: "CURRICULUM VITAE",
+      zh: "个人技术履历"
     },
     subtitle: {
       en: "YINGTING HUANG — CLOUD SOLUTION ARCHITECT & SOFTWARE ENGINEER",
