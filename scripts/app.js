@@ -1,806 +1,650 @@
 /**
- * Interactive Controller for Yingting Huang's Architect Dossier & Credential Explorer
- * Zero modal dialogs — 100% inline progressive disclosure.
+ * Kinetic Interactive Engine for Yingting Huang's Resume Showcase
+ * Features:
+ * - 60fps Interactive Constellation & Aurora Particle Canvas
+ * - 5-Palette Live Theme Engine (Aurora, Cyber, Titanium, Emerald, Daylight)
+ * - Mouse-tracking 3D Spotlight Bento Cards
+ * - Interactive 6-Axis SVG Radar Chart
+ * - Icon-First 123-Badge Medallion Matrix + Live Inspector Bar
  */
 
 (function () {
-  const portfolio = window.RESUME_PORTFOLIO_DATA;
-  const credData = window.RESUME_CREDENTIALS_DATA;
+  const data = window.RESUME_PORTFOLIO_DATA;
+  const creds = window.RESUME_CREDENTIALS_DATA.credentials;
 
+  const urlParams = new URLSearchParams(window.location.search);
   const state = {
-    lang: new URLSearchParams(window.location.search).get("lang") === "zh" ? "zh" : "en",
-    theme: localStorage.getItem("yh_resume_theme") || "light",
-    lens: "all",
-    credCategory: "featured", // 'featured' | 'all' | 'certifications' | 'openhack' | 'data_kql' | 'leadership_community' | 'hackathons' | 'teaching_mct'
-    credYear: null,
-    credSkill: null,
-    credQuery: "",
-    expandedCredIds: new Set(),
-    openBlueprints: new Set(["usecase-intel"]),
-    showAllInCategory: false
+    lang: urlParams.get("lang") === "zh" ? "zh" : "en",
+    palette: urlParams.get("palette") || localStorage.getItem("yh_palette") || "aurora",
+    orbit: "crown", // 'crown' | 'all' | 'certifications' | 'openhack' | 'data_kql' | 'hackathons'
+    search: "",
+    selectedBadgeId: creds[0]?.id || ""
   };
 
-  const UI_STRINGS = {
+  const I18N = {
     en: {
-      navProjects: "Systems",
-      navCredentials: "123 Credentials",
-      navPublications: "Publications",
-      navTrajectory: "Trajectory",
-      printBtn: "Print / PDF",
-      lensTitle: "Interactive Dossier Lens",
-      systemsKicker: "Built & Shipped · Live Production Systems & Workshops",
-      systemsTitle: "Autonomous AI Observatories & Reference Architectures",
-      systemsSubtitle: "Real systems running in production — each with an inline expandable system blueprint showing its ingestion, agentic processing, governance, and static-edge delivery pipeline.",
-      inspectBlueprint: "Inspect System Blueprint ▾",
-      hideBlueprint: "Hide System Blueprint ▴",
-      liveSite: "Live Platform ↗",
-      sourceCode: "GitHub Repo ↗",
-      credKicker: "Cryptographically Verifiable Track Record",
-      credTitle: "123 Verified Credentials & Certifications",
-      credSubtitle: "Every credential below is verified via Credly (120 badges) or LinkedIn/Skilljar (3 certifications). Click any badge card to expand its inline verification dossier.",
-      domainDnaTitle: "Credential Domain DNA",
-      domainDnaMeta: "123 Total Verified",
-      yearlyVelocityTitle: "Credly Issuance Velocity (2019–2026)",
-      yearlyVelocityMeta: "Click a year or skill to filter",
-      catFeatured: "Spotlight (25)",
-      catAll: "All Verified (123)",
-      catCerts: "Certifications (30)",
-      catOpenhack: "OpenHack (27)",
-      catData: "Data & KQL (21)",
-      catLeadership: "Arch & Leadership (21)",
-      catHackathons: "Hackathons (14)",
-      catTeaching: "MCT & Teaching (10)",
-      searchPlaceholder: "Search 123 badges, skills, or codes (e.g. SC-100, Kusto, Copilot)...",
-      clearFilters: "Reset Filters",
-      verifyCredly: "Verify Official Credential ↗",
-      showAllBtn: (count) => `Show All ${count} Matching Credentials ▾`,
-      showingCount: (shown, total) => `Showing ${shown} of ${total} matching verified credentials`,
-      pubKicker: "Published Architecture & Field Notes",
-      pubTitle: "Reference Architecture & Technical Journal",
-      pubSubtitle: "Official Microsoft Learn Reference Architecture and independent deep dives from Unofficial Azure Club (blog.genisisiq.com).",
-      readMsLearn: "Read on Microsoft Learn ↗",
-      exploreBlog: "Explore All 58+ Articles on Unofficial Azure Club ↗",
-      careerKicker: "20+ Years of Enterprise Impact",
-      careerTitle: "Career Trajectory, Education & Distinctions",
-      careerSubtitle: "Two decades across technical consulting, software engineering, project management, and cloud architecture leadership.",
-      careerPanelTitle: "Experience & Leadership Arc",
-      eduPanelTitle: "Education, Distinctions & Languages",
-      eduHeading: "Education",
-      langHeading: "Languages"
+      navDna: "DNA & Radar",
+      navShipped: "Shipped Works",
+      navConstellation: "120 Badges",
+      navEras: "Trajectory",
+      paletteLabel: "Palette",
+      dnaEyebrow: "01 · THE ARCHITECT'S SIGNATURE",
+      dnaTitle: "Rare Triad: Strategist, Security Authority & Hands-On Builder",
+      triadKicker: "MICROSOFT EXPERT TRIAD",
+      triadTitle: "3× Expert Certifications",
+      radarKicker: "6-AXIS TELEMETRY",
+      radarTitle: "Full-Stack Capability Radar",
+      honorsKicker: "INTERNAL & GLOBAL DISTINCTIONS",
+      honorsTitle: "Trophies, Coaching & KQL Mastery",
+      velocityKicker: "2019–2026 CREDLY VELOCITY",
+      velocityTitle: "Continuous Mastery Across 8 Years",
+      shippedEyebrow: "02 · DOERS, NOT TALKERS",
+      shippedTitle: "Live AI Platforms & Open-Source Systems Built From Scratch",
+      liveBtn: "Launch Live ↗",
+      repoBtn: "GitHub ↗",
+      badgeEyebrow: "03 · VERIFIED CREDENTIAL CONSTELLATION",
+      badgeTitle: "123 Cryptographically Verified Badges & Certifications",
+      orbitCrown: "★ Crown 16",
+      orbitAll: "All 123",
+      orbitCerts: "Exams & Certs (30)",
+      orbitOpenhack: "OpenHack (27)",
+      orbitData: "Kusto & Data (21)",
+      orbitHack: "Hackathons & Awards (45)",
+      searchPlaceholder: "Filter 123 badges (e.g. SC-100, Kusto, Judge, Copilot)...",
+      verifyBtn: "Verify Official Credential ↗",
+      eraEyebrow: "04 · 20+ YEAR EVOLUTION",
+      eraTitle: "Career Arc & Academic Foundation"
     },
     zh: {
-      navProjects: "代表作与系统",
-      navCredentials: "123 项权威认证",
-      navPublications: "架构著作与专栏",
-      navTrajectory: "职业履历",
-      printBtn: "打印 / 导出 PDF",
-      lensTitle: "交互式档案视角切换",
-      systemsKicker: "生产级作品 · 在线 AI 数据平台与实战工作坊",
-      systemsTitle: "自主 AI 情报观测台与云原生参考架构",
-      systemsSubtitle: "全部在线运行的生产级系统与工程样板 —— 点击任意卡片即可在页面内联展开其完整的「采集 → 智能体处理 → 治理 → 静态边缘分发」系统架构蓝图。",
-      inspectBlueprint: "展开系统架构蓝图 ▾",
-      hideBlueprint: "收起系统架构蓝图 ▴",
-      liveSite: "访问在线平台 ↗",
-      sourceCode: "GitHub 源码 ↗",
-      credKicker: "全量可验证的数字徽章与资质档案",
-      credTitle: "123 项官方认证与技术荣誉矩阵",
-      credSubtitle: "以下全部 120 枚 Credly 徽章及 3 项专业认证均可在线验真。点击任意卡片即可在当前页面内联展开完整证书详情与核验链接。",
-      domainDnaTitle: "技术认证领域分布 (Domain DNA)",
-      domainDnaMeta: "共 123 项权威认证",
-      yearlyVelocityTitle: "Credly 认证时间轴 (2019–2026)",
-      yearlyVelocityMeta: "点击年份柱状图或技能标签即可筛选",
-      catFeatured: "核心精选 (25)",
-      catAll: "全部认证 (123)",
-      catCerts: "专业技术认证 (30)",
-      catOpenhack: "OpenHack 实战与教练 (27)",
-      catData: "数据与 KQL 侦探 (21)",
-      catLeadership: "架构中心与技术奖项 (21)",
-      catHackathons: "全球黑客松与评委 (14)",
-      catTeaching: "MCT 讲师与授课 (10)",
-      searchPlaceholder: "搜索 123 项证书、技能或考试代码（如 SC-100, Kusto, Copilot）...",
-      clearFilters: "重置筛选",
-      verifyCredly: "前往官方页面核验证书 ↗",
-      showAllBtn: (count) => `展开全部 ${count} 项匹配认证 ▾`,
-      showingCount: (shown, total) => `当前显示 ${shown} / ${total} 项匹配的可验证认证`,
-      pubKicker: "官方参考架构与独立技术专栏",
-      pubTitle: "微软架构中心著作与技术深度文章",
-      pubSubtitle: "收录发表于 Microsoft Azure Architecture Center 的企业级混合云架构，以及独立技术博客 Unofficial Azure Club 的精选实战笔记。",
-      readMsLearn: "在 Microsoft Learn 阅读原文 ↗",
-      exploreBlog: "访问 Unofficial Azure Club 阅读全部 58+ 篇技术文章 ↗",
-      careerKicker: "20+ 年 IT 与云架构实战积淀",
-      careerTitle: "职业轨迹、教育背景与核心竞争力",
-      careerSubtitle: "横跨技术咨询、核心软件研发、项目管理、工程领导力与企业级云解决方案架构的二十余年演进之路。",
-      careerPanelTitle: "职业发展与技术领导力轨迹",
-      eduPanelTitle: "教育背景、核心支柱与工作语言",
-      eduHeading: "教育经历",
-      langHeading: "工作语言"
+      navDna: "核心特质与雷达",
+      navShipped: "代表作品",
+      navConstellation: "120 枚徽章星图",
+      navEras: "20年演进",
+      paletteLabel: "主题色盘",
+      dnaEyebrow: "01 · 架构师核心辨识度",
+      dnaTitle: "集齐「三大专家认证 + 全球评委 + 独立全栈交付」的稀缺组合",
+      triadKicker: "微软顶级认证大满贯",
+      triadTitle: "3× Expert 专家级认证",
+      radarKicker: "六维能力遥测",
+      radarTitle: "全栈技术与领导力雷达",
+      honorsKicker: "微软内部大奖与社区影响力",
+      honorsTitle: "全球评委 · 7年讲师 · KQL 金星侦探",
+      velocityKicker: "2019–2026 持续进化曲线",
+      velocityTitle: "8 年间斩获 120 枚官方认证分布",
+      shippedEyebrow: "02 · DOERS, NOT TALKERS（实干代表作）",
+      shippedTitle: "一人成军：独立构建并在线运行的 AI 情报平台与开源工程",
+      liveBtn: "访问在线平台 ↗",
+      repoBtn: "源码仓库 ↗",
+      badgeEyebrow: "03 · CREDLY 权威认证星图",
+      badgeTitle: "123 项可验真数字徽章与专业资质（点击任意徽章查看详情）",
+      orbitCrown: "★ 王冠精选 (16)",
+      orbitAll: "全部徽章 (123)",
+      orbitCerts: "专业认证 (30)",
+      orbitOpenhack: "OpenHack 教练 (27)",
+      orbitData: "Kusto 侦探 (21)",
+      orbitHack: "黑客松与内部大奖 (45)",
+      searchPlaceholder: "搜索 123 枚徽章（如 SC-100, Kusto, Judge, Copilot）...",
+      verifyBtn: "前往官方核验证书 ↗",
+      eraEyebrow: "04 · 20+ 年技术演进",
+      eraTitle: "职业里程碑与教育背景"
     }
   };
 
-  function t(obj) {
-    if (!obj) return "";
-    if (typeof obj === "string") return obj;
-    return obj[state.lang] || obj.en || "";
+  function t(val) {
+    if (!val) return "";
+    if (typeof val === "string") return val;
+    return val[state.lang] || val.en || "";
   }
 
-  function s(key) {
-    return UI_STRINGS[state.lang][key];
+  function ui(key) {
+    return I18N[state.lang][key];
   }
 
-  function escapeHtml(str) {
-    return String(str || "")
+  function esc(s) {
+    return String(s || "")
       .replace(/&/g, "&amp;")
       .replace(/</g, "&lt;")
       .replace(/>/g, "&gt;")
       .replace(/"/g, "&quot;");
   }
 
-  function applyTheme() {
-    document.documentElement.setAttribute("data-theme", state.theme);
-    const btn = document.getElementById("theme-toggle-btn");
-    if (btn) {
-      btn.textContent = state.theme === "dark" ? "☀ Light" : "☾ Dark";
-    }
+  /* ========================================================================
+     1. Palette Switcher
+     ======================================================================== */
+  function applyPalette(paletteName) {
+    state.palette = paletteName;
+    document.documentElement.setAttribute("data-palette", paletteName);
+    localStorage.setItem("yh_palette", paletteName);
+    document.querySelectorAll("[data-swatch]").forEach((btn) => {
+      btn.classList.toggle("is-active", btn.getAttribute("data-swatch") === paletteName);
+    });
   }
 
-  function renderStaticText() {
-    document.documentElement.lang = state.lang === "zh" ? "zh-CN" : "en";
-    const langBtn = document.getElementById("lang-toggle-btn");
-    if (langBtn) {
-      langBtn.textContent = state.lang === "en" ? "中文 / EN" : "EN / 中文";
+  /* ========================================================================
+     2. Interactive 60fps Constellation Canvas
+     ======================================================================== */
+  function initCanvas() {
+    const canvas = document.getElementById("cosmos-canvas");
+    if (!canvas) return;
+    const ctx = canvas.getContext("2d");
+    let w = (canvas.width = window.innerWidth);
+    let h = (canvas.height = window.innerHeight);
+
+    const pointer = { x: w * 0.5, y: h * 0.3 };
+    window.addEventListener("mousemove", (e) => {
+      pointer.x = e.clientX;
+      pointer.y = e.clientY;
+    });
+    window.addEventListener("resize", () => {
+      w = canvas.width = window.innerWidth;
+      h = canvas.height = window.innerHeight;
+    });
+
+    const count = Math.min(55, Math.floor((w * h) / 26000));
+    const nodes = Array.from({ length: count }, () => ({
+      x: Math.random() * w,
+      y: Math.random() * h,
+      vx: (Math.random() - 0.5) * 0.38,
+      vy: (Math.random() - 0.5) * 0.38,
+      r: Math.random() * 1.8 + 0.8
+    }));
+
+    function frame() {
+      ctx.clearRect(0, 0, w, h);
+      const style = getComputedStyle(document.documentElement);
+      const rgb = (style.getPropertyValue("--canvas-rgb-1") || "0, 240, 255").trim();
+
+      for (let i = 0; i < nodes.length; i++) {
+        const n = nodes[i];
+        n.x += n.vx;
+        n.y += n.vy;
+        if (n.x < 0 || n.x > w) n.vx *= -1;
+        if (n.y < 0 || n.y > h) n.vy *= -1;
+
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(${rgb}, 0.45)`;
+        ctx.fill();
+
+        for (let j = i + 1; j < nodes.length; j++) {
+          const m = nodes[j];
+          const dx = n.x - m.x;
+          const dy = n.y - m.y;
+          const dist = Math.hypot(dx, dy);
+          if (dist < 135) {
+            ctx.beginPath();
+            ctx.moveTo(n.x, n.y);
+            ctx.lineTo(m.x, m.y);
+            ctx.strokeStyle = `rgba(${rgb}, ${(1 - dist / 135) * 0.14})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+
+        const pd = Math.hypot(n.x - pointer.x, n.y - pointer.y);
+        if (pd < 180) {
+          ctx.beginPath();
+          ctx.moveTo(n.x, n.y);
+          ctx.lineTo(pointer.x, pointer.y);
+          ctx.strokeStyle = `rgba(${rgb}, ${(1 - pd / 180) * 0.24})`;
+          ctx.lineWidth = 1;
+          ctx.stroke();
+        }
+      }
+      requestAnimationFrame(frame);
     }
-
-    // Nav & Hero
-    document.getElementById("nav-projects").textContent = s("navProjects");
-    document.getElementById("nav-credentials").textContent = s("navCredentials");
-    document.getElementById("nav-publications").textContent = s("navPublications");
-    document.getElementById("nav-trajectory").textContent = s("navTrajectory");
-    document.getElementById("print-btn").textContent = s("printBtn");
-
-    document.getElementById("hero-role-text").textContent = t(portfolio.profile.role);
-    document.getElementById("hero-loc-text").textContent = t(portfolio.profile.location);
-    document.getElementById("hero-motto-text").textContent = t(portfolio.profile.motto);
-    document.getElementById("hero-summary-text").textContent = t(portfolio.profile.summary);
-
-    // Section headers
-    document.getElementById("lens-bar-title").textContent = s("lensTitle");
-    document.getElementById("systems-kicker").textContent = s("systemsKicker");
-    document.getElementById("systems-title").textContent = s("systemsTitle");
-    document.getElementById("systems-subtitle").textContent = s("systemsSubtitle");
-    document.getElementById("cred-kicker").textContent = s("credKicker");
-    document.getElementById("cred-title").textContent = s("credTitle");
-    document.getElementById("cred-subtitle").textContent = s("credSubtitle");
-    document.getElementById("domain-dna-title").textContent = s("domainDnaTitle");
-    document.getElementById("domain-dna-meta").textContent = s("domainDnaMeta");
-    document.getElementById("yearly-velocity-title").textContent = s("yearlyVelocityTitle");
-    document.getElementById("yearly-velocity-meta").textContent = s("yearlyVelocityMeta");
-    document.getElementById("cred-search-input").placeholder = s("searchPlaceholder");
-
-    document.getElementById("pub-kicker").textContent = s("pubKicker");
-    document.getElementById("pub-title").textContent = s("pubTitle");
-    document.getElementById("pub-subtitle").textContent = s("pubSubtitle");
-
-    document.getElementById("career-kicker").textContent = s("careerKicker");
-    document.getElementById("career-title").textContent = s("careerTitle");
-    document.getElementById("career-subtitle").textContent = s("careerSubtitle");
+    requestAnimationFrame(frame);
   }
 
-  function renderLensBar() {
-    const segWrap = document.getElementById("lens-segmented-control");
-    const lensKeys = ["all", "ai", "cloud", "data"];
-
-    segWrap.innerHTML = lensKeys
-      .map((key) => {
-        const lensObj = portfolio.lenses[key];
-        const count =
-          key === "all"
-            ? credData.credentials.length
-            : credData.credentials.filter((c) => c.lenses.includes(key)).length;
-        return `
-          <button type="button" class="segment-btn ${state.lens === key ? "is-active" : ""}" data-lens="${key}">
-            <span>${escapeHtml(t(lensObj.label))}</span>
-            <span class="segment-count">${count}</span>
-          </button>
-        `;
-      })
-      .join("");
-
-    const activeLens = portfolio.lenses[state.lens];
-    const briefEl = document.getElementById("lens-brief-box");
-    briefEl.innerHTML = `
-      <div class="lens-brief__text">${t(activeLens.brief)}</div>
-      <div class="lens-brief__highlights">
-        ${activeLens.tags.map((tag) => `<span class="lens-tag">${escapeHtml(tag)}</span>`).join("")}
-      </div>
-    `;
-
-    segWrap.querySelectorAll("[data-lens]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        state.lens = btn.getAttribute("data-lens");
-        renderLensBar();
-        renderProjects();
-        renderCredentials();
+  /* ========================================================================
+     3. Spotlight Hover Effect on Bento Cards
+     ======================================================================== */
+  function attachSpotlightCards() {
+    document.querySelectorAll(".bento-card").forEach((card) => {
+      card.addEventListener("mousemove", (e) => {
+        const rect = card.getBoundingClientRect();
+        card.style.setProperty("--mx", `${e.clientX - rect.left}px`);
+        card.style.setProperty("--my", `${e.clientY - rect.top}px`);
       });
     });
   }
 
-  function renderProjects() {
-    const grid = document.getElementById("projects-grid");
-    const ordered = [...portfolio.projects].sort((a, b) => {
-      if (state.lens === "all") return 0;
-      const aMatch = a.lenses.includes(state.lens) ? 1 : 0;
-      const bMatch = b.lenses.includes(state.lens) ? 1 : 0;
-      return bMatch - aMatch;
-    });
+  /* ========================================================================
+     4. Render Sections
+     ======================================================================== */
+  function renderHeroAndKpis() {
+    document.getElementById("nav-dna").textContent = ui("navDna");
+    document.getElementById("nav-shipped").textContent = ui("navShipped");
+    document.getElementById("nav-constellation").textContent = ui("navConstellation");
+    document.getElementById("nav-eras").textContent = ui("navEras");
+    document.getElementById("palette-label").textContent = ui("paletteLabel");
+    document.getElementById("lang-btn").textContent = state.lang === "en" ? "中文" : "EN";
 
-    grid.innerHTML = ordered
-      .map((p) => {
-        const isMatch = state.lens === "all" || p.lenses.includes(state.lens);
-        const isOpen = state.openBlueprints.has(p.id);
-        const pillClass =
-          p.pillStyle === "emerald"
-            ? "project-type-pill project-type-pill--emerald"
-            : p.pillStyle === "violet"
-            ? "project-type-pill project-type-pill--violet"
-            : "project-type-pill";
+    document.getElementById("hero-signal").textContent = t(data.hero.signal);
+    document.getElementById("hero-tagline").innerHTML = t(data.hero.tagline);
 
-        const nodesHtml = p.blueprint.nodes
+    document.getElementById("essence-trio").innerHTML = data.hero.essences
+      .map(
+        (e) => `
+        <div class="essence-chip">
+          <span class="essence-chip__icon">${esc(e.icon)}</span>
+          <span class="essence-chip__title">${esc(t(e.title))}</span>
+          <span class="essence-chip__sub">${esc(t(e.sub))}</span>
+        </div>
+      `
+      )
+      .join("");
+
+    document.getElementById("kpi-strip").innerHTML = data.kpis
+      .map((k) => {
+        const dash = Math.round((k.pct / 100) * 113);
+        return `
+          <div class="bento-card kpi-card">
+            <div>
+              <div class="kpi-number">${esc(k.num)}</div>
+              <div class="kpi-label">${esc(t(k.label))}</div>
+              <div class="kpi-sub">${esc(t(k.sub))}</div>
+            </div>
+            <svg class="kpi-ring" viewBox="0 0 44 44">
+              <circle cx="22" cy="22" r="18" fill="none" stroke="var(--border-subtle)" stroke-width="3.5" />
+              <circle cx="22" cy="22" r="18" fill="none" stroke="var(--accent-1)" stroke-width="3.5"
+                stroke-dasharray="${dash} 113" stroke-linecap="round" transform="rotate(-90 22 22)" />
+            </svg>
+          </div>
+        `;
+      })
+      .join("");
+  }
+
+  function renderDnaBento() {
+    document.getElementById("dna-eyebrow").textContent = ui("dnaEyebrow");
+    document.getElementById("dna-title").textContent = ui("dnaTitle");
+
+    // 6-Axis Radar SVG math
+    const cx = 100;
+    const cy = 100;
+    const maxR = 76;
+    const axes = data.radar;
+    const polyPoints = axes
+      .map((item, idx) => {
+        const angle = (Math.PI * 2 * idx) / axes.length - Math.PI / 2;
+        const r = (item.score / 100) * maxR;
+        const x = (cx + r * Math.cos(angle)).toFixed(1);
+        const y = (cy + r * Math.sin(angle)).toFixed(1);
+        return `${x},${y}`;
+      })
+      .join(" ");
+
+    const gridRings = [0.35, 0.68, 1.0]
+      .map((scale) => {
+        const pts = axes
+          .map((_, idx) => {
+            const angle = (Math.PI * 2 * idx) / axes.length - Math.PI / 2;
+            const x = (cx + maxR * scale * Math.cos(angle)).toFixed(1);
+            const y = (cy + maxR * scale * Math.sin(angle)).toFixed(1);
+            return `${x},${y}`;
+          })
+          .join(" ");
+        return `<polygon points="${pts}" fill="none" stroke="var(--border-subtle)" stroke-width="1" />`;
+      })
+      .join("");
+
+    const axisLines = axes
+      .map((_, idx) => {
+        const angle = (Math.PI * 2 * idx) / axes.length - Math.PI / 2;
+        const x = (cx + maxR * Math.cos(angle)).toFixed(1);
+        const y = (cy + maxR * Math.sin(angle)).toFixed(1);
+        return `<line x1="${cx}" y1="${cy}" x2="${x}" y2="${y}" stroke="var(--border-subtle)" stroke-width="1" />`;
+      })
+      .join("");
+
+    const vertexDots = axes
+      .map((item, idx) => {
+        const angle = (Math.PI * 2 * idx) / axes.length - Math.PI / 2;
+        const r = (item.score / 100) * maxR;
+        const x = (cx + r * Math.cos(angle)).toFixed(1);
+        const y = (cy + r * Math.sin(angle)).toFixed(1);
+        return `<circle cx="${x}" cy="${y}" r="4" fill="var(--accent-1)" />`;
+      })
+      .join("");
+
+    const dnaGrid = document.getElementById("dna-bento");
+    dnaGrid.innerHTML = `
+      <!-- Left Stack: Triple Expert Triad + 6-Axis Radar -->
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div class="bento-card">
+          <div class="bento-title-row">
+            <div>
+              <div class="bento-kicker">${esc(ui("triadKicker"))}</div>
+              <h3 class="bento-heading">${esc(ui("triadTitle"))}</h3>
+            </div>
+            <span class="signal-tag">AZ-305 · SC-100 · AZ-400</span>
+          </div>
+          <div class="triad-grid">
+            ${data.triad
+              .map(
+                (tr) => `
+                <div class="triad-pillar">
+                  <span class="triad-code">${esc(tr.code)}</span>
+                  <div class="triad-name">${esc(t(tr.name))}</div>
+                  <div class="triad-sub">${esc(t(tr.sub))}</div>
+                </div>
+              `
+              )
+              .join("")}
+          </div>
+        </div>
+
+        <div class="bento-card">
+          <div class="bento-title-row">
+            <div>
+              <div class="bento-kicker">${esc(ui("radarKicker"))}</div>
+              <h3 class="bento-heading">${esc(ui("radarTitle"))}</h3>
+            </div>
+          </div>
+          <div class="radar-wrap">
+            <svg class="radar-svg" viewBox="0 0 200 200">
+              ${gridRings}
+              ${axisLines}
+              <polygon points="${polyPoints}" fill="var(--accent-soft)" stroke="var(--accent-1)" stroke-width="2.2" />
+              ${vertexDots}
+            </svg>
+            <div class="radar-legend">
+              ${axes
+                .map(
+                  (a) => `
+                  <div class="radar-legend-item">
+                    <span>${esc(t(a.axis))}</span>
+                    <span class="radar-legend-score">${a.score}</span>
+                  </div>
+                `
+                )
+                .join("")}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Right Stack: 6 Elite Distinctions + 8-Year Credential Velocity Chart -->
+      <div style="display:flex; flex-direction:column; gap:18px;">
+        <div class="bento-card">
+          <div class="bento-title-row">
+            <div>
+              <div class="bento-kicker">${esc(ui("honorsKicker"))}</div>
+              <h3 class="bento-heading">${esc(ui("honorsTitle"))}</h3>
+            </div>
+            <span class="signal-tag">TOP 1%</span>
+          </div>
+          <div class="honor-pills-grid">
+            ${data.honors
+              .map(
+                (h) => `
+                <div class="honor-tile">
+                  <div class="honor-icon">${h.icon}</div>
+                  <div>
+                    <div class="honor-title">${esc(t(h.title))}</div>
+                    <div class="honor-meta">${esc(h.meta)}</div>
+                  </div>
+                </div>
+              `
+              )
+              .join("")}
+          </div>
+        </div>
+
+        <div class="bento-card" style="flex:1; display:flex; flex-direction:column; justify-content:space-between;">
+          <div class="bento-title-row" style="margin-bottom:4px;">
+            <div>
+              <div class="bento-kicker">${esc(ui("velocityKicker"))}</div>
+              <h3 class="bento-heading">${esc(ui("velocityTitle"))}</h3>
+            </div>
+            <span class="signal-tag">120 CREDLY</span>
+          </div>
+          <div class="velocity-bars">
+            ${[
+              { yr: "19", n: 4 },
+              { yr: "20", n: 19 },
+              { yr: "21", n: 21 },
+              { yr: "22", n: 29 },
+              { yr: "23", n: 20 },
+              { yr: "24", n: 11 },
+              { yr: "25", n: 8 },
+              { yr: "26", n: 8 }
+            ]
+              .map((b) => {
+                const hPct = Math.max(14, Math.round((b.n / 29) * 74));
+                return `
+                  <div class="v-bar-col">
+                    <span class="v-bar-num">${b.n}</span>
+                    <div class="v-bar-track" style="height:${hPct}px"></div>
+                    <span class="v-bar-yr">'${b.yr}</span>
+                  </div>
+                `;
+              })
+              .join("")}
+          </div>
+          <div class="velocity-domains">
+            <span class="mini-chip">Certs · 30</span>
+            <span class="mini-chip">OpenHack · 27</span>
+            <span class="mini-chip">Kusto &amp; Data · 21</span>
+            <span class="mini-chip">Hackathon &amp; Honors · 45</span>
+          </div>
+        </div>
+      </div>
+    `;
+  }
+
+  function renderShipped() {
+    document.getElementById("shipped-eyebrow").textContent = ui("shippedEyebrow");
+    document.getElementById("shipped-title").textContent = ui("shippedTitle");
+
+    document.getElementById("shipped-grid").innerHTML = data.shipped
+      .map((s) => {
+        const nodesHtml = s.nodes
           .map(
             (n, idx) => `
-            <div class="pipeline-node">
-              <div class="pipeline-node__step">${escapeHtml(n.step)}</div>
-              <div class="pipeline-node__name">${escapeHtml(n.name)}</div>
-              <div class="pipeline-node__detail">${escapeHtml(n.detail)}</div>
+            <div class="ship-node">
+              <div class="ship-node__k">${esc(n.k)}</div>
+              <div class="ship-node__v">${esc(n.v)}</div>
             </div>
-            ${idx < p.blueprint.nodes.length - 1 ? '<span class="pipeline-arrow" aria-hidden="true">→</span>' : ""}
+            ${idx < s.nodes.length - 1 ? '<span class="ship-arrow">→</span>' : ""}
           `
           )
           .join("");
 
-        const highlights = t(p.blueprint.highlights) || [];
-
         return `
-          <article class="project-card ${p.featured ? "project-card--featured" : ""} ${
-          state.lens !== "all" ? (isMatch ? "is-lens-match" : "is-lens-dimmed") : ""
-        }" data-project-id="${p.id}">
-            <div class="project-head">
-              <div>
-                <div class="project-badge-row">
-                  <span class="${pillClass}">${escapeHtml(t(p.typePill))}</span>
-                  <span class="project-metric-pill">${escapeHtml(p.metric)}</span>
+          <article class="bento-card ship-card">
+            <div>
+              <div class="ship-top">
+                <span class="ship-stat-badge">${esc(s.stat)}</span>
+                <div style="display:flex; gap:6px;">
+                  <a class="pill-action" href="${esc(s.liveUrl)}" target="_blank" rel="noopener noreferrer">${esc(
+          ui("liveBtn")
+        )}</a>
+                  <a class="pill-action" href="${esc(s.repoUrl)}" target="_blank" rel="noopener noreferrer">${esc(
+          ui("repoBtn")
+        )}</a>
                 </div>
-                <h3 class="project-title">${escapeHtml(t(p.title))}</h3>
               </div>
-              <div class="project-links">
-                ${
-                  p.liveUrl
-                    ? `<a class="project-link-btn" href="${escapeHtml(p.liveUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(
-                        s("liveSite")
-                      )}</a>`
-                    : ""
-                }
-                ${
-                  p.repoUrl
-                    ? `<a class="project-link-btn" href="${escapeHtml(p.repoUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(
-                        s("sourceCode")
-                      )}</a>`
-                    : ""
-                }
+              <h3 class="ship-name">${esc(t(s.name))}</h3>
+              <p class="ship-hook">${esc(t(s.hook))}</p>
+            </div>
+
+            <div class="ship-visual">${nodesHtml}</div>
+
+            <div class="ship-bottom">
+              <div class="chip-row">
+                ${s.chips.map((c) => `<span class="mini-chip">${esc(c)}</span>`).join("")}
               </div>
-            </div>
-
-            <p class="project-desc">${escapeHtml(t(p.description))}</p>
-
-            <div class="project-stack">
-              ${p.stack.map((item) => `<span class="stack-chip">${escapeHtml(item)}</span>`).join("")}
-            </div>
-
-            <div class="project-footer">
-              <button type="button" class="blueprint-toggle" data-blueprint-btn="${p.id}" aria-expanded="${isOpen}">
-                ${escapeHtml(isOpen ? s("hideBlueprint") : s("inspectBlueprint"))}
-              </button>
-              <span class="panel-meta">${p.lenses.map((l) => `#${l}`).join(" · ")}</span>
-            </div>
-
-            <div class="blueprint-drawer ${isOpen ? "is-open" : ""}" id="blueprint-${p.id}">
-              <h4 class="blueprint-title">${escapeHtml(t(p.blueprint.title))}</h4>
-              <div class="blueprint-pipeline">${nodesHtml}</div>
-              <ul class="blueprint-highlights">
-                ${highlights.map((h) => `<li>${escapeHtml(h)}</li>`).join("")}
-              </ul>
             </div>
           </article>
         `;
       })
       .join("");
+  }
 
-    grid.querySelectorAll("[data-blueprint-btn]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const id = btn.getAttribute("data-blueprint-btn");
-        if (state.openBlueprints.has(id)) {
-          state.openBlueprints.delete(id);
-        } else {
-          state.openBlueprints.add(id);
-        }
-        renderProjects();
-      });
+  function getFilteredBadges() {
+    return creds.filter((c) => {
+      if (state.search) {
+        const q = state.search.toLowerCase();
+        const hay = `${c.name} ${c.issuer} ${c.skills.join(" ")} ${c.year}`.toLowerCase();
+        return hay.includes(q);
+      }
+      if (state.orbit === "crown") return c.featured;
+      if (state.orbit === "all") return true;
+      if (state.orbit === "hackathons") {
+        return c.category === "hackathons" || c.category === "leadership_community" || c.category === "teaching_mct";
+      }
+      return c.category === state.orbit;
     });
   }
 
-  function renderCredentialTelemetry() {
-    // 1. Domain DNA Bars
-    const domainLabels = {
-      certifications: { en: "Certifications & Exams", zh: "专业技术认证 (Exams/Certs)" },
-      openhack: { en: "OpenHack & Coaching", zh: "OpenHack 实战与教练" },
-      data_kql: { en: "Data & Kusto (KQL)", zh: "数据智能与 KQL 侦探" },
-      leadership_community: { en: "Arch Center & Awards", zh: "架构中心与技术领导力" },
-      hackathons: { en: "Global Hackathons & Judge", zh: "全球黑客松与评委" },
-      teaching_mct: { en: "MCT & Instructional Impact", zh: "MCT 认证讲师与教学" }
-    };
+  function renderConstellation() {
+    document.getElementById("badge-eyebrow").textContent = ui("badgeEyebrow");
+    document.getElementById("badge-title").textContent = ui("badgeTitle");
+    document.getElementById("orbit-search").placeholder = ui("searchPlaceholder");
 
-    const byCat = credData.stats.byCategory;
-    const maxCat = Math.max(...Object.values(byCat), 1);
-    const domainWrap = document.getElementById("domain-bars-wrap");
+    const orbits = [
+      { id: "crown", label: ui("orbitCrown") },
+      { id: "all", label: ui("orbitAll") },
+      { id: "certifications", label: ui("orbitCerts") },
+      { id: "openhack", label: ui("orbitOpenhack") },
+      { id: "data_kql", label: ui("orbitData") },
+      { id: "hackathons", label: ui("orbitHack") }
+    ];
 
-    domainWrap.innerHTML = Object.keys(domainLabels)
-      .map((cat) => {
-        const count = byCat[cat] || 0;
-        const pct = Math.round((count / maxCat) * 100);
-        return `
-          <div class="domain-bar-row" style="cursor:pointer" data-domain-cat="${cat}">
-            <span class="domain-bar-label">${escapeHtml(t(domainLabels[cat]))}</span>
-            <div class="domain-bar-track">
-              <div class="domain-bar-fill" style="width:${pct}%"></div>
+    const pillsEl = document.getElementById("orbit-pills");
+    pillsEl.innerHTML = orbits
+      .map(
+        (o) => `
+        <button type="button" class="orbit-pill ${state.orbit === o.id ? "is-active" : ""}" data-orbit="${o.id}">
+          ${esc(o.label)}
+        </button>
+      `
+      )
+      .join("");
+
+    pillsEl.querySelectorAll("[data-orbit]").forEach((btn) => {
+      btn.addEventListener("click", () => {
+        state.orbit = btn.getAttribute("data-orbit");
+        renderConstellation();
+      });
+    });
+
+    const list = getFilteredBadges();
+    const visible = state.orbit === "crown" && !state.search ? list.slice(0, 16) : list;
+    const selected = creds.find((c) => c.id === state.selectedBadgeId) || visible[0] || creds[0];
+
+    // Render Single Sleek Spotlight Inspector Bar
+    const inspector = document.getElementById("badge-inspector");
+    if (selected) {
+      const imgHtml = selected.imageUrl
+        ? `<img class="inspector-img" src="${esc(selected.imageUrl)}" alt="${esc(selected.name)}" />`
+        : `<div class="medallion__fallback" style="width:60px;height:60px">${esc(selected.tier.slice(0, 4))}</div>`;
+
+      inspector.innerHTML = `
+        <div class="inspector-left">
+          ${imgHtml}
+          <div>
+            <div class="inspector-meta">${esc(selected.tier.toUpperCase())} · ${esc(selected.issuedAt)} · ${esc(
+        selected.issuer
+      )}</div>
+            <h3 class="inspector-title">${esc(selected.name)}</h3>
+            <div class="chip-row">
+              ${selected.skills
+                .slice(0, 6)
+                .map((sk) => `<span class="mini-chip">${esc(sk)}</span>`)
+                .join("")}
             </div>
-            <span class="domain-bar-count">${count}</span>
+          </div>
+        </div>
+        <a class="portal-btn portal-btn--glow" href="${esc(selected.verifyUrl)}" target="_blank" rel="noopener noreferrer">
+          ${esc(ui("verifyBtn"))}
+        </a>
+      `;
+    }
+
+    // Render Medallion Wall
+    const wall = document.getElementById("medallion-wall");
+    wall.innerHTML = visible
+      .map((c) => {
+        const isSel = selected && c.id === selected.id;
+        const fb = esc(c.tier.slice(0, 4).toUpperCase());
+        const thumb = c.imageUrl
+          ? `<img class="medallion__img" src="${esc(c.imageUrl)}" alt="${esc(c.name)}" loading="lazy" onerror="this.outerHTML='<div class=\\'medallion__fallback\\'>${fb}</div>'" />`
+          : `<div class="medallion__fallback">${fb}</div>`;
+
+        return `
+          <div class="medallion ${isSel ? "is-selected" : ""}" data-medallion-id="${esc(c.id)}" tabindex="0" role="button">
+            ${thumb}
+            <div class="medallion__name">${esc(c.name)}</div>
+            <div class="medallion__year">${esc(c.year)} · ${esc(c.tier)}</div>
           </div>
         `;
       })
       .join("");
 
-    domainWrap.querySelectorAll("[data-domain-cat]").forEach((row) => {
-      row.addEventListener("click", () => {
-        const cat = row.getAttribute("data-domain-cat");
-        state.credCategory = state.credCategory === cat ? "all" : cat;
-        state.showAllInCategory = true;
-        renderCredentialControls();
-        renderCredentials();
-      });
-    });
-
-    // 2. Yearly Velocity Chart (2019-2026)
-    const byYear = credData.stats.byYear;
-    const years = ["2019", "2020", "2021", "2022", "2023", "2024", "2025", "2026"];
-    const maxYear = Math.max(...years.map((y) => byYear[y] || 0), 1);
-    const yearChart = document.getElementById("year-chart-wrap");
-
-    yearChart.innerHTML = years
-      .map((y) => {
-        const count = byYear[y] || 0;
-        const hPct = Math.max(Math.round((count / maxYear) * 76), 8);
-        const active = state.credYear === y;
-        return `
-          <button type="button" class="year-col ${active ? "is-active" : ""}" data-year="${y}" title="${y}: ${count} badges">
-            <span class="year-val">${count}</span>
-            <div class="year-bar" style="height:${hPct}px"></div>
-            <span class="year-lbl">${y.slice(2)}'</span>
-          </button>
-        `;
-      })
-      .join("");
-
-    yearChart.querySelectorAll("[data-year]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const y = btn.getAttribute("data-year");
-        state.credYear = state.credYear === y ? null : y;
-        if (state.credYear && state.credCategory === "featured") {
-          state.credCategory = "all";
-        }
-        state.showAllInCategory = true;
-        renderCredentialTelemetry();
-        renderCredentialControls();
-        renderCredentials();
-      });
-    });
-
-    // 3. Top Skills Cloud
-    const topSkills = credData.stats.topSkills.slice(0, 14);
-    const skillCloud = document.getElementById("skill-cloud-wrap");
-    skillCloud.innerHTML = topSkills
-      .map((sk) => {
-        const active = state.credSkill === sk.name;
-        return `
-          <button type="button" class="skill-filter-chip ${active ? "is-active" : ""}" data-skill="${escapeHtml(sk.name)}">
-            ${escapeHtml(sk.name)}<span>${sk.count}</span>
-          </button>
-        `;
-      })
-      .join("");
-
-    skillCloud.querySelectorAll("[data-skill]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        const sk = btn.getAttribute("data-skill");
-        state.credSkill = state.credSkill === sk ? null : sk;
-        if (state.credSkill && state.credCategory === "featured") {
-          state.credCategory = "all";
-        }
-        state.showAllInCategory = true;
-        renderCredentialTelemetry();
-        renderCredentialControls();
-        renderCredentials();
-      });
-    });
-  }
-
-  function renderCredentialControls() {
-    const pillsWrap = document.getElementById("cred-cat-pills");
-    const cats = [
-      { id: "featured", label: s("catFeatured") },
-      { id: "all", label: s("catAll") },
-      { id: "certifications", label: s("catCerts") },
-      { id: "openhack", label: s("catOpenhack") },
-      { id: "data_kql", label: s("catData") },
-      { id: "leadership_community", label: s("catLeadership") },
-      { id: "hackathons", label: s("catHackathons") },
-      { id: "teaching_mct", label: s("catTeaching") }
-    ];
-
-    pillsWrap.innerHTML = cats
-      .map(
-        (c) => `
-        <button type="button" class="cat-pill ${state.credCategory === c.id ? "is-active" : ""}" data-cat="${c.id}">
-          ${escapeHtml(c.label)}
-        </button>
-      `
-      )
-      .join("");
-
-    pillsWrap.querySelectorAll("[data-cat]").forEach((btn) => {
-      btn.addEventListener("click", () => {
-        state.credCategory = btn.getAttribute("data-cat");
-        state.showAllInCategory = state.credCategory !== "featured";
-        renderCredentialControls();
-        renderCredentials();
-      });
-    });
-  }
-
-  function getFilteredCredentials() {
-    return credData.credentials.filter((c) => {
-      if (state.credCategory === "featured" && !c.featured && !state.credQuery && !state.credYear && !state.credSkill && state.lens === "all") {
-        return false;
-      }
-      if (
-        state.credCategory !== "featured" &&
-        state.credCategory !== "all" &&
-        c.category !== state.credCategory
-      ) {
-        return false;
-      }
-      if (state.lens !== "all" && !c.lenses.includes(state.lens)) {
-        return false;
-      }
-      if (state.credYear && c.year !== state.credYear) {
-        return false;
-      }
-      if (state.credSkill && !c.skills.includes(state.credSkill)) {
-        return false;
-      }
-      if (state.credQuery) {
-        const q = state.credQuery.toLowerCase();
-        const hay = `${c.name} ${c.issuer} ${c.description} ${c.skills.join(" ")} ${c.year}`.toLowerCase();
-        if (!hay.includes(q)) return false;
-      }
-      return true;
-    });
-  }
-
-  function renderCredentials() {
-    const filtered = getFilteredCredentials();
-    const limit = state.showAllInCategory || state.credQuery || state.credYear || state.credSkill ? filtered.length : 25;
-    const visible = filtered.slice(0, limit);
-
-    const statusEl = document.getElementById("cred-count-status");
-    const hasActiveFilter = state.credYear || state.credSkill || state.credQuery || state.lens !== "all";
-    statusEl.innerHTML = `
-      <span>${escapeHtml(s("showingCount")(visible.length, filtered.length))}</span>
-      ${
-        hasActiveFilter
-          ? `<button type="button" class="dock-btn" id="reset-cred-filters-btn">${escapeHtml(s("clearFilters"))}</button>`
-          : ""
-      }
-    `;
-
-    const resetBtn = document.getElementById("reset-cred-filters-btn");
-    if (resetBtn) {
-      resetBtn.addEventListener("click", () => {
-        state.credYear = null;
-        state.credSkill = null;
-        state.credQuery = "";
-        state.lens = "all";
-        state.credCategory = "featured";
-        state.showAllInCategory = false;
-        document.getElementById("cred-search-input").value = "";
-        renderLensBar();
-        renderProjects();
-        renderCredentialTelemetry();
-        renderCredentialControls();
-        renderCredentials();
-      });
-    }
-
-    const grid = document.getElementById("cred-grid");
-    grid.innerHTML = visible
-      .map((c) => {
-        const isExpanded = state.expandedCredIds.has(c.id);
-        const fallbackLabel = escapeHtml(c.tier.slice(0, 4).toUpperCase());
-        const thumbHtml = c.imageUrl
-          ? `<img class="cred-thumb" src="${escapeHtml(c.imageUrl)}" alt="${escapeHtml(c.name)}" loading="lazy" onerror="this.outerHTML='<div class=\\'cred-thumb-fallback\\'>${fallbackLabel}</div>'" />`
-          : `<div class="cred-thumb-fallback">${fallbackLabel}</div>`;
-
-        return `
-          <article class="cred-card ${isExpanded ? "is-expanded" : ""}" data-cred-id="${escapeHtml(c.id)}" tabindex="0" role="button" aria-expanded="${isExpanded}">
-            <div class="cred-card-top">
-              ${thumbHtml}
-              <div class="cred-info">
-                <div class="cred-meta-row">
-                  <span class="cred-tier-badge">${escapeHtml(c.tier)}</span>
-                  <span class="cred-date">${escapeHtml(c.issuedAt)}</span>
-                </div>
-                <h3 class="cred-name">${escapeHtml(c.name)}</h3>
-                <div class="cred-issuer">${escapeHtml(c.issuer)}</div>
-              </div>
-            </div>
-
-            <div class="cred-drawer">
-              <p class="cred-drawer-desc">${escapeHtml(c.description)}</p>
-              ${
-                c.skills.length
-                  ? `<div class="cred-drawer-skills">
-                      ${c.skills.map((sk) => `<span class="stack-chip">${escapeHtml(sk)}</span>`).join("")}
-                    </div>`
-                  : ""
-              }
-              <div class="cred-drawer-actions">
-                <span class="panel-meta">Source: ${escapeHtml(c.source)} · ID: ${escapeHtml(c.id.slice(0, 12))}</span>
-                <a class="verify-link" href="${escapeHtml(c.verifyUrl)}" target="_blank" rel="noopener noreferrer" onclick="event.stopPropagation()">
-                  ${escapeHtml(s("verifyCredly"))}
-                </a>
-              </div>
-            </div>
-          </article>
-        `;
-      })
-      .join("");
-
-    grid.querySelectorAll("[data-cred-id]").forEach((card) => {
-      const toggleCard = () => {
-        const id = card.getAttribute("data-cred-id");
-        if (state.expandedCredIds.has(id)) {
-          state.expandedCredIds.delete(id);
-        } else {
-          state.expandedCredIds.add(id);
-        }
-        renderCredentials();
+    wall.querySelectorAll("[data-medallion-id]").forEach((el) => {
+      const selectIt = () => {
+        state.selectedBadgeId = el.getAttribute("data-medallion-id");
+        renderConstellation();
       };
-      card.addEventListener("click", toggleCard);
-      card.addEventListener("keydown", (e) => {
-        if (e.key === "Enter" || e.key === " ") {
-          e.preventDefault();
-          toggleCard();
-        }
-      });
+      el.addEventListener("click", selectIt);
+      el.addEventListener("mouseenter", selectIt);
     });
-
-    const moreWrap = document.getElementById("cred-show-more-wrap");
-    if (visible.length < filtered.length) {
-      moreWrap.innerHTML = `
-        <button type="button" class="dock-btn dock-btn--primary" id="show-all-creds-btn">
-          ${escapeHtml(s("showAllBtn")(filtered.length))}
-        </button>
-      `;
-      document.getElementById("show-all-creds-btn").addEventListener("click", () => {
-        state.showAllInCategory = true;
-        renderCredentials();
-      });
-    } else if (state.credCategory === "featured" && state.lens === "all" && !state.credQuery) {
-      moreWrap.innerHTML = `
-        <button type="button" class="dock-btn dock-btn--primary" id="switch-all-123-btn">
-          ${escapeHtml(s("showAllBtn")(credData.credentials.length))}
-        </button>
-      `;
-      document.getElementById("switch-all-123-btn").addEventListener("click", () => {
-        state.credCategory = "all";
-        state.showAllInCategory = true;
-        renderCredentialControls();
-        renderCredentials();
-      });
-    } else {
-      moreWrap.innerHTML = "";
-    }
   }
 
-  function renderPublications() {
-    const ac = portfolio.publications.archCenter;
-    const archCard = document.getElementById("arch-publication-card");
+  function renderEras() {
+    document.getElementById("era-eyebrow").textContent = ui("eraEyebrow");
+    document.getElementById("era-title").textContent = ui("eraTitle");
 
-    const zonesHtml = ac.zones
+    document.getElementById("era-grid").innerHTML = data.eras
       .map(
-        (z, idx) => `
-        <div class="arch-zone">
-          <div class="arch-zone__tag">${escapeHtml(z.tag)}</div>
-          <div class="arch-zone__title">${escapeHtml(z.title)}</div>
-          <div class="arch-zone__sub">${escapeHtml(z.sub)}</div>
+        (e) => `
+        <div class="bento-card era-card">
+          <div class="era-year">${esc(e.year)}</div>
+          <h3 class="era-role">${esc(t(e.role))}</h3>
+          <div class="era-org">${esc(t(e.org))}</div>
+          <div class="era-tags">
+            ${e.tags.map((tg) => `<span class="mini-chip">${esc(tg)}</span>`).join("")}
+          </div>
         </div>
-        ${idx < ac.zones.length - 1 ? '<div class="arch-connector">⇄<br/>SMB/TLS</div>' : ""}
       `
       )
       .join("");
-
-    archCard.innerHTML = `
-      <div>
-        <span class="project-type-pill">${escapeHtml(t(ac.badge))}</span>
-        <h3 class="project-title" style="margin-top:8px">${escapeHtml(t(ac.title))}</h3>
-      </div>
-      <p class="project-desc">${escapeHtml(t(ac.summary))}</p>
-      <div class="arch-diagram-box">
-        <div class="blueprint-title">Hybrid Private Endpoint Topology (Azure Files + File Sync + Private DNS)</div>
-        <div class="arch-diagram-grid">${zonesHtml}</div>
-      </div>
-      <div class="project-footer">
-        <span class="panel-meta">Azure Files · Azure File Sync · Private Endpoint · Private DNS</span>
-        <a class="project-link-btn" href="${escapeHtml(ac.url)}" target="_blank" rel="noopener noreferrer">
-          ${escapeHtml(s("readMsLearn"))}
-        </a>
-      </div>
-    `;
-
-    const blog = portfolio.publications.blog;
-    const journalCard = document.getElementById("journal-list-card");
-    journalCard.innerHTML = `
-      <div class="panel-head" style="margin-bottom:6px">
-        <h3 class="panel-title">${escapeHtml(t(blog.title))}</h3>
-      </div>
-      ${blog.articles
-        .map(
-          (art) => `
-          <a class="journal-item" href="${escapeHtml(art.url)}" target="_blank" rel="noopener noreferrer">
-            <div class="journal-item__meta">
-              <span>${escapeHtml(art.date)}</span>
-              <span>·</span>
-              <span style="color:var(--accent-azure)">${escapeHtml(art.desk)}</span>
-            </div>
-            <div class="journal-item__title">${escapeHtml(art.title)} ↗</div>
-          </a>
-        `
-        )
-        .join("")}
-      <div style="margin-top:auto; padding-top:8px">
-        <a class="project-link-btn" href="${escapeHtml(blog.url)}" target="_blank" rel="noopener noreferrer">
-          ${escapeHtml(s("exploreBlog"))}
-        </a>
-      </div>
-    `;
-  }
-
-  function renderCareerAndEducation() {
-    const careerPanel = document.getElementById("career-timeline-card");
-    careerPanel.innerHTML = `
-      <div class="panel-head">
-        <h3 class="panel-title">${escapeHtml(s("careerPanelTitle"))}</h3>
-        <span class="panel-meta">Shanghai & Dalian, China</span>
-      </div>
-      <div class="timeline-list">
-        ${portfolio.career
-          .map(
-            (item) => `
-            <div class="timeline-node">
-              <div class="timeline-period">${escapeHtml(item.period)}</div>
-              <h4 class="timeline-role">${escapeHtml(t(item.role))}</h4>
-              <div class="timeline-org">${escapeHtml(t(item.org))}</div>
-              <ul class="timeline-bullets">
-                ${(t(item.bullets) || []).map((b) => `<li>${escapeHtml(b)}</li>`).join("")}
-              </ul>
-            </div>
-          `
-          )
-          .join("")}
-      </div>
-    `;
-
-    const edu = portfolio.educationAndHonors;
-    const eduPanel = document.getElementById("edu-honors-card");
-    eduPanel.innerHTML = `
-      <div class="panel-head">
-        <h3 class="panel-title">${escapeHtml(s("eduPanelTitle"))}</h3>
-      </div>
-
-      <div style="margin-bottom:18px; padding:14px; border-radius:var(--radius-sm); background:var(--bg-surface-muted); border:1px solid var(--border-hairline);">
-        <div class="telemetry-tile__kicker">${escapeHtml(s("eduHeading"))}</div>
-        <div style="font-weight:760; font-size:1rem; margin-top:4px; color:var(--ink-primary)">
-          ${escapeHtml(t(edu.education.school))}
-        </div>
-        <div style="font-size:0.84rem; color:var(--ink-secondary); margin-top:4px">
-          ${escapeHtml(t(edu.education.detail))}
-        </div>
-      </div>
-
-      <div style="display:flex; flex-direction:column; gap:10px; margin-bottom:18px">
-        ${edu.pillars
-          .map(
-            (pil) => `
-            <div style="padding:12px 14px; border-radius:var(--radius-sm); border:1px solid var(--border-hairline); background:var(--bg-surface)">
-              <div class="telemetry-tile__kicker" style="color:var(--accent-azure)">${escapeHtml(pil.kicker)}</div>
-              <div style="font-weight:720; font-size:0.92rem; margin-top:2px">${escapeHtml(t(pil.title))}</div>
-              <div style="font-size:0.82rem; color:var(--ink-secondary); margin-top:3px">${escapeHtml(t(pil.desc))}</div>
-            </div>
-          `
-          )
-          .join("")}
-      </div>
-
-      <div style="padding:14px; border-radius:var(--radius-sm); background:var(--bg-surface-muted); border:1px solid var(--border-hairline);">
-        <div class="telemetry-tile__kicker">${escapeHtml(s("langHeading"))}</div>
-        <div style="display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-top:8px">
-          ${edu.languages
-            .map(
-              (l) => `
-              <div>
-                <div style="font-weight:700; font-size:0.88rem">${escapeHtml(t(l.name))}</div>
-                <div style="font-size:0.78rem; color:var(--ink-muted)">${escapeHtml(t(l.level))}</div>
-              </div>
-            `
-            )
-            .join("")}
-        </div>
-      </div>
-    `;
   }
 
   function renderAll() {
-    applyTheme();
-    renderStaticText();
-    renderLensBar();
-    renderProjects();
-    renderCredentialTelemetry();
-    renderCredentialControls();
-    renderCredentials();
-    renderPublications();
-    renderCareerAndEducation();
+    document.documentElement.lang = state.lang === "zh" ? "zh-CN" : "en";
+    applyPalette(state.palette);
+    renderHeroAndKpis();
+    renderDnaBento();
+    renderShipped();
+    renderConstellation();
+    renderEras();
+    attachSpotlightCards();
   }
 
-  function initEvents() {
-    document.getElementById("lang-toggle-btn").addEventListener("click", () => {
+  document.addEventListener("DOMContentLoaded", () => {
+    initCanvas();
+    renderAll();
+
+    document.querySelectorAll("[data-swatch]").forEach((btn) => {
+      btn.addEventListener("click", () => applyPalette(btn.getAttribute("data-swatch")));
+    });
+
+    document.getElementById("lang-btn").addEventListener("click", () => {
       state.lang = state.lang === "en" ? "zh" : "en";
       const url = new URL(window.location.href);
-      if (state.lang === "zh") {
-        url.searchParams.set("lang", "zh");
-      } else {
-        url.searchParams.delete("lang");
-      }
+      if (state.lang === "zh") url.searchParams.set("lang", "zh");
+      else url.searchParams.delete("lang");
       window.history.replaceState({}, "", url);
       renderAll();
     });
 
-    document.getElementById("theme-toggle-btn").addEventListener("click", () => {
-      state.theme = state.theme === "dark" ? "light" : "dark";
-      localStorage.setItem("yh_resume_theme", state.theme);
-      applyTheme();
+    document.getElementById("orbit-search").addEventListener("input", (e) => {
+      state.search = e.target.value.trim();
+      renderConstellation();
     });
-
-    document.getElementById("print-btn").addEventListener("click", () => {
-      window.print();
-    });
-
-    const searchInput = document.getElementById("cred-search-input");
-    searchInput.addEventListener("input", (e) => {
-      state.credQuery = e.target.value.trim();
-      renderCredentials();
-    });
-  }
-
-  document.addEventListener("DOMContentLoaded", () => {
-    initEvents();
-    renderAll();
   });
 })();

@@ -98,17 +98,19 @@ async function main() {
         ['--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage', '--no-zygote', '--dump-dom', baseUrl],
         { encoding: 'utf8', maxBuffer: 10 * 1024 * 1024, timeout: 15000 }
       );
-      assert(domEn.includes('Customer Use Case Intelligence'), 'Hydrated DOM missing Use Case Intelligence project');
-      assert(domEn.includes('Microsoft Global Hackathon 2026 Judge'), 'Hydrated DOM missing 2026 Judge badge');
-      assert(domEn.includes('Enterprise-level cloud file share solution on Azure'), 'Hydrated DOM missing Azure Architecture Center publication');
+      assert(domEn.includes('Use Case Intelligence'), 'Hydrated DOM missing Use Case Intelligence project');
+      assert(domEn.includes('Global Hackathon 2026 Judge'), 'Hydrated DOM missing 2026 Judge badge');
+      assert(domEn.includes('FutureGrid'), 'Hydrated DOM missing FutureGrid');
+      assert(domEn.includes('radar-svg'), 'Hydrated DOM missing 6-axis radar chart');
+      assert(domEn.includes('medallion-wall'), 'Hydrated DOM missing medallion wall');
 
       const { stdout: domZh } = await execFileAsync(
         chromeBin,
         ['--headless', '--disable-gpu', '--no-sandbox', '--disable-dev-shm-usage', '--no-zygote', '--dump-dom', `${baseUrl}?lang=zh`],
         { encoding: 'utf8', maxBuffer: 10 * 1024 * 1024, timeout: 15000 }
       );
-      assert(domZh.includes('资深云解决方案架构师'), 'Chinese hydrated DOM missing localized role');
-      assert(domZh.includes('全球企业 AI 落地案例情报库'), 'Chinese hydrated DOM missing localized project title');
+      assert(domZh.includes('微软资深云解决方案架构师'), 'Chinese hydrated DOM missing localized role');
+      assert(domZh.includes('企业 AI 情报库'), 'Chinese hydrated DOM missing localized project title');
       console.log('✓ Headless Chrome DOM hydration verified for both English and Chinese views.');
     }
   } finally {
