@@ -1,0 +1,12 @@
+{
+  "name": "yingting-huang-resume",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Interactive Architect Dossier & 123-Credential Telemetry for Yingting Huang (Senior Cloud Solution Architect @ Microsoft)",
+  "scripts": {
+    "sync:credly": "node scripts/sync-credly.mjs --fetch",
+    "build:data": "node scripts/sync-credly.mjs",
+    "verify": "node scripts/verify.mjs"
+  }
+}
