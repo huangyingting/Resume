@@ -1,10 +1,11 @@
 /**
  * Rigorously Curated Narrative Data for Yingting Huang
- * Focused on the 4 pillars that truly distinguish him:
- * 1. Solo-built production AI intelligence platforms (Doer, not talker)
- * 2. Official Microsoft architectural authority (2026 Judge, MS Learn Author, 3x Expert, Top Insider)
- * 3. 20-year compound leadership arc (Consultant -> Eng Manager -> Senior CSA)
- * 4. 120 Cryptographically Verified Credly Seals
+ * Verified directly against LinkedIn (https://www.linkedin.com/in/yingting-huang-9622bb20),
+ * Credly (https://www.credly.com/users/yingting-huang), and GitHub repositories:
+ * 1. Solo-built production AI intelligence platforms (Doers, not talkers)
+ * 2. Official Microsoft architectural authority (2026 Judge, MS Learn Author, 3x Expert, Dual FY26 Top Insider)
+ * 3. 20+ year career record (Microsoft Senior CSA across 4 Microsoft roles, SeaChange Senior Software Engineer, Baosight Software, Technical Consulting)
+ * 4. 120 Cryptographically Verified Credly Seals + LinkedIn Certifications
  */
 
 window.RESUME_PORTFOLIO_DATA = {
@@ -24,8 +25,8 @@ window.RESUME_PORTFOLIO_DATA = {
       zh: "THE ARCHITECT’S CHRONICLE"
     },
     subtitle: {
-      en: "YINGTING HUANG — 20-YEAR ENGINEERING & AI SYSTEMS BROADSHEET",
-      zh: "YINGTING HUANG — 二十年企业工程管理与云原生 AI 架构报刊实录"
+      en: "YINGTING HUANG — 20+ YEARS IN CLOUD ARCHITECTURE, CONSULTING & AI SYSTEMS",
+      zh: "YINGTING HUANG — 二十余年企业技术咨询、云原生架构与 AI 系统报刊实录"
     },
     earRightKicker: { en: "VERIFIED STANDING", zh: "权威认证背书" },
     earRightMain: { en: "3× Microsoft Expert", zh: "微软三大专家大满贯" },
@@ -49,12 +50,12 @@ window.RESUME_PORTFOLIO_DATA = {
       zh: "不止于纸面架构蓝图，更以<em>一人成军</em>的工程力交付真实运行的全球 AI 平台。"
     },
     thesis: {
-      en: "<p>Over <strong>20 years</strong> spanning global software engineering management, technical consulting, and <strong>Microsoft Senior Cloud Solution Architecture</strong>. Appointed <strong>2026 Microsoft Global Hackathon Official Judge</strong> after 7 consecutive years competing, published author in the <strong>Microsoft Learn Azure Architecture Center</strong>, and holder of all three pinnacle Microsoft Expert certifications (Solutions, Cybersecurity SC-100, DevOps).</p><p>Guided by a single conviction — <strong>“Doers, not talkers”</strong> — he solo-engineers and operates full-stack autonomous AI and data intelligence platforms indexing <strong>2,300+ verified enterprise AI cases</strong>, <strong>178 economies</strong>, and <strong>157,000+ longitudinal academic records</strong>.</p>",
-      zh: "<p>深耕跨国软件研发管理、企业技术咨询与<strong>微软资深云解决方案架构 (Senior CSA)</strong> 逾 <strong>20 年</strong>。在连续 7 年征战微软全球黑客松后获任 <strong>2026 全球黑客松官方评委</strong>，同时系<strong>微软官方架构中心 (Azure Architecture Center)</strong> 发布作者，并集齐架构、零信任安全 (SC-100) 与 DevOps <strong>三大顶级专家认证大满贯</strong>。</p><p>始终奉行 <strong>“Doers, not talkers（实干胜于空谈）”</strong>——工作之余独立完成数据管线、多智能体编排与前端交互，上线运营多款全球 AI 与数据情报系统，实时索引 <strong>2,300+ 真实企业 AI 案例</strong>与 <strong>178 个经济体</strong>。</p>"
+      en: "<p>Seasoned IT professional with <strong>20+ years of experience</strong> across technical consulting, enterprise software engineering, and <strong>Microsoft Senior Cloud Solution Architecture</strong>. Appointed <strong>2026 Microsoft Global Hackathon Official Judge</strong> after 7 consecutive years competing, published author in the <strong>Microsoft Learn Azure Architecture Center</strong>, and holder of all three pinnacle Microsoft Expert certifications (Solutions, Cybersecurity SC-100, DevOps).</p><p>Guided by a single conviction — <strong>“Doers, not talkers”</strong> — he solo-engineers and operates full-stack autonomous AI and data intelligence platforms indexing <strong>2,300+ verified enterprise AI cases</strong>, <strong>178 economies</strong>, and <strong>157,000+ longitudinal academic records</strong>.</p>",
+      zh: "<p>资深 IT 架构与工程专家，拥有逾 <strong>20 年</strong>企业技术咨询、分布式软件工程与<strong>微软资深云解决方案架构师 (Senior CSA)</strong> 经验。在连续 7 年征战微软全球黑客松后获任 <strong>2026 全球黑客松官方评委</strong>，同时系<strong>微软官方架构中心 (Azure Architecture Center)</strong> 参考架构作者，并集齐解决方案架构、零信任安全 (SC-100) 与 DevOps <strong>三大顶级专家认证大满贯</strong>。</p><p>始终奉行 <strong>“Doers, not talkers（实干胜于空谈）”</strong>——工作之余独立完成数据管线、多智能体编排与前端交互，上线运营多款全球 AI 与数据情报系统，实时索引 <strong>2,300+ 真实企业 AI 案例</strong>与 <strong>178 个经济体</strong>。</p>"
     },
     caption: {
-      en: "Microsoft Senior CSA · Shanghai\nCUMT Engineering Alumni",
-      zh: "微软资深云解决方案架构师 · 上海\n中国矿业大学 (CUMT) 校友"
+      en: "Microsoft Senior CSA · Shanghai\nCUMT Computer Science Alumni",
+      zh: "微软资深云解决方案架构师 · 上海\n中国矿业大学 (CUMT) 计算机科学校友"
     },
     dossierHeader: {
       en: "EXECUTIVE STANDING DOSSIER",
@@ -75,7 +76,7 @@ window.RESUME_PORTFOLIO_DATA = {
       },
       {
         key: { en: "PUBLICATION", zh: "官方著作" },
-        val: { en: "MS Learn Azure Architecture Center Author", zh: "微软官方架构中心参考架构作者 & 58+ 篇深度专栏" }
+        val: { en: "MS Learn Azure Architecture Center Author", zh: "微软官方架构中心参考架构作者 & 58 篇深度专栏" }
       },
       {
         key: { en: "CREDENTIALS", zh: "权威资质" },
@@ -83,7 +84,7 @@ window.RESUME_PORTFOLIO_DATA = {
       },
       {
         key: { en: "ALMA MATER", zh: "毕业院校" },
-        val: { en: "China Univ. of Mining & Technology (CUMT)", zh: "中国矿业大学 (国家 211 / 双一流) · 工学学士" }
+        val: { en: "China Univ. of Mining & Technology · B.S. CS", zh: "中国矿业大学 (CUMT) · 计算机科学学士" }
       }
     ],
     pullquote: {
@@ -115,8 +116,8 @@ window.RESUME_PORTFOLIO_DATA = {
       idx: "01 / EXPERIENCE",
       val: "20",
       suffix: "+ yrs",
-      label: { en: "Enterprise & Cloud Architecture", zh: "企业级研发管理与云架构" },
-      note: { en: "Consultant → Eng Manager → Microsoft CSA", zh: "技术顾问 → 研发经理 → 微软资深架构师" }
+      label: { en: "Technical Consulting & Cloud Architecture", zh: "企业技术咨询与云解决方案架构" },
+      note: { en: "Baosight & SeaChange → Microsoft Senior CSA", zh: "宝信软件 & SeaChange → 微软资深云架构师" }
     },
     {
       idx: "02 / PRODUCTION AI",
@@ -169,12 +170,12 @@ window.RESUME_PORTFOLIO_DATA = {
         {
           stage: "03 · EXTRACTION",
           title: { en: "6-Layer AI Taxonomy", zh: "六层 AI 架构解构" },
-          detail: { en: "Infra → Model → Orchestration → ROI", zh: "算力 → 模型 → 编排 → 量化 ROI" }
+          detail: { en: "Ingest · Compute · Storage · Serving · Orchestration · Governance", zh: "采集 · 计算 · 存储 · 服务 · 编排 · 治理六层解构" }
         },
         {
           stage: "04 · DELIVERY",
           title: { en: "Static Edge Index", zh: "零延迟边缘检索" },
-          detail: { en: "Astro 5 + Pagefind WASM search", zh: "Astro 5 + Pagefind WASM 毫秒级索引" }
+          detail: { en: "Astro 6 + Pagefind WASM search", zh: "Astro 6 + Pagefind WASM 毫秒级索引" }
         }
       ],
       tags: ["Autonomous Agents", "SQLite Provenance", "18 Industries", "Zero-Runtime Latency"],
@@ -228,7 +229,7 @@ window.RESUME_PORTFOLIO_DATA = {
         zh: "unirank.genisisiq.com · 全球高校多源排名共识引擎"
       },
       essence: {
-        en: "Harmonizes 11 global ranking methodologies (QS, THE, ARWU, US News, Nature, CSRankings) into a unified longitudinal dataset.",
+        en: "Harmonizes 11 global ranking methodologies (QS, THE, ARWU, U.S. News, Nature Index, CWTS Leiden, NTU, CWUR, SCImago, Webometrics, OpenAlex) into a unified longitudinal dataset.",
         zh: "消歧对齐全球 11 大权威高校榜单与 157,000+ 条学科排名记录，生成跨源共识中位数与多年份演进轨迹。"
       },
       metric: { en: "11 Rankings · 157K+ Records", zh: "11 大榜单 · 15.7 万条记录" },
@@ -263,38 +264,38 @@ window.RESUME_PORTFOLIO_DATA = {
       idx: "04",
       name: "Agentic Harness & Cloud Blueprints",
       domain: {
-        en: "blog.genisisiq.com · Published Architecture & Open-Source Workshops",
-        zh: "blog.genisisiq.com · 官方参考架构、MCP 工作坊与智能体内核专栏"
+        en: "blog.genisisiq.com · LinkedIn Publications & Open-Source Workshops",
+        zh: "blog.genisisiq.com · 微软官方参考架构、开源工作坊与技术专栏"
       },
       essence: {
-        en: "Published Microsoft Learn hybrid storage reference architecture, Entra ID OAuth MCP workshop, and source-level teardowns of Claude Code & Copilot CLI.",
-        zh: "涵盖微软官方架构中心发布作品、企业级 MCP + Entra ID 认证工作坊、无密钥 Workload Identity 以及主流 Coding Agent 逆向剖析。"
+        en: "Published Microsoft Learn enterprise hybrid storage architecture, MCP & GitHub Copilot workshops, Zero-Secret Workload Identity, Bingo & Flux2 GitOps.",
+        zh: "涵盖微软官方架构中心发布作品、MCP 与 GitHub Copilot 实战工作坊、无密钥 Workload Identity、Bingo 短链与 Flux2 GitOps 以及 58 篇深度专栏。"
       },
-      metric: { en: "MS Learn + 58 Essays + Workshops", zh: "官方架构 + 58 篇深度专栏" },
+      metric: { en: "MS Learn + 5 Workshops + 58 Essays", zh: "官方架构 + 5 大开源项目 + 58 篇专栏" },
       openDefault: false,
       steps: [
         {
           stage: "MS LEARN AUTHOR",
           title: { en: "Azure Architecture Center", zh: "微软官方架构中心作者" },
-          detail: { en: "Hybrid Azure Files + AD DS + Private Link", zh: "企业混合云文件共享与跨区容灾标准方案" }
+          detail: { en: "Enterprise cloud file share (AFS, Private Endpoint, AD DS)", zh: "企业级云文件共享参考架构 (AFS / 私有终结点 / AD DS)" }
         },
         {
-          stage: "AGENTIC SECURITY",
-          title: { en: "MCP + Entra ID OAuth", zh: "MCP + Entra ID 零信任鉴权" },
-          detail: { en: "APIM policy & JWT validation workshop", zh: "基于 APIM 策略网关的智能体安全工作坊" }
+          stage: "AI WORKSHOPS",
+          title: { en: "MCP & GitHub Copilot", zh: "MCP 与 GitHub Copilot 工作坊" },
+          detail: { en: "Entra ID OAuth, APIM, AI Foundry & Copilot Studio", zh: "Entra ID OAuth 鉴权、APIM、AI Foundry 与企业实战" }
         },
         {
-          stage: "ZERO-SECRET CLOUD",
-          title: { en: "Workload Identity & GitOps", zh: "无密钥身份与 GitOps" },
-          detail: { en: "AZWI Federated OIDC + Flux2 AKS", zh: "联邦 OIDC 令牌交换与 Flux2 多集群编排" }
+          stage: "CLOUD NATIVE",
+          title: { en: "Workload Identity, Bingo & Flux2", zh: "无密钥身份、Bingo 与 Flux2" },
+          detail: { en: "GitHub OIDC → Terraform/ACR/AKS + Flux2 GitOps", zh: "GitHub OIDC 免密钥部署 AKS 与 Flux2 集群编排" }
         },
         {
-          stage: "AGENT INTERNALS",
-          title: { en: "58+ Deep-Dive Essays", zh: "58+ 篇智能体内核拆解" },
-          detail: { en: "Claude Code & Copilot CLI execution loops", zh: "深度剖析主流 Coding Agent 上下文与调度环" }
+          stage: "PUBLICATION",
+          title: { en: "Unofficial Azure Club (58 Essays)", zh: "Unofficial Azure Club (58 篇专栏)" },
+          detail: { en: "Kubernetes networking, SNAT, Kusto & Coding Agents", zh: "深度剖析 K8s 网络、负载均衡 SNAT 与 Coding Agent 内核" }
         }
       ],
-      tags: ["Microsoft Learn Author", "Model Context Protocol", "Zero-Trust OIDC", "Unofficial Azure Club"],
+      tags: ["Microsoft Learn Author", "MCP & Copilot Workshops", "Zero-Trust OIDC & Flux2", "Unofficial Azure Club"],
       liveUrl: "https://blog.genisisiq.com/",
       repoUrl: "https://github.com/huangyingting/mcp-workshop"
     }
@@ -355,30 +356,39 @@ window.RESUME_PORTFOLIO_DATA = {
 
   trajectory: [
     {
-      period: "2019 — PRESENT",
+      period: "MICROSOFT · SHANGHAI",
       role: { en: "Senior Cloud Solution Architect", zh: "资深云解决方案架构师 (Senior CSA)" },
-      org: { en: "Microsoft · Shanghai, China", zh: "微软中国 (Microsoft) · 上海" },
+      org: { en: "Microsoft · Shanghai, China (4 Progressive Roles at Microsoft)", zh: "微软中国 (Microsoft) · 上海（含微软四段进阶履历）" },
       focus: {
-        en: "Architecting mission-critical Azure infrastructure, Zero-Trust security (SC-100/OIDC), Kubernetes/GitOps, and enterprise Agentic AI platforms for strategic customers.",
-        zh: "主导大型企业核心云原生架构、零信任安全体系、容器化与智能体 (Agentic AI) 平台落地，兼任全球黑客松评委与 OpenHack 教练。"
+        en: "Architecting mission-critical Azure infrastructure, Zero-Trust security (SC-100/OIDC), Kubernetes/GitOps, and enterprise Agentic AI platforms. 2026 Global Hackathon Official Judge, Dual FY26 Top Insider, 5× OpenHack Coach & 7-Year MCT.",
+        zh: "主导大型企业核心云原生架构、零信任安全体系 (SC-100/OIDC)、AKS/GitOps 与企业级智能体 (Agentic AI) 平台落地；兼任 2026 微软全球黑客松评委、FY26 双料顶级技术专家、5× OpenHack 教练与 7 年认证讲师。"
       }
     },
     {
-      period: "2005 — 2019",
-      role: { en: "Engineering Manager, PM & Technical Consultant", zh: "研发经理、项目经理与企业技术顾问" },
-      org: { en: "SeaChange International & Global Tech · Shanghai / Dalian", zh: "SeaChange International 等跨国科技企业 · 上海 / 大连" },
+      period: "PRIOR EXPERIENCE",
+      role: { en: "Senior Software Engineer & Technical Consultant", zh: "高级软件工程师与企业技术顾问" },
+      org: { en: "SeaChange International · Baosight Software (宝信软件) · Shanghai & Dalian", zh: "SeaChange International · 宝信软件 (Baosight) 等 · 上海 / 大连" },
       focus: {
-        en: "14 years progressing from core software engineer to project manager, engineering manager, and consultant delivering distributed systems and big-data platforms (MIIT Senior System Analyst, MapR Spark, ITIL, Prosci).",
-        zh: "14 年间历任高级研发工程师、项目经理、工程团队经理及技术咨询顾问，持有国家工信部高级系统分析师、MapR Spark 及 Prosci 变革管理资质。"
+        en: "Seasoned IT professional with 20+ years of experience across technical consulting and distributed software engineering. Certified System Analyst (MIIT), MapR Certified Spark Developer, ITIL® Foundation, and Prosci® Certified Change Practitioner.",
+        zh: "拥有逾 20 年企业技术咨询与分布式软件系统研发经验，曾任 SeaChange International 高级软件工程师及宝信软件等技术岗位；持有工信部系统分析师、MapR Spark 开发者、ITIL® Foundation 与 Prosci® 变革管理认证。"
       }
     },
     {
-      period: "EDUCATION",
-      role: { en: "China University of Mining and Technology (CUMT)", zh: "中国矿业大学 (CUMT · 国家 211 工程 / 双一流)" },
-      org: { en: "Bachelor's in Engineering & Computer Science", zh: "工学学士 · 计算机与工程背景" },
+      period: "PUBLICATIONS & OPEN SOURCE",
+      role: { en: "MS Learn Author & Open-Source Cloud Creator", zh: "微软官方架构中心作者与开源云原生项目创作者" },
+      org: { en: "Azure Architecture Center · Unofficial Azure Club (Est. Apr 2018)", zh: "Azure Architecture Center · Unofficial Azure Club (创立于 2018.04)" },
       focus: {
-        en: "Rigorous mathematical and systems engineering foundation. Native Mandarin & fluent working proficiency in English.",
-        zh: "扎实的工程数学与计算机系统功底，具备流利的中英文双语跨国架构沟通与技术布道能力。"
+        en: "Published Enterprise-Level Cloud File Share Solution on Azure (MS Learn) and 58 technical essays; creator of MCP Workshop, GitHub Copilot Workshop, Azure Workload Identity E2E Demo, Cloud Native Showcase (Bingo), and Flux2 GitOps.",
+        zh: "发布微软官方《Enterprise-level cloud file share solution on Azure》参考架构与 58 篇深度技术文章；开源 MCP 工作坊、GitHub Copilot 工作坊、Azure Workload Identity 端到端方案、Bingo 云原生应用与 Flux2 GitOps。"
+      }
+    },
+    {
+      period: "EDUCATION & LANGUAGES",
+      role: { en: "China University of Mining and Technology (CUMT)", zh: "中国矿业大学 (CUMT)" },
+      org: { en: "Bachelor's Degree, Computer Science", zh: "计算机科学学士 (Bachelor's Degree, Computer Science)" },
+      focus: {
+        en: "Computer Science degree at China University of Mining and Technology. Native or bilingual proficiency in Chinese; full professional proficiency in English.",
+        zh: "毕业于中国矿业大学计算机科学专业。中文母语或双语精通，英语具备全职业无障碍沟通能力 (Full Professional Proficiency)。"
       }
     }
   ]
