@@ -50,8 +50,8 @@ window.RESUME_PORTFOLIO_DATA = {
       zh: "不止于纸面架构蓝图，更以<em>一人成军</em>的工程力交付真实运行的全球 AI 平台。"
     },
     thesis: {
-      en: "<p>Seasoned cloud architect and engineering leader with <strong>20+ years of experience</strong> across <strong>Microsoft</strong> (two tenures totaling 20 years), <strong>HRGame</strong>, and <strong>SeaChange International</strong> — spanning Networking &amp; Private Cloud SME, <strong>Azure Rapid Response</strong> technical leadership, infrastructure engineering direction, and <strong>Senior Cloud Solution Architecture</strong>. Appointed <strong>2026 Microsoft Global Hackathon Official Judge</strong> and holder of all three Microsoft Expert certifications.</p><p>Guided by a single conviction — <strong>“Doers, not talkers”</strong> — he solo-engineers and operates full-stack autonomous AI and data intelligence platforms indexing <strong>2,300+ verified enterprise AI cases</strong>, <strong>178 economies</strong>, and <strong>157,000+ longitudinal academic records</strong>.</p>",
-      zh: "<p>资深云架构师与工程技术专家，拥有逾 <strong>20 年</strong>研发与架构经验（其中<strong>微软两段任期累计近 20 年</strong>），历任 <strong>SeaChange</strong> 高级软件工程师、<strong>微软</strong>网络与私有云虚拟化 SME、<strong>HRGame</strong> 技术总监、<strong>微软 Azure Rapid Response</strong> 技术负责人及<strong>资深云解决方案架构师 (Senior CSA)</strong>。获任 <strong>2026 微软全球黑客松官方评委</strong>，集齐微软三大顶级专家认证。</p><p>始终奉行 <strong>“Doers, not talkers（实干胜于空谈）”</strong>——工作之余独立完成数据管线、多智能体编排与前端交互，上线运营多款全球 AI 与数据情报系统，实时索引 <strong>2,300+ 真实企业 AI 案例</strong>与 <strong>178 个经济体</strong>。</p>"
+      en: "<p>Seasoned cloud architect and technologist with <strong>20+ years of experience</strong> spanning software engineering, enterprise networking &amp; private cloud, <strong>Azure Rapid Response</strong> technical leadership, and <strong>Microsoft Senior Cloud Solution Architecture</strong>. Appointed <strong>2026 Microsoft Global Hackathon Official Judge</strong>, published author in the <strong>Azure Architecture Center</strong>, and holder of all three Microsoft Expert certifications.</p><p>Guided by a single conviction — <strong>“Doers, not talkers”</strong> — he solo-engineers and operates full-stack autonomous AI and data intelligence platforms indexing <strong>2,300+ verified enterprise AI cases</strong>, <strong>178 economies</strong>, and <strong>157,000+ longitudinal academic records</strong>.</p>",
+      zh: "<p>资深云架构师与工程技术专家，拥有逾 <strong>20 年</strong>软件工程研发、企业网络与私有云虚拟化、<strong>微软 Azure Rapid Response</strong> 技术领衔及<strong>资深云解决方案架构师 (Senior CSA)</strong> 经验。获任 <strong>2026 微软全球黑客松官方评委</strong>，系<strong>微软官方架构中心</strong>作者，并集齐三大顶级专家认证。</p><p>始终奉行 <strong>“Doers, not talkers（实干胜于空谈）”</strong>——工作之余独立完成数据管线、多智能体编排与前端交互，上线运营多款全球 AI 与数据情报系统，实时索引 <strong>2,300+ 真实企业 AI 案例</strong>与 <strong>178 个经济体</strong>。</p>"
     },
     caption: {
       en: "Microsoft Senior CSA · Shanghai\nCUMT Computer Science Alumni",
@@ -116,8 +116,8 @@ window.RESUME_PORTFOLIO_DATA = {
       idx: "01 / EXPERIENCE",
       val: "20",
       suffix: "+ yrs",
-      label: { en: "Microsoft & Cloud Engineering", zh: "微软与云端工程领导力" },
-      note: { en: "SeaChange → Microsoft SME → HRGame Director → MS Senior CSA", zh: "SeaChange → 微软 SME → HRGame 总监 → 微软 Senior CSA" }
+      label: { en: "Cloud Architecture & Engineering", zh: "云原生架构与软件工程" },
+      note: { en: "Software Eng → Escalation Eng → Microsoft Senior CSA", zh: "软件工程 → 升级支持专家 → 微软资深云架构师" }
     },
     {
       idx: "02 / PRODUCTION AI",
@@ -356,48 +356,39 @@ window.RESUME_PORTFOLIO_DATA = {
 
   trajectory: [
     {
-      period: "2020.02 — PRESENT",
+      period: "2020.09 — PRESENT",
       role: { en: "Senior Cloud Solution Architect", zh: "资深云解决方案架构师 (Senior CSA)" },
-      org: { en: "Microsoft · Shanghai (Senior CSA Sep 2020–Present · CSA Feb–Aug 2020)", zh: "微软中国 (Microsoft) · 上海 (2020.09 晋升 Senior CSA)" },
+      org: { en: "Microsoft · Shanghai, China", zh: "微软中国 (Microsoft) · 上海" },
       focus: {
-        en: "Cloud, application, and AI architecture & strategy for international and enterprise customers across APAC and China.",
-        zh: "面向亚太及中国区企业客户，主导应用与云基础设施架构设计、AI 平台落地及技术战略。"
+        en: "Leading enterprise cloud, application, and AI architecture & technical strategy for customers across APAC and China.",
+        zh: "主导亚太及中国区企业客户云底座、应用现代化与 AI 解决方案架构设计及技术战略。"
+      }
+    },
+    {
+      period: "2020.02 — 2020.08",
+      role: { en: "Cloud Solution Architect", zh: "云解决方案架构师 (Cloud Solution Architect)" },
+      org: { en: "Microsoft · Shanghai, China", zh: "微软中国 (Microsoft) · 上海" },
+      focus: {
+        en: "Architecture and design of application and cloud infrastructure solutions for international customers across APAC and China.",
+        zh: "面向亚太与中国区跨国企业客户，负责应用与云基础设施解决方案的架构设计与落地。"
       }
     },
     {
       period: "2016.07 — 2020.01",
-      role: { en: "Escalation Engineer — Azure Rapid Response", zh: "升级支持工程师 (Azure Rapid Response)" },
-      org: { en: "Microsoft · Shanghai, China · 3 yrs 7 mos", zh: "微软中国 (Microsoft) · 上海 · 3 年 7 个月" },
+      role: { en: "Escalation Engineer — Azure Rapid Response", zh: "升级支持工程师 (Escalation Engineer · Azure Rapid Response)" },
+      org: { en: "Microsoft · Shanghai, China", zh: "微软中国 (Microsoft) · 上海" },
       focus: {
-        en: "Technical lead in elite Azure Rapid Response, guiding top Azure customers across IaaS, networking, Kubernetes, and PaaS.",
-        zh: "精英团队 Azure Rapid Response 技术负责人，护航头部大客户在 IaaS、网络、K8s 与 PaaS 的核心云架构实施。"
+        en: "Technical lead in elite Azure Rapid Response, partnering with top Azure customers across IaaS, networking, Kubernetes, and PaaS.",
+        zh: "微软精英团队 Azure Rapid Response 技术负责人，护航头部大客户在 IaaS、网络、K8s 与 PaaS 的核心云架构。"
       }
     },
     {
-      period: "2014.10 — 2016.07",
-      role: { en: "Director", zh: "技术总监 (Director)" },
-      org: { en: "HRGame · Shanghai, China · 1 yr 10 mos", zh: "HRGame · 上海 · 1 年 10 个月" },
+      period: "EARLIER CAREER",
+      role: { en: "Various Engineering & Technical Roles", zh: "早期多项工程与技术岗位" },
+      org: { en: "Support Escalation Engineer · Engineering Director · Software Engineer", zh: "技术支持升级工程师 · 工程总监 · 高级软件工程师等" },
       focus: {
-        en: "Led an ~15-person engineering team building and operating cloud-hosted mobile game server infrastructure.",
-        zh: "管理约 15 人工程团队，利用云端托管技术构建并运维手游服务端基础设施。"
-      }
-    },
-    {
-      period: "2005.01 — 2014.09",
-      role: { en: "Support Escalation Engineer / Escalation Engineer", zh: "技术支持升级工程师 (Support Escalation / Escalation Engineer)" },
-      org: { en: "Microsoft · Shanghai, China · 9 yrs 9 mos", zh: "微软中国 (Microsoft) · 上海 · 9 年 9 个月" },
-      focus: {
-        en: "Private Cloud & Virtualization SME (2009–2014) and Microsoft Networking SME (2005–2009).",
-        zh: "先后担任微软网络技术专家 (SME, 2005–2009) 与私有云及虚拟化技术专家 (SME, 2009–2014)。"
-      }
-    },
-    {
-      period: "2003.11 — 2005.01",
-      role: { en: "Senior Software Engineer", zh: "高级软件工程师 (Senior Software Engineer)" },
-      org: { en: "SeaChange International · Shanghai · 1 yr 3 mos", zh: "SeaChange International · 上海 · 1 年 3 个月" },
-      focus: {
-        en: "Developed core application suites for BMC storage solutions. B.S. in Computer Science, CUMT.",
-        zh: "负责核心 BMC 存储系统应用研发。毕业于中国矿业大学 (CUMT) 计算机科学专业。"
+        en: "Over a decade in software engineering, cloud server infrastructure, private cloud & virtualization SME, and networking SME. B.S. in Computer Science, CUMT.",
+        zh: "十余年软件研发、云端服务端基础设施管理、私有云虚拟化及网络领域技术专家 (SME) 经验。中国矿业大学计算机科学学士。"
       }
     }
   ]

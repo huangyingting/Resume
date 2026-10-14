@@ -102,9 +102,8 @@ async function main() {
       assert(domEn.includes('Microsoft Global Hackathon 2026 Official Judge'), 'Hydrated DOM missing 2026 Judge distinction');
       assert(domEn.includes('FutureGrid'), 'Hydrated DOM missing FutureGrid');
       assert(domEn.includes('Azure Rapid Response'), 'Hydrated DOM missing Escalation Engineer — Azure Rapid Response role');
-      assert(domEn.includes('HRGame'), 'Hydrated DOM missing HRGame Director role');
-      assert(domEn.includes('Support Escalation Engineer'), 'Hydrated DOM missing Support Escalation Engineer role');
-      assert(domEn.includes('SeaChange International'), 'Hydrated DOM missing SeaChange International role');
+      assert(domEn.includes('Cloud Solution Architect'), 'Hydrated DOM missing Cloud Solution Architect role');
+      assert(domEn.includes('Various Engineering'), 'Hydrated DOM missing summarized earlier career roles');
       assert(!domEn.includes('Engineering Manager'), 'Hydrated DOM must not contain inaccurate Engineering Manager title');
       assert(domEn.includes('fixed-topbar'), 'Hydrated DOM missing fixed top header bar');
       assert(domEn.includes('front-spread'), 'Hydrated DOM missing broadsheet front-page spread');
@@ -118,7 +117,7 @@ async function main() {
       );
       assert(domZh.includes('微软资深云解决方案架构师'), 'Chinese hydrated DOM missing localized role');
       assert(domZh.includes('Azure Rapid Response'), 'Chinese hydrated DOM missing Azure Rapid Response');
-      assert(domZh.includes('HRGame'), 'Chinese hydrated DOM missing HRGame');
+      assert(domZh.includes('早期多项工程与技术岗位'), 'Chinese hydrated DOM missing summarized earlier career roles');
       assert(!domZh.includes('研发经理'), 'Chinese hydrated DOM must not contain inaccurate 研发经理 title');
       assert(domZh.includes('一人成军'), 'Chinese hydrated DOM missing localized statement');
       console.log('✓ Headless Chrome DOM hydration verified for both English and Chinese views.');
