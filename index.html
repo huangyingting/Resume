@@ -11,17 +11,17 @@
   <meta property="og:image" content="./assets/avatar-credly.png" />
   <link rel="icon" type="image/png" href="./assets/avatar-credly.png" />
   <link rel="preload" href="./assets/fonts/mona-sans.woff2" as="font" type="font/woff2" crossorigin />
-  <link rel="stylesheet" href="./styles/resume.css?v=20261014-v5" />
+  <link rel="stylesheet" href="./styles/resume.css?v=20261014-v6" />
 </head>
 <body>
   <!-- Subtle Paper Grain Overlay -->
   <div class="grain-overlay" aria-hidden="true"></div>
 
-  <!-- FIXED TOP BAR (Strictly pinned at top: 0, flat, zero border-radius) -->
+  <!-- FIXED TOP BAR (Strictly pinned at top: 0, flat, with live scroll progress ink bar) -->
   <header class="fixed-topbar" id="fixed-topbar">
     <div class="sheet-wrap fixed-topbar__inner">
       <a class="fixed-topbar__brand" href="#top">
-        <span class="fixed-topbar__stamp">EDITION 2026</span>
+        <span class="fixed-topbar__stamp"><span class="live-dot" aria-hidden="true"></span>EDITION 2026</span>
         <span class="fixed-topbar__name">YINGTING HUANG</span>
         <span class="fixed-topbar__role" id="masthead-role">MICROSOFT SENIOR CSA</span>
       </a>
@@ -45,6 +45,7 @@
         <button type="button" class="lang-switch" id="lang-switch">中文</button>
       </div>
     </div>
+    <div class="scroll-progress" id="scroll-progress" aria-hidden="true"></div>
   </header>
 
   <main class="sheet-wrap broadsheet-page" id="top">
@@ -85,6 +86,14 @@
           <a class="news-link" href="mailto:huangyingting@outlook.com">EMAIL ↗</a>
         </div>
       </div>
+
+      <!-- Kinetic Broadsheet Wire Ticker -->
+      <div class="press-ticker" aria-label="Architectural Wire Dispatches">
+        <span class="press-ticker__badge" id="ticker-badge">WIRE DISPATCH</span>
+        <div class="press-ticker__viewport">
+          <div class="press-ticker__track" id="press-ticker-track"></div>
+        </div>
+      </div>
     </section>
 
     <!-- ====================================================================
@@ -108,7 +117,9 @@
       <aside class="front-spread__columnist">
         <div class="columnist-header" id="columnist-header">THE ARCHITECT IN FOCUS</div>
         <div class="portrait-plate">
-          <img class="portrait-frame" src="./assets/avatar-credly.png" alt="Yingting Huang" width="120" height="120" />
+          <div class="portrait-avatar-wrap">
+            <img class="portrait-frame" src="./assets/avatar-credly.png" alt="Yingting Huang" width="120" height="120" />
+          </div>
           <div class="portrait-meta">
             <div class="portrait-name">Yingting Huang</div>
             <div class="portrait-caption" id="portrait-caption">Microsoft Senior CSA · Shanghai<br/>CUMT Engineering Alumni</div>
@@ -198,8 +209,8 @@
     </div>
   </footer>
 
-  <script src="./scripts/credentials-data.js?v=20261014-v5"></script>
-  <script src="./scripts/portfolio-data.js?v=20261014-v5"></script>
-  <script src="./scripts/app.js?v=20261014-v5"></script>
+  <script src="./scripts/credentials-data.js?v=20261014-v6"></script>
+  <script src="./scripts/portfolio-data.js?v=20261014-v6"></script>
+  <script src="./scripts/app.js?v=20261014-v6"></script>
 </body>
 </html>

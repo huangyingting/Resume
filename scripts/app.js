@@ -50,7 +50,16 @@
       streamHack: "Hackathon & Honors (38)",
       liveLink: "LIVE SYSTEM ↗",
       repoLink: "SOURCE CODE ↗",
-      verifySeal: "VERIFY RECORD ↗"
+      verifySeal: "VERIFY RECORD ↗",
+      tickerBadge: "WIRE DISPATCH",
+      tickerItems: [
+        "<strong>2026 JUDGE</strong> MICROSOFT GLOBAL HACKATHON OFFICIAL JUDGE",
+        "<strong>2,300+ CASES</strong> USE CASE INTELLIGENCE MULTI-AGENT PLATFORM",
+        "<strong>3× EXPERT</strong> AZURE · DEVOPS · CYBERSECURITY ARCHITECT",
+        "<strong>MS LEARN</strong> AZURE ARCHITECTURE CENTER OFFICIAL AUTHOR",
+        "<strong>120 SEALS</strong> CRYPTOGRAPHICALLY VERIFIED CREDLY PORTFOLIO",
+        "<strong>CREDO</strong> “DOERS, NOT TALKERS.”"
+      ]
     },
     zh: {
       roleTag: "微软资深云架构师",
@@ -76,7 +85,16 @@
       streamHack: "黑客松与微软表彰 (38)",
       liveLink: "访问线上系统 ↗",
       repoLink: "开源仓库 ↗",
-      verifySeal: "前往官方验真 ↗"
+      verifySeal: "前往官方验真 ↗",
+      tickerBadge: "实时架构快讯",
+      tickerItems: [
+        "<strong>2026 官方评委</strong> 微软全球黑客松 (Microsoft Global Hackathon) 官方评委",
+        "<strong>2,300+ 案例</strong> 一人独立研发 Use Case Intelligence 全球企业 AI 情报库",
+        "<strong>三大专家大满贯</strong> Azure 解决方案架构 · DevOps 工程师 · 网络安全架构师",
+        "<strong>官方蓝图作者</strong> Microsoft Learn / Azure Architecture Center 架构作者",
+        "<strong>120 枚数字印鉴</strong> Credly 官方加密验真技术徽章与 Kusto 破案全满贯",
+        "<strong>工程信条</strong> “Doers, Not Talkers — 不止于蓝图，亲手交付系统”"
+      ]
     }
   };
 
@@ -147,18 +165,34 @@
     document.getElementById("columnist-header").textContent = t(data.hero.dossierHeader);
     document.getElementById("portrait-caption").innerHTML = esc(t(data.hero.caption)).replace(/\n/g, "<br/>");
 
+    // Wire Ticker Strip
+    const tickerBadge = document.getElementById("ticker-badge");
+    const tickerTrack = document.getElementById("press-ticker-track");
+    if (tickerBadge && tickerTrack) {
+      tickerBadge.textContent = ui("tickerBadge");
+      const items = ui("tickerItems") || [];
+      const passHtml = items
+        .map((item) => `<span class="ticker-item">${item}</span><span class="ticker-sep" aria-hidden="true">◆</span>`)
+        .join("");
+      tickerTrack.innerHTML = passHtml + passHtml;
+    }
+
     document.getElementById("datum-strip").innerHTML = data.datums
       .map(
-        (d) => `
-        <div class="datum-cell">
+        (d, i) => `
+        <div class="datum-cell reveal-item reveal-delay-${(i % 4) + 1}">
           <span class="datum-index">${esc(d.idx)}</span>
-          <div class="datum-value">${esc(d.val)}<span>${esc(d.suffix)}</span></div>
+          <div class="datum-value"><strong class="datum-num" data-target="${esc(d.val)}">${esc(d.val)}</strong><span>${esc(
+          d.suffix
+        )}</span></div>
           <div class="datum-label">${esc(t(d.label))}</div>
           <div class="datum-note">${esc(t(d.note))}</div>
         </div>
       `
       )
       .join("");
+
+    animateDatumCounters();
 
     document.getElementById("dossier-ledger").innerHTML = (data.hero.dossier || [])
       .map(
@@ -172,6 +206,36 @@
       .join("");
   }
 
+  function animateDatumCounters() {
+    if (window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
+    document.querySelectorAll(".datum-num[data-target]").forEach((el) => {
+      const raw = el.getAttribute("data-target") || "";
+      const hasComma = raw.includes(",");
+      const prefixMatch = raw.match(/^([^\d]*)/);
+      const suffixMatch = raw.match(/([^\d,]*)$/);
+      const prefix = prefixMatch ? prefixMatch[1] : "";
+      const trail = suffixMatch ? suffixMatch[1] : "";
+      const numVal = parseInt(raw.replace(/[^\d]/g, ""), 10);
+      if (!numVal || isNaN(numVal)) return;
+
+      const duration = 260;
+      const start = performance.now();
+      function tick(now) {
+        const elapsed = Math.min((now - start) / duration, 1);
+        const eased = elapsed === 1 ? 1 : 1 - Math.pow(1 - elapsed, 3);
+        const current = Math.round(numVal * eased);
+        const formatted = hasComma ? current.toLocaleString("en-US") : String(current);
+        el.textContent = `${prefix}${formatted}${trail}`;
+        if (elapsed < 1) {
+          requestAnimationFrame(tick);
+        } else {
+          el.textContent = raw;
+        }
+      }
+      requestAnimationFrame(tick);
+    });
+  }
+
   /* ========================================================================
      3. Render Section I: 4-Column Vertical Feature Spread
      ======================================================================== */
@@ -182,7 +246,7 @@
 
     const container = document.getElementById("works-index");
     container.innerHTML = data.works
-      .map((w) => {
+      .map((w, i) => {
         const stepsHtml = w.steps
           .map(
             (s) => `
@@ -196,7 +260,7 @@
           .join("");
 
         return `
-          <article class="work-col" data-work-idx="${esc(w.idx)}">
+          <article class="work-col reveal-item reveal-delay-${(i % 4) + 1}" data-work-idx="${esc(w.idx)}">
             <div>
               <div class="work-col__head">
                 <div class="work-col__topline">
@@ -236,8 +300,8 @@
 
     document.getElementById("authority-list").innerHTML = data.distinctions
       .map(
-        (d) => `
-        <div class="authority-row">
+        (d, i) => `
+        <div class="authority-row reveal-item reveal-delay-${(i % 4) + 1}">
           <span class="authority-year">${esc(d.year)}</span>
           <div>
             <h3 class="authority-title">${esc(t(d.title))}</h3>
@@ -399,6 +463,18 @@
 
   document.addEventListener("DOMContentLoaded", () => {
     renderAll();
+
+    // Update top scroll reading progress bar
+    const progressEl = document.getElementById("scroll-progress");
+    function updateScrollProgress() {
+      if (!progressEl) return;
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const ratio = docHeight > 0 ? Math.min(Math.max(window.scrollY / docHeight, 0), 1) : 0;
+      progressEl.style.transform = `scaleX(${ratio.toFixed(4)})`;
+    }
+    window.addEventListener("scroll", updateScrollProgress, { passive: true });
+    window.addEventListener("resize", updateScrollProgress, { passive: true });
+    updateScrollProgress();
 
     document.querySelectorAll("[data-tone]").forEach((btn) => {
       btn.addEventListener("click", () => applyPalette(btn.getAttribute("data-tone")));
