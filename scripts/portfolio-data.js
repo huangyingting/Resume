@@ -310,7 +310,7 @@ window.RESUME_PORTFOLIO_DATA = {
         zh: "在 2019 至 2025 年连续参与微软全球黑客松后，受邀担任 2026 年度黑客松评委。"
       },
       proofLabel: { en: "Verify Credly ↗", zh: "Credly 验真 ↗" },
-      proofUrl: "https://www.credly.com/badges/8426e989-f622-4888-88f1-840ab9017253"
+      proofUrl: "https://www.credly.com/badges/e4e4fd43-ff6a-40c5-9943-3b8f6b614b49"
     },
     {
       year: "2026 · MCAPS",
@@ -320,7 +320,7 @@ window.RESUME_PORTFOLIO_DATA = {
         zh: "微软内部客户与合作伙伴解决方案部门 (MCAPS) 在数据与云架构社区分享方面的年度认可。"
       },
       proofLabel: { en: "Verify Credly ↗", zh: "Credly 验真 ↗" },
-      proofUrl: "https://www.credly.com/badges/03421d5d-6979-4249-8dc4-fb4e2fdff53a"
+      proofUrl: "https://www.credly.com/badges/a6158bee-942d-414a-ae78-2514359a88cc"
     },
     {
       year: "MS LEARN",
@@ -340,7 +340,7 @@ window.RESUME_PORTFOLIO_DATA = {
         zh: "持有 Azure 解决方案架构专家、网络安全架构专家 (SC-100) 与 DevOps 工程师专家三项认证。"
       },
       proofLabel: { en: "Verify SC-100 ↗", zh: "查看证书 ↗" },
-      proofUrl: "https://www.credly.com/badges/ab9c8bd9-13df-4176-97fd-20c13e111456"
+      proofUrl: "https://www.credly.com/badges/21eb0a8c-aa4a-40f6-8540-a062053baae9"
     },
     {
       year: "2020 – 2026",
@@ -350,7 +350,7 @@ window.RESUME_PORTFOLIO_DATA = {
         zh: "多次担任客户 OpenHack 实训教练（容器、DevOps、Serverless、AI 知识挖掘），并自 2020 年起担任微软认证讲师。"
       },
       proofLabel: { en: "Verify MCT 2026 ↗", zh: "查看证书 ↗" },
-      proofUrl: "https://www.credly.com/badges/b7b92c54-3ab5-4337-a8bf-f134c7bd2064"
+      proofUrl: "https://www.credly.com/badges/5c60f24a-ba76-4e53-85dc-1bae658bf2d6"
     }
   ],
 

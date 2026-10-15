@@ -50,9 +50,16 @@ async function main() {
   assert(creds.meta.credlyCount === 120, `Expected 120 Credly badges, got ${creds.meta.credlyCount}`);
   assert(creds.credentials.length === 123, `Expected 123 total credentials, got ${creds.credentials.length}`);
 
-  // 3. Validate JS syntax of browser scripts
+  // 3. Validate JS syntax of browser scripts and verify all Credly badge URLs in portfolio-data.js
   for (const scriptRel of ['scripts/credentials-data.js', 'scripts/portfolio-data.js', 'scripts/app.js']) {
     execFileSync(process.execPath, ['--check', path.join(ROOT, scriptRel)]);
+  }
+  const validBadgeUrls = new Set(creds.credentials.map((c) => c.verifyUrl));
+  const portfolioSrc = fs.readFileSync(path.join(ROOT, 'scripts/portfolio-data.js'), 'utf8');
+  const badgeUrlMatches = portfolioSrc.match(/https:\/\/www\.credly\.com\/badges\/[0-9a-f-]+/g) || [];
+  assert(badgeUrlMatches.length > 0, 'Expected Credly badge URLs in portfolio-data.js');
+  for (const url of badgeUrlMatches) {
+    assert(validBadgeUrls.has(url), `Credly URL in portfolio-data.js does not match any issued badge in credentials.json: ${url}`);
   }
 
   // 4. Start local static HTTP server and test headless Chrome rendering
